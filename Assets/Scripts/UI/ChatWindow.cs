@@ -28,6 +28,6 @@ public class ChatWindow : MonoBehaviour
 
     private void NewChatMessage(string message)
     {
-        chatEntries.text = message;
+        chatEntries.text = message + "\n" + chatEntries.text;
     }
 }

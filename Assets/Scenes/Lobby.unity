@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.12107852, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1030,6 +1030,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hostLobbyScreen: {fileID: 1559857725}
   clientLobbyScreen: {fileID: 1769547707}
+  mainMenu: 
+  OnConnectionLost: {fileID: 11400000, guid: 20ae5e08772fd354f97cfbb0e6831bf3, type: 2}
 --- !u!1 &1624716487
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,7 +32,7 @@ public class Host : MonoBehaviour, IConnectionHandler
         Running = false;
     }
 
-    public void StartHandler(string _, int port)
+    public void StartHandler(string hostIP, int port)
     {
         if (Running)
         {
@@ -42,7 +42,7 @@ public class Host : MonoBehaviour, IConnectionHandler
 
         Debug.Log("Create Host...");
         
-        IPAddress ipAddress = IPAddress.Parse("127.0.0.1");
+        IPAddress ipAddress = IPAddress.Parse(hostIP);
         IPEndPoint localEndPoint = new IPEndPoint(ipAddress, port);
 
         try

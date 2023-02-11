@@ -23,3 +23,24 @@ public class GameEvent : ScriptableObject
 		_event?.Invoke();
 	}
 }
+
+public class GameEvent<T> : ScriptableObject
+{
+	private event GameEventMethod _event;
+
+	public delegate void GameEventMethod(T value);
+
+	public void AddListener(GameEventMethod listener)
+	{
+		_event += listener;
+	}
+	public void RemoveListener(GameEventMethod listener)
+	{
+		_event -= listener;
+	}
+
+	public void RaiseEvent(T value)
+	{
+		_event?.Invoke(value);
+	}
+}

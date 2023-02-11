@@ -426,7 +426,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -740,6 +740,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aad2a295c58468438f927f0ba580b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnChatMessageReceived: {fileID: 11400000, guid: 0afe65dfb81153e45b022c753ee68178, type: 2}
+  OnChatMessageReceived: {fileID: 11400000, guid: c8692811bef704a4ea50805f44773594, type: 2}
   chatEntries: {fileID: 7195055189220366448}
   chatInputField: {fileID: 7195055189119488765}

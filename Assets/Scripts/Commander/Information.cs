@@ -1,13 +1,11 @@
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "Information", menuName = "Information")]
+[CreateAssetMenu(fileName = "Information", menuName = "Mission/Information")]
 public class Information : ScriptableObject
 {
-    [SerializeField]
-    private int ID;
+    public int ID;
 
-
-    [SerializeField]
-    private string message;
+    [TextArea(10, 50)]
+    public string Message;
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Lobby : MonoBehaviour
 {
@@ -16,11 +17,15 @@ public class Lobby : MonoBehaviour
     [SerializeField]
     private GameEvent OnConnectionLost;
 
+    [SerializeField]
+    private TextMeshProUGUI ipAddress;
+
     void Start()
     {
         if(NetworkManager.Instance.ConnectionHandler.IsHost())
         {
             hostLobbyScreen.SetActive(true);
+            ipAddress.text = NetworkManager.Instance.ConnectionHandler.IP;
         }
         else
         {

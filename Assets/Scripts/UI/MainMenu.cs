@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Net;
 
 public class MainMenu : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class MainMenu : MonoBehaviour
     private TextMeshProUGUI messageText;
 
     [SerializeField]
+    private TMP_Dropdown ipSelection;
+
+    [SerializeField]
     [Scene]
     private string lobbyScene;
 
@@ -30,6 +34,19 @@ public class MainMenu : MonoBehaviour
         OnConnectionRefused.AddListener(ConnectionRefused);
         OnConnectionEstablished.AddListener(ConnectionEstablished);
         OnConnectionFailure.AddListener(ConnectionFailure);
+
+        ipSelection.options.Clear();
+        
+        string strHostName = Dns.GetHostName();
+        IPHostEntry host = Dns.GetHostEntry(strHostName);
+
+        foreach(IPAddress ipA in host.AddressList)
+        {
+            ipSelection.options.Add(new TMP_Dropdown.OptionData(ipA.ToString()));
+        }
+
+        if(ipSelection.options.Count > 1)
+            ipSelection.value = 1;
     }
 
     private void ConnectionRefused()
@@ -54,7 +71,7 @@ public class MainMenu : MonoBehaviour
 
     public void HostGame()
     {
-        NetworkManager.Instance.CreateHost();
+        NetworkManager.Instance.CreateHost(ipSelection.options[ipSelection.value].text);
         if (NetworkManager.Instance.ConnectionHandler.Running)
         {
             Debug.Log("Join lobby as host");

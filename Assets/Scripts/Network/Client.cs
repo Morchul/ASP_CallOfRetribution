@@ -16,6 +16,8 @@ public class Client : MonoBehaviour, IConnectionHandler
     public GameEvent OnConnectionFailure;
 
     public bool Running { get; private set; }
+    public string IP { get; private set; }
+    public int Port { get; private set; }
 
     private void Start()
     {
@@ -36,8 +38,10 @@ public class Client : MonoBehaviour, IConnectionHandler
         try
         {
             Debug.Log("Create Client...");
-            IPAddress ipAddress = IPAddress.Parse(hostIP);
-            IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
+            IP = hostIP;
+            Port = port;
+            IPAddress ipAddress = IPAddress.Parse(IP);
+            IPEndPoint remoteEP = new IPEndPoint(ipAddress, Port);
 
             clientSocket = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             Running = true;

@@ -7,9 +7,6 @@ public class NetworkManager : MonoBehaviour
     [SerializeField]
     private int port;
 
-    [SerializeField]
-    private string hostIP;
-
     [Header("Host")]
     [SerializeField]
     private Host hostPrefab;
@@ -42,7 +39,7 @@ public class NetworkManager : MonoBehaviour
     }
     #endregion
 
-    public void CreateHost()
+    public void CreateHost(string hostIP)
     {
         ConnectionHandler = Instantiate(hostPrefab, this.transform);
         Transmitter = ConnectionHandler.GetTransmitter();

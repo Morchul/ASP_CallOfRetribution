@@ -20,6 +20,8 @@ public class Host : MonoBehaviour, IConnectionHandler
 
     private bool acceptIncomingConnection = false;
     public bool Running { get; private set; }
+    public string IP { get; private set; }
+    public int Port { get; private set; }
 
     public GameEvent OnConnectionLost;
     public GameEvent OnConnectionEstablished;
@@ -41,9 +43,11 @@ public class Host : MonoBehaviour, IConnectionHandler
         }
 
         Debug.Log("Create Host...");
-        
-        IPAddress ipAddress = IPAddress.Parse(hostIP);
-        IPEndPoint localEndPoint = new IPEndPoint(ipAddress, port);
+        IP = hostIP;
+        Port = port;
+
+        IPAddress ipAddress = IPAddress.Parse(IP);
+        IPEndPoint localEndPoint = new IPEndPoint(ipAddress, Port);
 
         try
         {

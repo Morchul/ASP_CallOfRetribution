@@ -13,12 +13,12 @@ public static class MessageTransmitterCommands
 
 public abstract class MessageTransmitter : MonoBehaviour
 {
-
-    public GameEvent OnConnectionLost;
-    public GameEvent OnConnectionShutdown;
-
     [SerializeField]
     protected MessageHandler messageHandler;
+
+    [Header("Events")]
+    public GameEvent OnConnectionLost;
+    public GameEvent OnConnectionShutdown;
 
     private Socket clientSocket;
 

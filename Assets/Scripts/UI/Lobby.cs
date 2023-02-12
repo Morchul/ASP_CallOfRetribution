@@ -4,6 +4,7 @@ using TMPro;
 
 public class Lobby : MonoBehaviour
 {
+    [Header("UI elements")]
     [SerializeField]
     private GameObject hostLobbyScreen;
 
@@ -11,18 +12,19 @@ public class Lobby : MonoBehaviour
     private GameObject clientLobbyScreen;
 
     [SerializeField]
-    [Scene]
-    private string mainMenu;
+    private TextMeshProUGUI ipAddress;
 
+    [Header("Controller")]
+    [SerializeField]
+    private SceneController sceneController;
+
+    [Header("Events")]
     [SerializeField]
     private GameEvent OnConnectionLost;
 
-    [SerializeField]
-    private TextMeshProUGUI ipAddress;
-
     void Start()
     {
-        if(NetworkManager.Instance.ConnectionHandler.IsHost())
+        if (NetworkManager.Instance.ConnectionHandler.IsHost())
         {
             hostLobbyScreen.SetActive(true);
             ipAddress.text = NetworkManager.Instance.ConnectionHandler.IP;
@@ -38,6 +40,12 @@ public class Lobby : MonoBehaviour
     private void ReturnToMainMenu()
     {
         if (!NetworkManager.Instance.ConnectionHandler.IsHost())
-            SceneManager.LoadScene(mainMenu);
+            sceneController.GoToMainMenu();
+    }
+
+    public void LeaveLobby()
+    {
+        NetworkManager.Instance.ConnectionHandler.Shutdown();
+        sceneController.GoToMainMenu();
     }
 }

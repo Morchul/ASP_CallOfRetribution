@@ -5,14 +5,17 @@ using TMPro;
 
 public class ChatWindow : MonoBehaviour
 {
-    [SerializeField]
-    private StringEvent OnChatMessageReceived;
-
+    [Header("UI elements")]
     [SerializeField]
     private TextMeshProUGUI chatEntries;
 
     [SerializeField]
     private TMP_InputField chatInputField;
+
+    [Header("Events")]
+    [SerializeField]
+    private StringEvent OnChatMessageReceived;
+
 
     void Start()
     {

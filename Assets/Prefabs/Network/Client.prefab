@@ -43,9 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659263330c8a98f4eb6d2cb67a8f2ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnConnectionShutdown: {fileID: 11400000, guid: 2dac19d47796ce84884b8c78ad9c1ad7, type: 2}
-  OnChatMessageReceived: {fileID: 11400000, guid: 0afe65dfb81153e45b022c753ee68178, type: 2}
   transmitter: {fileID: 6099518835256828096}
+  OnConnectionShutdown: {fileID: 11400000, guid: 2dac19d47796ce84884b8c78ad9c1ad7, type: 2}
+  OnChatMessageReceived: {fileID: 11400000, guid: c8692811bef704a4ea50805f44773594, type: 2}
+  OnMissionSelect: {fileID: 11400000, guid: b814887e908ba654ab84db5d34cf4606, type: 2}
+  gameController: {fileID: 11400000, guid: 8d56789aec344864aa4812991fa68b34, type: 2}
   OnConnectionRefused: {fileID: 11400000, guid: 29eac446f27846642929b3d14f6a8bcd, type: 2}
 --- !u!1 &4642389896659224290
 GameObject:
@@ -141,6 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ce6ba2c85e3f445a9edf23b5339738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  messageHandler: {fileID: 1670656037762001763}
   OnConnectionLost: {fileID: 11400000, guid: 20ae5e08772fd354f97cfbb0e6831bf3, type: 2}
   OnConnectionShutdown: {fileID: 11400000, guid: 2dac19d47796ce84884b8c78ad9c1ad7, type: 2}
-  messageHandler: {fileID: 1670656037762001763}

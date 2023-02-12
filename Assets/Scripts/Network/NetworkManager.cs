@@ -28,7 +28,8 @@ public class NetworkManager : MonoBehaviour
     {
         if (instance != null && instance != this)
         {
-            Debug.LogError("Singleton %ScriptName% does already exist!");
+            instance.Refresh();
+            Debug.LogError("Singleton NetworkManager does already exist!");
             Destroy(this.gameObject);
         }
         else
@@ -38,6 +39,12 @@ public class NetworkManager : MonoBehaviour
         }
     }
     #endregion
+
+    //Destroy child (host or client) every time player returns to main menu and a new NetworkManager would be created
+    private void Refresh()
+    {
+        Destroy(gameObject.transform.GetChild(0).gameObject);
+    }
 
     public void CreateHost(string hostIP)
     {
@@ -63,30 +70,4 @@ public class NetworkManager : MonoBehaviour
     {
         Shutdown();
     }
-
-    /*[SerializeField]
-    private bool host;
-    [SerializeField]
-    private int delay;
-    private void Start()
-    {
-        if(host)
-            CreateHost();
-        else
-        {
-            StartCoroutine(DelayedCreateClient());
-        }
-    }
-
-    public void Test()
-    {
-        CreateClient();
-    }
-
-    private IEnumerator DelayedCreateClient()
-    {
-        yield return new WaitForSeconds(delay);
-        CreateClient();
-    }*/
-
 }

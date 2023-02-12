@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0bcbb6efb999424aafa4b35752a2549, type: 3}
+  m_Name: SceneController
+  m_EditorClassIdentifier: 
+  mainLevel: Assets/Scenes/MainLevel.unity
+  commanderScene: Assets/Scenes/Commander.unity
+  loadingScreen: Assets/Scenes/LoadingScreen.unity
+  mainMenu: Assets/Scenes/MainMenu.unity
+  lobby: Assets/Scenes/Lobby.unity
+  OnMissionLoaded: {fileID: 11400000, guid: 18ca4a8f77d5ee149aca6106844ca4d0, type: 2}

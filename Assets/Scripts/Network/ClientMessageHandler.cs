@@ -16,4 +16,10 @@ public class ClientMessageHandler : MessageHandler
             OnConnectionRefused.RaiseEvent();
         }
     }
+
+    public override void SelectMissionReceived(string message)
+    {
+        OnMissionSelect.RaiseEvent(int.Parse(message.Substring(SELECT_MISSION_PREFIX.Length)));
+        gameController.StartMission();
+    }
 }

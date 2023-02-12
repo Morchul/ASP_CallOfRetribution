@@ -1,15 +1,25 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
 using System.Net;
 
 public class MainMenu : MonoBehaviour
 {
+    [Header("UI elements")]
     [SerializeField]
     private IPAddressField ipAddressField;
 
+    [SerializeField]
+    private TextMeshProUGUI messageText;
+
+    [SerializeField]
+    private TMP_Dropdown ipSelection;
+
+    [Header("Scene Controller")]
+    [SerializeField]
+    private SceneController sceneController;
+
+    [Header("Events")]
     [SerializeField]
     private GameEvent OnConnectionRefused;
 
@@ -19,15 +29,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private GameEvent OnConnectionFailure;
 
-    [SerializeField]
-    private TextMeshProUGUI messageText;
+    
 
-    [SerializeField]
-    private TMP_Dropdown ipSelection;
-
-    [SerializeField]
-    [Scene]
-    private string lobbyScene;
+    
 
     private void Start()
     {
@@ -64,7 +68,7 @@ public class MainMenu : MonoBehaviour
         if (!NetworkManager.Instance.ConnectionHandler.IsHost())
         {
             Debug.Log("Join lobby as Client");
-            SceneManager.LoadScene(lobbyScene);
+            sceneController.JoinLobby();
             //Join lobby as client
         }
     }
@@ -75,7 +79,7 @@ public class MainMenu : MonoBehaviour
         if (NetworkManager.Instance.ConnectionHandler.Running)
         {
             Debug.Log("Join lobby as host");
-            SceneManager.LoadScene(lobbyScene);
+            sceneController.JoinLobby();
             //Join lobby as host
         }
     }

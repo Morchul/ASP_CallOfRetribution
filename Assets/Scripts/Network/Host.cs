@@ -23,11 +23,12 @@ public class Host : MonoBehaviour, IConnectionHandler
     public string IP { get; private set; }
     public int Port { get; private set; }
 
+    [Header("Events")]
     public GameEvent OnConnectionLost;
     public GameEvent OnConnectionEstablished;
     public GameEvent OnConnectionShutdown;
 
-    private void Start()
+    private void Awake()
     {
         OnConnectionLost.AddListener(ConnectionLost);
         OnConnectionShutdown.AddListener(ConnectionLost);
@@ -52,6 +53,8 @@ public class Host : MonoBehaviour, IConnectionHandler
         try
         {
             serverSocket = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            LingerOption lo = new LingerOption(true, 1);
+            serverSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Linger, lo);
             serverSocket.Bind(localEndPoint);
             serverSocket.Listen(1);
 
@@ -76,18 +79,19 @@ public class Host : MonoBehaviour, IConnectionHandler
         if (Running)
         {
             Running = false;
+            Debug.Log("Shutdown Host");
 
             messageTransmitter.SendShutdown();
             OnConnectionShutdown.RaiseEvent();
 
             try
             {
-                serverSocket.Shutdown(SocketShutdown.Both);
-            }
-            finally
-            {
                 serverSocket.Close();
                 serverSocket = null;
+            }
+            catch(Exception e)
+            {
+                Debug.LogError("ERROR while trying to shutdown Host!!: " + e.Message + "\n" + e.StackTrace);
             }
         }
     }
@@ -109,6 +113,7 @@ public class Host : MonoBehaviour, IConnectionHandler
             {
                 Debug.Log("Wait for connection...");
                 Socket socket = serverSocket.Accept();
+                Debug.Log("Connection received...");
                 if (acceptIncomingConnection)
                 {
                     Debug.Log("Connection accepted");
@@ -132,7 +137,7 @@ public class Host : MonoBehaviour, IConnectionHandler
             }
             catch (Exception e)
             {
-                Debug.Log("Thread exception: " + e.Message + "/n" + e.StackTrace);
+                Debug.Log("Thread exception: " + e.Message + "\n" + e.StackTrace);
                 threadException = e;
             }
         }

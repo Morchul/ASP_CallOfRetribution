@@ -9,6 +9,7 @@ public class Client : MonoBehaviour, IConnectionHandler
     private MessageTransmitter messageTransmitter;
     public MessageTransmitter GetTransmitter() => messageTransmitter;
 
+    [Header("Events")]
     public GameEvent OnConnectionLost;
     public GameEvent OnConnectionEstablished;
     public GameEvent OnConnectionShutdown;
@@ -19,7 +20,7 @@ public class Client : MonoBehaviour, IConnectionHandler
     public string IP { get; private set; }
     public int Port { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         OnConnectionShutdown.AddListener(ShutdownCommandReceived);
         OnConnectionRefused.AddListener(ConnectionRefusedByHost);

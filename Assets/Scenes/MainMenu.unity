@@ -472,10 +472,10 @@ RectTransform:
   m_Father: {fileID: 678244044}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -52}
-  m_SizeDelta: {x: -362.5043, y: -426.1015}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 1500, y: 650}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &339076159
 MonoBehaviour:
@@ -1226,12 +1226,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ipAddressField: {fileID: 1514813268}
+  messageText: {fileID: 1691871327}
+  ipSelection: {fileID: 329894819}
+  sceneController: {fileID: 11400000, guid: 5ad3fdd38a1013c478f253fdad388701, type: 2}
   OnConnectionRefused: {fileID: 11400000, guid: 29eac446f27846642929b3d14f6a8bcd, type: 2}
   OnConnectionEstablished: {fileID: 11400000, guid: 882cbd19f10e86b4886272b99d52727c, type: 2}
   OnConnectionFailure: {fileID: 11400000, guid: 4754bcd8f519a4248a30349ade22ec28, type: 2}
-  messageText: {fileID: 1691871327}
-  ipSelection: {fileID: 329894819}
-  lobbyScene: Assets/Scenes/Lobby.unity
 --- !u!1 &736779073
 GameObject:
   m_ObjectHideFlags: 0
@@ -1802,6 +1802,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106839629}
   m_CullTransparentMesh: 1
+--- !u!1 &1461379557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1461379559}
+  - component: {fileID: 1461379558}
+  m_Layer: 0
+  m_Name: Initialiser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1461379558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461379557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8588d6dd24af54cb42475d9ed876c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionController: {fileID: 11400000, guid: 768426e8a2ef50a4594206db78e130f3, type: 2}
+--- !u!4 &1461379559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461379557}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1465238640
 GameObject:
   m_ObjectHideFlags: 0
@@ -2801,50 +2845,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1760880029}
   m_CullTransparentMesh: 1
---- !u!1 &1787968013
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1787968015}
-  - component: {fileID: 1787968014}
-  m_Layer: 0
-  m_Name: MissionController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1787968014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787968013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a60b732f489a61e48a726a532389d196, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnNewInformation: {fileID: 11400000, guid: 97bb02a1aacb8be44b4873997f735aaf, type: 2}
---- !u!4 &1787968015
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787968013}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1810654524
 GameObject:
   m_ObjectHideFlags: 0

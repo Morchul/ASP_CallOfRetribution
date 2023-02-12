@@ -5,6 +5,7 @@ using UnityEngine;
 public class Information : ScriptableObject
 {
     public int ID;
+    public bool StartInfo;
 
     [TextArea(10, 50)]
     public string Message;

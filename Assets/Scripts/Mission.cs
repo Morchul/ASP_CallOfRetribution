@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -9,31 +7,26 @@ public class Mission : ScriptableObject
     [Scene]
     public string MissionScene;
 
+    public int ID;
+
     [SerializeField]
-    private InformationData[] missionInformation;
+    private Information[] missionInformation;
 
     public IntEvent OnNewInformation;
 
     public void Start()
     {
-        foreach(InformationData infoData in missionInformation)
+        foreach(Information info in missionInformation)
         {
-            if (infoData.StartInfo)
+            if (info.StartInfo)
             {
-                OnNewInformation.RaiseEvent(infoData.Info.ID);
+                OnNewInformation.RaiseEvent(info.ID);
             }
         }
     }
 
     public Information GetInformation(int id)
     {
-        return missionInformation.First((info) => info.Info.ID == id).Info;
-    }
-
-    [System.Serializable]
-    public struct InformationData
-    {
-        public Information Info;
-        public bool StartInfo;
+        return missionInformation.First((info) => info.ID == id);
     }
 }

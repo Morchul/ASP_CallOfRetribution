@@ -29,7 +29,7 @@ public class NetworkManager : MonoBehaviour
         if (instance != null && instance != this)
         {
             instance.Refresh();
-            Debug.LogError("Singleton NetworkManager does already exist!");
+            Debug.Log("Singleton NetworkManager does already exist. Reseting existing one!");
             Destroy(this.gameObject);
         }
         else

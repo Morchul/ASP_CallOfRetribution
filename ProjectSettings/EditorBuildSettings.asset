@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mission1_Test.unity
     guid: 168844fc6bd7ce748b05315ae3145bdc
+  - enabled: 1
+    path: Assets/Scenes/Dalton.unity
+    guid: 7cd5e452400d2c14f9100b9f84f182de
   m_configObjects: {}

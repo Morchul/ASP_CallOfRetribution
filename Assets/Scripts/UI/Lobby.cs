@@ -21,6 +21,8 @@ public class Lobby : MonoBehaviour
     [Header("Events")]
     [SerializeField]
     private GameEvent OnConnectionLost;
+    [SerializeField]
+    private GameEvent OnConnectionShutdown;
 
     void Start()
     {
@@ -35,17 +37,30 @@ public class Lobby : MonoBehaviour
         }
 
         OnConnectionLost.AddListener(ReturnToMainMenu);
+        OnConnectionShutdown.AddListener(ReturnToMainMenu);
     }
 
     private void ReturnToMainMenu()
     {
         if (!NetworkManager.Instance.ConnectionHandler.IsHost())
-            sceneController.GoToMainMenu();
+        {
+            CloseLobby();
+        }   
     }
 
     public void LeaveLobby()
     {
         NetworkManager.Instance.ConnectionHandler.Shutdown();
+        if(NetworkManager.Instance.ConnectionHandler.IsHost())
+        {
+            CloseLobby();
+        }
+    }
+
+    private void CloseLobby()
+    {
+        OnConnectionLost.RemoveListener(ReturnToMainMenu);
+        OnConnectionShutdown.RemoveListener(ReturnToMainMenu);
         sceneController.GoToMainMenu();
     }
 }

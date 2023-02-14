@@ -82,16 +82,6 @@ public class Radio : MonoBehaviour
         }
     }
 
-    public void TurnOnOff()
-    {
-        Debug.Log("TurnRadioOnOff: " + IsRunning);
-        return; //DEBUG
-        if (IsRunning)
-            TurnOff();
-        else
-            TurnOn();
-    }
-
     public void QueueMessage(RadioMessage message)
     {
         if (message.Important)
@@ -117,6 +107,16 @@ public class Radio : MonoBehaviour
         audioSource.PlayOneShot(radioTurnOnSound);
         IsRunning = true;
         audioSource.mute = false;
+    }
+
+    private void OnMouseUp()
+    {
+        Debug.Log("TurnRadioOnOff: " + IsRunning);
+        return; //DEBUG
+        if (IsRunning)
+            TurnOff();
+        else
+            TurnOn();
     }
 
     [System.Serializable]

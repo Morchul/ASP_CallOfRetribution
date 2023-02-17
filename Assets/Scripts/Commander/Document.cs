@@ -1,14 +1,22 @@
 using UnityEngine;
 using TMPro;
 
-public class Document : MonoBehaviour
+public class Document : MovableFocusObject, IData
 {
-    private Information info;
+    //private Information info;
+    [Header("Doc info")]
+    [SerializeField]
+    private int id;
+    public int ID => id;
 
     [SerializeField]
-    private TMP_Text text;
+    private bool startInfo;
+    public bool StartInfo => startInfo;
 
-    private Vector3 startPos;
+    //[SerializeField]
+    //private TMP_Text text;
+
+    /*private Vector3 startPos;
     private Vector3 startRot;
     private Vector3 targetPos;
     private Vector3 targetRot;
@@ -31,18 +39,6 @@ public class Document : MonoBehaviour
         }
     }
 
-    public void SetInformation(Information information)
-    {
-        info = information;
-        text.text = info.Message;
-    }
-
-    public void SetRotAndYPos(Vector3 eulerRot, float yPos)
-    {
-        transform.eulerAngles = eulerRot;
-        transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
-    }
-
     public void StartAnimation(Vector3 targetPos, Vector3 targetRot)
     {
         startPos = transform.position;
@@ -52,9 +48,11 @@ public class Document : MonoBehaviour
         timer = 0;
         animate = true;
     }
+    */
 
-    private void OnMouseDown()
+    /*public void SetInformation(Information information)
     {
-        Debug.Log("Mouse down");
-    }
+        info = information;
+        text.text = info.Message;
+    }*/
 }

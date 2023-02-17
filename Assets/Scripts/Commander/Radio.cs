@@ -25,6 +25,13 @@ public class Radio : MonoBehaviour
     [Range(0, 100)]
     private int changeToPlayMusic;
 
+    [Header("Events")]
+    [SerializeField]
+    private IntEvent onNewRadioMessage;
+
+    [Header("Controller")]
+    private MissionController missionController;
+
     private LinkedList<AudioClip> radioSequence;
 
     private AudioSource audioSource;
@@ -38,6 +45,7 @@ public class Radio : MonoBehaviour
         radioSequence = new LinkedList<AudioClip>();
         //FillRadioSequence(); DEBUG
         forceNextTrack = false;
+        onNewRadioMessage.AddListener(QueueMessage);
     }
 
     void Update()
@@ -82,16 +90,21 @@ public class Radio : MonoBehaviour
         }
     }
 
-    public void QueueMessage(RadioMessage message)
+    public void QueueMessage(int messageID)
+    {
+        QueueMessage(missionController.CurrentMission.GetRadioMessage(messageID));
+    }
+
+    public void QueueMessage(Mission.RadioMessage message)
     {
         if (message.Important)
         {
-            radioSequence.AddAfter(radioSequence.First, message.Clip);
+            radioSequence.AddAfter(radioSequence.First, message.AudioClip);
             forceNextTrack = true;
         }
         else
         {
-            radioSequence.AddLast(message.Clip);
+            radioSequence.AddLast(message.AudioClip);
         }
     }
 
@@ -117,12 +130,5 @@ public class Radio : MonoBehaviour
             TurnOff();
         else
             TurnOn();
-    }
-
-    [System.Serializable]
-    public class RadioMessage
-    {
-        public AudioClip Clip;
-        public bool Important;
     }
 }

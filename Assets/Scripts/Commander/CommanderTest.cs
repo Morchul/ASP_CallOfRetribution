@@ -5,7 +5,7 @@ using UnityEngine;
 public class CommanderTest : MonoBehaviour
 {
     [SerializeField]
-    private Information info;
+    private Document doc;
 
     [SerializeField]
     private IntEvent OnNewInformation;
@@ -26,6 +26,6 @@ public class CommanderTest : MonoBehaviour
 
     public void ReleaseInformation()
     {
-        OnNewInformation.RaiseEvent(info.ID);
+        OnNewInformation.RaiseEvent(doc.ID);
     }
 }

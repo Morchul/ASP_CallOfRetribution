@@ -10,23 +10,39 @@ public class Mission : ScriptableObject
     public int ID;
 
     [SerializeField]
-    private Information[] missionInformation;
+    private Document[] missionDocuments;
+
+    [SerializeField]
+    private RadioMessage[] radioMessages;
 
     public IntEvent OnNewInformation;
 
     public void Start()
     {
-        foreach(Information info in missionInformation)
+        foreach(Document doc in missionDocuments)
         {
-            if (info.StartInfo)
+            if (doc.StartInfo)
             {
-                OnNewInformation.RaiseEvent(info.ID);
+                OnNewInformation.RaiseEvent(doc.ID);
             }
         }
     }
 
-    public Information GetInformation(int id)
+    public RadioMessage GetRadioMessage(int id)
     {
-        return missionInformation.First((info) => info.ID == id);
+        return radioMessages.First((message) => message.ID == id);
+    }
+
+    public Document GetInformation(int id)
+    {
+        return missionDocuments.First((info) => info.ID == id);
+    }
+
+    [System.Serializable]
+    public class RadioMessage
+    {
+        public int ID;
+        public AudioClip AudioClip;
+        public bool Important;
     }
 }

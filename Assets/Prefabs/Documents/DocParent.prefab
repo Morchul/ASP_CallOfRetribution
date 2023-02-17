@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3601131247138171654}
   - component: {fileID: 3601131247138171705}
   m_Layer: 0
-  m_Name: Document
+  m_Name: DocParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f1726d2176c9e641ba5ee65dfaa9fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 3601131247142937416}
+  animationMultiplier: 0.6
+  zoomSpeed: 5
+  moveSpeed: 0.4
+  id: 0
+  startInfo: 0
 --- !u!1 &3601131247142937430
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +147,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Info
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -226,6 +230,8 @@ GameObject:
   - component: {fileID: 387514318611043070}
   - component: {fileID: 5575646596394735582}
   - component: {fileID: 7698767135337348523}
+  - component: {fileID: 8675545840105830689}
+  - component: {fileID: 2355719634839386410}
   m_Layer: 0
   m_Name: Paper
   m_TagString: Untagged
@@ -241,8 +247,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6748592446146123086}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: 4}
-  m_LocalScale: {x: 0.6, y: 1, z: 0.8}
+  m_LocalPosition: {x: 2, y: 0, z: 3}
+  m_LocalScale: {x: 0.4, y: 1, z: 0.6}
   m_Children:
   - {fileID: 3601131247142937417}
   m_Father: {fileID: 3601131247138171654}
@@ -297,3 +303,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8675545840105830689
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6748592446146123086}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2355719634839386410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6748592446146123086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee467c18585202c43bd2f48de0ba17ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

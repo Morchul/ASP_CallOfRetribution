@@ -7,13 +7,6 @@ public class Commander : MonoBehaviour
     [SerializeField]
     private DocumentHolder documentHolder;
 
-    private List<IBugable> buggedObjects;
-
-    private void Awake()
-    {
-        buggedObjects = new List<IBugable>();
-    }
-
     /*private void Update()
     {
         if(Input.GetMouseButtonDown(0))

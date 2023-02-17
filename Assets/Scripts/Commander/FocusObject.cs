@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class FocusObject : MonoBehaviour, IFocusable
 {
-    public bool InFocus { get; private set; }
+    public bool InFocus { get; protected set; }
     private FocusAnimationParam startPos;
     private FocusAnimationParam targetPos;
 
     [SerializeField]
-    [Tooltip("Faster than division for a second duration of 2sec use 0.5f")]
+    [Tooltip("Animation duration is: [1 / this value]")]
     private float animationMultiplier = 0.6f;
 
     public FocusHandler FocusHandler { get; set; }
@@ -22,7 +22,7 @@ public class FocusObject : MonoBehaviour, IFocusable
         InFocus = false;
     }
 
-    public void DisableFocus()
+    public virtual void DisableFocus()
     {
         InFocus = false;
 
@@ -31,7 +31,7 @@ public class FocusObject : MonoBehaviour, IFocusable
         LerpBetweenTransforms();
     }
 
-    public void EnableFocus(FocusAnimationParam focusPos)
+    public virtual void EnableFocus(FocusAnimationParam focusPos)
     {
         InFocus = true;
 
@@ -95,9 +95,14 @@ public class FocusObject : MonoBehaviour, IFocusable
             }
             else
             {
-                animate = false;
+                AnimationFinished();
             }
         }
+    }
+
+    protected virtual void AnimationFinished()
+    {
+        animate = false;
     }
 
     public virtual void OnMouseUp()

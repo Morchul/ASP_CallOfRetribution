@@ -4,17 +4,28 @@ using UnityEngine;
 
 public class CommanderTest : MonoBehaviour
 {
+    [Header("Test values")]
+    [SerializeField]
+    private Mission testMission;
+
     [SerializeField]
     private Document doc;
 
     [SerializeField]
+    private int bugID;
+
+    [SerializeField]
+    private IBugable.Type buggedObjectType;
+
+    [Header("Events")]
+    [SerializeField]
     private IntEvent OnNewInformation;
     [SerializeField]
     private IntEvent OnMissionSelect;
-
     [SerializeField]
-    private Mission testMission;
+    private BugPlacedEvent OnBugPlaced;
 
+    [Header("Controller")]
     [SerializeField]
     private MissionController missionController;
 
@@ -24,8 +35,13 @@ public class CommanderTest : MonoBehaviour
         OnMissionSelect.RaiseEvent(testMission.ID);
     }
 
-    public void ReleaseInformation()
+    public void ReleaseDocument()
     {
         OnNewInformation.RaiseEvent(doc.ID);
+    }
+
+    public void PlaceBug()
+    {
+        OnBugPlaced.RaiseEvent(bugID, buggedObjectType);
     }
 }

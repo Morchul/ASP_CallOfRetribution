@@ -6,8 +6,12 @@ public class FocusHandler : MonoBehaviour
 {
     private IFocusable currentFocusObject;
 
+    public bool BlockFocus { get; set; } = false;
+
     public void SetFocusObject(IFocusable focusable)
     {
+        if (BlockFocus) return;
+
         if(currentFocusObject != null)
         {
             currentFocusObject.DisableFocus();

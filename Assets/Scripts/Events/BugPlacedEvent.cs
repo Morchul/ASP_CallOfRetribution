@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "BugPlacedEvent", menuName = "Events/BugPlacedEvent")]
-public class BugPlacedEvent : MonoBehaviour
+public class BugPlacedEvent : ScriptableObject
 {
 	private event BugPlacedEventMethod _event;
 
-	public delegate void BugPlacedEventMethod(int bugID, IBugable.Type type);
+	public delegate void BugPlacedEventMethod(int ID, IBugable.Type type, int status);
 
 	public void AddListener(BugPlacedEventMethod listener)
 	{
@@ -18,8 +18,8 @@ public class BugPlacedEvent : MonoBehaviour
 		_event -= listener;
 	}
 
-	public void RaiseEvent(int bugID, IBugable.Type type)
+	public void RaiseEvent(int ID, IBugable.Type type, int status)
 	{
-		_event?.Invoke(bugID, type);
+		_event?.Invoke(ID, type, status);
 	}
 }

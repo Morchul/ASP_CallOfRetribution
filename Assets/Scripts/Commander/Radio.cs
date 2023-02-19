@@ -30,6 +30,7 @@ public class Radio : MonoBehaviour
     private IntEvent onNewRadioMessage;
 
     [Header("Controller")]
+    [SerializeField]
     private MissionController missionController;
 
     private LinkedList<AudioClip> radioSequence;
@@ -43,14 +44,14 @@ public class Radio : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         radioSequence = new LinkedList<AudioClip>();
-        //FillRadioSequence(); DEBUG
+        FillRadioSequence();
         forceNextTrack = false;
         onNewRadioMessage.AddListener(QueueMessage);
+        TurnOff();
     }
 
     void Update()
     {
-        return; //DEBUG
         if(forceNextTrack)
         {
             //add effect like fade out
@@ -97,6 +98,8 @@ public class Radio : MonoBehaviour
 
     public void QueueMessage(Mission.RadioMessage message)
     {
+        if (forceNextTrack) return; //Important radio message is already running
+
         if (message.Important)
         {
             radioSequence.AddAfter(radioSequence.First, message.AudioClip);
@@ -125,7 +128,6 @@ public class Radio : MonoBehaviour
     private void OnMouseUp()
     {
         Debug.Log("TurnRadioOnOff: " + IsRunning);
-        return; //DEBUG
         if (IsRunning)
             TurnOff();
         else

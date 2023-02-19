@@ -15,7 +15,13 @@ public class CommanderTest : MonoBehaviour
     private int bugID;
 
     [SerializeField]
-    private IBugable.Type buggedObjectType;
+    private IBugable.Type buggedType;
+
+    [SerializeField]
+    private int bugStatus;
+
+    [SerializeField]
+    private int radioMessageID;
 
     [Header("Events")]
     [SerializeField]
@@ -24,6 +30,8 @@ public class CommanderTest : MonoBehaviour
     private IntEvent OnMissionSelect;
     [SerializeField]
     private BugPlacedEvent OnBugPlaced;
+    [SerializeField]
+    private IntEvent OnNewRadioMessage;
 
     [Header("Controller")]
     [SerializeField]
@@ -42,6 +50,11 @@ public class CommanderTest : MonoBehaviour
 
     public void PlaceBug()
     {
-        OnBugPlaced.RaiseEvent(bugID, buggedObjectType);
+        OnBugPlaced.RaiseEvent(bugID, buggedType, bugStatus);
+    }
+
+    public void SendImportantRadioMessage()
+    {
+        OnNewRadioMessage.RaiseEvent(radioMessageID);
     }
 }

@@ -16,5 +16,8 @@ MonoBehaviour:
   ID: 0
   missionDocuments:
   - {fileID: 8887146154713496517, guid: 67c59e1b652ff3c448cd28489648d14f, type: 3}
-  radioMessages: []
+  radioMessages:
+  - ID: 2
+    AudioClip: {fileID: 8300000, guid: 942172dbbd530694596d57df339544d1, type: 3}
+    Important: 1
   OnNewInformation: {fileID: 11400000, guid: 97bb02a1aacb8be44b4873997f735aaf, type: 2}

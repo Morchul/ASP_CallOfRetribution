@@ -12,7 +12,7 @@ public interface IBugable
     [System.Serializable]
     public enum Type
     {
-        Lock,
         None,
+        Lock,
     }
 }

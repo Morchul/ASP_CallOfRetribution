@@ -29,7 +29,7 @@ public class CommanderTest : MonoBehaviour
     [SerializeField]
     private IntEvent OnMissionSelect;
     [SerializeField]
-    private BugPlacedEvent OnBugPlaced;
+    private BugUpdateEvent OnBugPlaced;
     [SerializeField]
     private IntEvent OnNewRadioMessage;
 

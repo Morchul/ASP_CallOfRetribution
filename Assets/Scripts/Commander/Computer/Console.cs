@@ -1,28 +1,62 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Console : MonoBehaviour
 {
-    private CanvasGroup canvasGroup;
+    private Selectable[] navigation;
+    private int selected;
 
-    private void Awake()
+    [SerializeField]
+    private TMP_Text consoleLog;
+
+    public void SetNavigation(Selectable[] navigation)
     {
-        canvasGroup = GetComponent<CanvasGroup>();
-        canvasGroup.blocksRaycasts = false;
-        Disable();
+        this.navigation = navigation;
+        selected = navigation.Length - 1;
+        //SelectNext();
+    }
+
+    public void AddLog(string log)
+    {
+        consoleLog.text = log + "\n" + consoleLog.text;
     }
 
     public void Enable()
     {
-        //canvasGroup.blocksRaycasts = true;
-        //canvasGroup.interactable = true;
+        Select(selected);
     }
 
-    public void Disable()
+    private void Select(int index)
     {
-        //canvasGroup.blocksRaycasts = false;
-        //canvasGroup.interactable = false;
-        //EventSystem.current.SetSelectedGameObject(null);
+        navigation[index].Select();
+        selected = index;
+    }
+
+    public void SelectNext()
+    {
+        for (int i = 0; i < navigation.Length; ++i)
+        {
+            int index = (selected + i + 1) % navigation.Length;
+            if (navigation[index].interactable)
+            {
+                Select(index);
+                break;
+            }
+        }
+    }
+
+    public void SelectPrevious()
+    {
+        for (int i = 0; i < navigation.Length; ++i)
+        {
+            int index = (selected - i - 1);
+            if (index < 0) index += navigation.Length;
+            if (navigation[index].interactable)
+            {
+                Select(index);
+                break;
+            }
+        }
     }
 }

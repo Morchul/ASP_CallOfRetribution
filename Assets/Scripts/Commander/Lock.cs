@@ -9,7 +9,7 @@ public class Lock : MonoBehaviour
     [System.Flags]
     public enum LockState
     {
-        Hacked = 0x01,
-        Open = 0x10
+        Hacked = 1,
+        Open = 2
     }
 }

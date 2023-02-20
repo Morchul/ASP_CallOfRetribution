@@ -9,13 +9,11 @@ public abstract class MessageHandler : MonoBehaviour
     public GameEvent OnConnectionShutdown;
     public StringEvent OnChatMessageReceived;
     public IntEvent OnMissionSelect;
+    public BugUpdateEvent OnBugUpdate;
 
     [Header("Controller")]
     [SerializeField]
     protected GameController gameController;
-
-    public const string CHAT_PREFIX = "CHAT:";
-    public const string SELECT_MISSION_PREFIX = "MISSION:";
 
     public virtual void HandleMessage(string message)
     {
@@ -23,13 +21,17 @@ public abstract class MessageHandler : MonoBehaviour
         {
             OnConnectionShutdown.RaiseEvent();
         }
-        else if (message.StartsWith(CHAT_PREFIX))
+        else if (message.StartsWith(MessageUtility.CHAT_PREFIX))
         {
             ChatMessageReceived(message);
         }
-        else if(message.StartsWith(SELECT_MISSION_PREFIX))
+        else if(message.StartsWith(MessageUtility.SELECT_MISSION_PREFIX))
         {
             SelectMissionReceived(message);
+        }
+        else if (message.StartsWith(MessageUtility.BUG_UPDATE_PREFIX))
+        {
+            BugUpdateMessageReceived(message);
         }
         else
         {
@@ -39,4 +41,5 @@ public abstract class MessageHandler : MonoBehaviour
 
     public abstract void ChatMessageReceived(string message);
     public abstract void SelectMissionReceived(string message);
+    public abstract void BugUpdateMessageReceived(string message);
 }

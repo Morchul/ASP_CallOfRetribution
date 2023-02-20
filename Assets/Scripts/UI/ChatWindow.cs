@@ -26,7 +26,7 @@ public class ChatWindow : MonoBehaviour
 
     private void SendNewMessage(string message)
     {
-        NetworkManager.Instance.Transmitter.WriteToHost(MessageHandler.CHAT_PREFIX + NetworkManager.Instance.ConnectionHandler.GetChatName() + ": " + message);
+        NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.CreateChatMessage(message));
     }
 
     private void NewChatMessage(string message)

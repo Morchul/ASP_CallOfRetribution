@@ -15,6 +15,10 @@ public class NetworkManager : MonoBehaviour
     [SerializeField]
     private Client clientPrefab;
 
+    [Header("DEBUG")]
+    public bool DEBUG_MODE = false;
+    public bool DEBUG_HOST = false;
+
     public MessageTransmitter Transmitter { get; private set; }
     public IConnectionHandler ConnectionHandler { get; private set; }
 
@@ -35,7 +39,15 @@ public class NetworkManager : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(this);
+            if(!DEBUG_MODE)
+                DontDestroyOnLoad(this);
+            else
+            {
+                if (DEBUG_HOST)
+                    CreateHost("");
+                else
+                    CreateClient("");
+            }
         }
     }
     #endregion
@@ -50,14 +62,16 @@ public class NetworkManager : MonoBehaviour
     {
         ConnectionHandler = Instantiate(hostPrefab, this.transform);
         Transmitter = ConnectionHandler.GetTransmitter();
-        ConnectionHandler.StartHandler(hostIP, port);
+        if(!DEBUG_MODE)
+            ConnectionHandler.StartHandler(hostIP, port);
     }
 
     public void CreateClient(string hostIP)
     {
         ConnectionHandler = Instantiate(clientPrefab, this.transform);
         Transmitter = ConnectionHandler.GetTransmitter();
-        ConnectionHandler.StartHandler(hostIP, port);
+        if (!DEBUG_MODE)
+            ConnectionHandler.StartHandler(hostIP, port);
     }
 
     public void Shutdown()

@@ -1,55 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BugsList : Program
 {
-    [Header("Events")]
-    [SerializeField]
-    private BugPlacedEvent OnBugPlaced;
 
     [SerializeField]
-    private BugReferencUI[] referencUI;
+    private ComputerButton[] bugReferences;
 
     [SerializeField]
-    private int amountOfBugs = 3;
+    private MissionController missionController;
 
-    [SerializeField]
-    private Computer computer;
-
-    private BugReferenc[] bugs;
-
-    private void Awake()
+    public void Init()
     {
-        OnBugPlaced.AddListener(BugPlaced);
-        bugs = new BugReferenc[amountOfBugs];
+        BugReferenc[] bugs = missionController.Bugs;
 
-        for (int i = 0; i < amountOfBugs; ++i)
+        for (int i = 0; i < bugs.Length; ++i)
         {
-            bugs[i] = new BugReferenc(i);
-            bugs[i].OnSelect = SelectBug;
-            referencUI[i].SetData(bugs[i]);
+            int constI = i;
+            bugs[i].OnStatusChanged += bugReferences[i].UpdateUI;
+            bugs[i].OnTypeChanged += bugReferences[i].UpdateUI;
+            bugReferences[i].SetData(bugs[i]);
+            bugReferences[i].OnSelect = () => SelectBug(bugs[constI]);
+            AddNavigationItem(bugReferences[i].GetNavigationItem());
         }
     }
 
     public override void StartProgram()
     {
         base.StartProgram();
-        foreach (BugReferencUI bugUI in referencUI)
-            bugUI.UpdateUI();
-        referencUI[0].Focus();
+        foreach (ComputerButton bugRef in bugReferences)
+            bugRef.UpdateUI();
     }
 
     private void SelectBug(BugReferenc bug)
     {
         computer.StartProgram(bug);
-    }
-
-    private void BugPlaced(int id, IBugable.Type type, int status)
-    {
-        bugs[id].Type = type;
-        bugs[id].Status = status;
-        referencUI[id].UpdateUI();
     }
 }

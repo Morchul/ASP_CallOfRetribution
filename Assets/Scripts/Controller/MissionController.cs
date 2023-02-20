@@ -12,11 +12,14 @@ public class MissionController : ScriptableObject
     public IntEvent OnNewInformation;
     public IntEvent OnMissionSelect;
     public GameEvent OnMissionLoaded;
+    public BugUpdateEvent OnBugUpdate;
 
     public Mission CurrentMission { get; private set; }
 
     [SerializeField]
     private Mission[] missions;
+
+    public BugReferenc[] Bugs;
 
     public void Init()
     {
@@ -35,6 +38,18 @@ public class MissionController : ScriptableObject
     {
         CurrentMission = missions.First((mission) => mission.ID == missionID);
         OnNewInformation.AddListener(NewInformation);
+
+        Bugs = new BugReferenc[CurrentMission.AmountOfBugs];
+        for (int i = 0; i < CurrentMission.AmountOfBugs; ++i)
+        {
+            Bugs[i] = new BugReferenc(i);
+        }
+        OnBugUpdate.AddListener(BugUpdate);
+    }
+
+    private void BugUpdate(int bugID, IBugable.Type type, int status)
+    {
+        Bugs[bugID].Update(type, status);
     }
 
     public void FinishMission()

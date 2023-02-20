@@ -21,6 +21,7 @@ public class Computer : MonoBehaviour, IFocusable
 
     [SerializeField]
     private Console console;
+    public Console Console => console;
 
     [SerializeField]
     private BugsList bugList;
@@ -28,29 +29,78 @@ public class Computer : MonoBehaviour, IFocusable
     [SerializeField]
     private LockProgram lockProgram;
 
-    private void Awake()
+    private Program currentProgram;
+
+    private void Start()
     {
-        bugList.StartProgram();
+        bugList.Init();
+        ReturnToBugList();
+    }
+
+    public void ReturnToBugList()
+    {
+        StartProgram(bugList);
+    }
+
+    public void StartProgram(Program program)
+    {
+        if (currentProgram != null)
+            currentProgram.CloseProgram();
+
+        currentProgram = program;
+
+        currentProgram.StartProgram();
+        console.SetNavigation(currentProgram.GetNavigation());
+    }
+
+    public void CloseProgram()
+    {
+        currentProgram = null;
+    }
+
+    private void Update()
+    {
+        if(inFocus)
+        {
+            //Override the unity UI navigation
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                console.SelectPrevious();
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                console.SelectNext();
+            }
+        }
     }
 
     public void StartProgram(BugReferenc bugReferenc)
     {
-        Debug.Log("Start program: " + bugReferenc.ID);
+        if(inFocus)
+        {
+            Debug.Log("Start program: " + bugReferenc.ID);
+            switch (bugReferenc.Type)
+            {
+                case IBugable.Type.Lock:
+                    lockProgram.SetBugReferenc(bugReferenc);
+                    StartProgram(lockProgram); break;
+                default: break;
+            }
+        }
     }
 
     #region Focus Handling
     public void EnableFocus(FocusAnimationParam focusPos)
     {
         inFocus = true;
-        console.Enable();
         focusHandler.BlockFocus = true;
+        console.Enable();
         cameraHandler.FocusObject(cameraFocusPosition);
     }
 
     public void DisableFocus()
     {
         inFocus = false;
-        console.Disable();
         cameraHandler.StopFocus(AnimationFinished);
     }
 

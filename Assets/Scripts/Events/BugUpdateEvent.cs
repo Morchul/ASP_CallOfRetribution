@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "BugPlacedEvent", menuName = "Events/BugPlacedEvent")]
-public class BugPlacedEvent : ScriptableObject
+public class BugUpdateEvent : ScriptableObject
 {
 	private event BugPlacedEventMethod _event;
 

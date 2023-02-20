@@ -28,6 +28,6 @@ public class GameController : ScriptableObject
 
     public void SelectMission(Mission mission)
     {
-        NetworkManager.Instance.Transmitter.WriteToHost(MessageHandler.SELECT_MISSION_PREFIX + mission.ID);
+        NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.CreateSelectMissionMessage(mission.ID));
     }
 }

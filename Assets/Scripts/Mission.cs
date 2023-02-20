@@ -15,6 +15,10 @@ public class Mission : ScriptableObject
     [SerializeField]
     private RadioMessage[] radioMessages;
 
+    [SerializeField]
+    private int amountOfBugs;
+    public int AmountOfBugs => amountOfBugs;
+
     public IntEvent OnNewInformation;
 
     public void Start()

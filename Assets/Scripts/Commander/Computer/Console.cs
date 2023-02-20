@@ -1,85 +1,28 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Console : MonoBehaviour
 {
-    [SerializeField]
-    private BaseConsoleElement[] consoleElements;
-
-    private int counter;
-    private int selected;
+    private CanvasGroup canvasGroup;
 
     private void Awake()
     {
-        counter = consoleElements.Length;
+        canvasGroup = GetComponent<CanvasGroup>();
+        canvasGroup.blocksRaycasts = false;
+        Disable();
     }
 
-    public void Show(ConsoleContent content)
+    public void Enable()
     {
-        content.Show(this);
+        //canvasGroup.blocksRaycasts = true;
+        //canvasGroup.interactable = true;
     }
 
-    public void UpdateDisplay()
+    public void Disable()
     {
-        for(int i = 0; i < counter; ++i)
-        {
-            consoleElements[i].UpdateEntry();
-        }
-    }
-
-    public void Clear()
-    {
-        for (int i = 0; i < counter; ++i)
-        {
-            consoleElements[i].SetActive(false);
-        }
-        counter = 0;
-    }
-
-    public void DisplayEntry(IConsoleElementData data)
-    {
-        consoleElements[counter].SetActive(true);
-        consoleElements[counter].SetData(data);
-        ++counter;
-        //return consoleEntries[counter];
-    }
-
-    public void SetSelected(int i)
-    {
-        if (selected > -1)
-            consoleElements[selected].SetFocus(false);
-        selected = i;
-        consoleElements[selected].SetFocus(true);
-    }
-
-    public void SelectNext()
-    {
-        for(int i = 0; i < counter - 1; ++i)
-        {
-            int index = (selected + i + 1) % counter;
-            if (consoleElements[index].Enabled)
-            {
-                SetSelected(index);
-                break;
-            }
-        }
-    }
-
-    public void SelectPrevious()
-    {
-        for (int i = 0; i < counter - 1; ++i)
-        {
-            int index = (selected - i - 1);
-            if (index < 0) index += counter;
-            if (consoleElements[index].Enabled)
-            {
-                SetSelected(index);
-                break;
-            }
-        }
-    }
-
-    public void SelectAction()
-    {
-        consoleElements[selected].Select();
+        //canvasGroup.blocksRaycasts = false;
+        //canvasGroup.interactable = false;
+        //EventSystem.current.SetSelectedGameObject(null);
     }
 }

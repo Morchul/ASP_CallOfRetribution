@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BugReferenc : IConsoleElementData
+public class BugReferenc
 {
     public readonly int ID;
 

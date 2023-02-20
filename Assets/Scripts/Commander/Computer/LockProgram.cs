@@ -23,27 +23,47 @@ public class LockProgram : Program
         base.Awake();
         navigation = uiElements;
         console = computer.Console;
-        transmitter = NetworkManager.Instance.Transmitter;
 
         gameObject.SetActive(false);
+    }
+
+    private void Start()
+    {
+        transmitter = NetworkManager.Instance.Transmitter;
     }
 
     public void SetBugReferenc(BugReferenc bug)
     {
         this.bug = bug;
-        
-        bug.OnStatusChanged += UpdateUI;
+        state = (Lock.LockState)bug.Status;
+
+        bug.OnStatusChanged += BugStatusChanged;
         bug.OnTypeChanged += CloseProgram;
 
         UpdateUI();
     }
 
+    public void BugStatusChanged(int oldState, int newState)
+    {
+        state = (Lock.LockState)newState;
+
+        int open = (newState & (int)Lock.LockState.Open);
+        string stateText = "Lock state: " + ((open == 0) ? "Closed" : "Open");
+
+        if ((newState & (int)Lock.LockState.Hacked) != 0 && (oldState & (int)Lock.LockState.Hacked) == 0)
+            console.AddLog("Access gained");
+        if(open != (oldState & (int)Lock.LockState.Open))
+        {
+            console.AddLog(stateText);
+        }
+
+        lockState.text = stateText;
+    }
+
     private void UpdateUI()
     {
-        state = (Lock.LockState)bug.Status;
-        string stateText = ((state & Lock.LockState.Open) == 0) ? "Locked" : "Unlocked";
+        string stateText = ((state & Lock.LockState.Open) == 0) ? "Closed" : "Open";
         lockState.text = "Lock state: " + stateText;
-        console.AddLog("Bug state: " + stateText);
     }
 
     public void Hack()
@@ -51,9 +71,19 @@ public class LockProgram : Program
         StartCoroutine(HackLock());
     }
 
+    public void LockAction()
+    {
+        StartCoroutine(CloseLock());
+    }
+
+    public void Unlock()
+    {
+        StartCoroutine(OpenLock());
+    }
+
     public IEnumerator HackLock()
     {
-        console.AddLog("Start get access to lock...");
+        console.AddLog("Getting access to lock...");
         yield return new WaitForSeconds(1);
         for(int i = 0; i < 3; ++i)
         {
@@ -61,29 +91,43 @@ public class LockProgram : Program
             yield return new WaitForSeconds(1);
         }
 
-        console.AddLog("Access gained!");
         transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | Lock.LockState.Hacked)));
     }
 
-    public void LockAction()
+    private IEnumerator CloseLock()
     {
+        console.AddLog("Closing lock...");
+        
         if ((state & Lock.LockState.Hacked) == 0)
+        {
+            yield return new WaitForSeconds(1);
             console.AddLog("Access denied!");
+        }
         else
+        {
             transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state & ~Lock.LockState.Open)));
+        }
+            
     }
 
-    public void Unlock()
+    private IEnumerator OpenLock()
     {
+        console.AddLog("Opening lock...");
+
         if ((state & Lock.LockState.Hacked) == 0)
+        {
+            yield return new WaitForSeconds(1);
             console.AddLog("Access denied!");
+        }
         else
+        {
             transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | Lock.LockState.Open)));
+        }
     }
 
     public override void CloseProgram()
     {
-        bug.OnStatusChanged -= UpdateUI;
+        bug.OnStatusChanged -= BugStatusChanged;
         bug.OnTypeChanged -= CloseProgram;
         bug = null;
         base.CloseProgram();

@@ -18,12 +18,12 @@ public class ComputerButton : MonoBehaviour
     {
         text = GetComponentInChildren<TMP_Text>();
         button = GetComponent<Button>();
-        button.onClick.AddListener(Select); //UnityAction => System.Action
+        button.onClick.AddListener(Select);
     }
 
     public virtual void Select()
     {
-        OnSelect();
+        OnSelect?.Invoke();
     }
 
     public Selectable GetNavigationItem()

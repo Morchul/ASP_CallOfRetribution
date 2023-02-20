@@ -18,7 +18,7 @@ public class BugsList : Program
         for (int i = 0; i < bugs.Length; ++i)
         {
             int constI = i;
-            bugs[i].OnStatusChanged += bugReferences[i].UpdateUI;
+            //bugs[i].OnStatusChanged += (p1, p2) => bugReferences[i].UpdateUI();
             bugs[i].OnTypeChanged += bugReferences[i].UpdateUI;
             bugReferences[i].SetData(bugs[i]);
             bugReferences[i].OnSelect = () => SelectBug(bugs[constI]);

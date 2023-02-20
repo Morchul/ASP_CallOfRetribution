@@ -9,7 +9,9 @@ public class BugReferenc : ComputerButton.IComputerButtonData
     public int Status { get; private set; }
     public IBugable.Type Type { get; private set; }
 
-    public event System.Action OnStatusChanged;
+    public delegate void OnStatusChangedEvent(int oldValue, int newValue);
+
+    public event OnStatusChangedEvent OnStatusChanged;
     public event System.Action OnTypeChanged;
 
     public BugReferenc(int id)
@@ -27,8 +29,8 @@ public class BugReferenc : ComputerButton.IComputerButtonData
 
         if(Status != status)
         {
+            OnStatusChanged?.Invoke(Status, status);
             Status = status;
-            OnStatusChanged?.Invoke();
         }
     }
 

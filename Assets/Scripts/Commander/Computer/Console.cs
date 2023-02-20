@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +20,14 @@ public class Console : MonoBehaviour
 
     public void AddLog(string log)
     {
-        consoleLog.text = log + "\n" + consoleLog.text;
+        string text = consoleLog.text;
+        
+        if(consoleLog.textInfo.lineCount > 10)
+        {
+            text = text.Substring(text.IndexOf('\n') + 1);
+        }
+
+        consoleLog.text = text + "\n" + log;
     }
 
     public void Enable()

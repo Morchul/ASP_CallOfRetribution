@@ -5,18 +5,19 @@ public class VerticalMapScale : MapScale
 {
     protected override float GetNormalizedVisiblePartOfMap(float distanceToMap)
     {
-        return 2.0f * distanceToMap * Mathf.Tan(mainCam.fieldOfView * 0.5f * Mathf.Deg2Rad);
+        return 2.0f * distanceToMap * Mathf.Tan(mainCam.fieldOfView * 0.5f * Mathf.Deg2Rad) / map.MapHeight;
     }
 
-    protected override float GetScaleAxis() => this.transform.localScale.y;
+    protected override float GetScreenScaleLength() => mainCam.pixelHeight;
 
-    protected override void MovePartOfAxis(float delta)
+    protected override void SetScaleLinePos(float delta, float bigLineSteps)
     {
-        this.transform.position = startPos - new Vector3(0, delta * mainCam.pixelHeight, 0);
-    }
+        float start = transform.position.y - delta - bigLineSteps * maxScaleGaps / 2;
+        float steps = bigLineSteps * 0.5f;
 
-    protected override void SetScaleAxis(float scale)
-    {
-        this.transform.localScale = new Vector3(1, scale, 1);
+        for (int i = 0; i < mapScaleLines.Length; ++i)
+        {
+            mapScaleLines[i].SetPos(new Vector2(transform.position.x, start + steps * i));
+        }
     }
 }

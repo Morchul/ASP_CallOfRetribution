@@ -27,7 +27,7 @@ public class Map : MovableFocusObject
 
     private Vector3 startPos;
     private Vector2 currentPos;
-    private Vector2 normalizedStartPos = new Vector2(0.5f, 0.5f);
+    private readonly Vector2 normalizedStartPos = new Vector2(0.5f, 0.5f);
     private Vector2 localScale;
 
     public const float MAP_SCALE_POS_RATIO = 10; //Scale 1 = distance 10
@@ -36,8 +36,8 @@ public class Map : MovableFocusObject
     {
         base.Awake();
         FocusHandler = focusHandler;
-        MapWidth = transform.localScale.x;
-        MapHeight = transform.localScale.z;
+        MapWidth = Mathf.Abs(transform.localScale.x);
+        MapHeight = Mathf.Abs(transform.localScale.z);
         localScale = new Vector2(MapWidth, MapHeight);
     }
 
@@ -57,13 +57,9 @@ public class Map : MovableFocusObject
             //mapOverlay.SetActive(true);
 
             horizontalScale.gameObject.SetActive(true);
-            horizontalScale.ScalePos = currentPos.x;
-            horizontalScale.UpdateScale();
-            horizontalScale.UpdatePos();
             verticalScale.gameObject.SetActive(true);
-            verticalScale.ScalePos = currentPos.y;
-            verticalScale.UpdateScale();
-            verticalScale.UpdatePos();
+            horizontalScale.NormalizedScalePos = currentPos.x;
+            verticalScale.NormalizedScalePos = currentPos.y;
         }
     }
 
@@ -88,8 +84,8 @@ public class Map : MovableFocusObject
         base.Move(delta);
         Vector2 mapDelta = transform.position - startPos;
         currentPos = normalizedStartPos - (mapDelta / MAP_SCALE_POS_RATIO / localScale);
-        horizontalScale.ScalePos = currentPos.x;
-        verticalScale.ScalePos = currentPos.y;
+        horizontalScale.NormalizedScalePos = currentPos.x;
+        verticalScale.NormalizedScalePos = currentPos.y;
     }
 
     //MapPos is normalized value between 0 and 1

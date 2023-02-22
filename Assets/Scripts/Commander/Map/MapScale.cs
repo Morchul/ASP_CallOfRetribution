@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public abstract class MapScale : MonoBehaviour
@@ -12,12 +11,13 @@ public abstract class MapScale : MonoBehaviour
     protected Map map;
 
     [SerializeField]
-    private float maxScaleGaps;
+    protected float maxScaleGaps;
     [SerializeField]
-    private float minScaleGaps;
+    protected float minScaleGaps;
 
     [SerializeField]
-    private TMP_Text[] numbers;
+    private MapScaleLine mapScaleLinePrefab;
+    protected MapScaleLine[] mapScaleLines;
 
     //public char[] ScaleSectionSymbols;
     [SerializeField]
@@ -31,16 +31,14 @@ public abstract class MapScale : MonoBehaviour
 
     protected float currentClosestNumberBelow;
 
-    protected Vector3 startPos;
-
-    private float scalePos;
-    public float ScalePos
+    private float normalizedScalePos;
+    public float NormalizedScalePos
     {
-        get => scalePos;
+        get => normalizedScalePos;
         set
         {
-            scalePos = value;
-            UpdatePos();
+            normalizedScalePos = value;
+            UpdateScale();
         }
     }
 
@@ -49,56 +47,69 @@ public abstract class MapScale : MonoBehaviour
         zoomLevel = 1;
         currentClosestNumberBelow = 0;
         zoomLevelFactor = maxScaleGaps / minScaleGaps;
-        startPos = transform.position;
+        distanceToMap = 0;
+
+        mapScaleLines = new MapScaleLine[(int)maxScaleGaps * 2 + 1];
+        for(int i = 0; i < mapScaleLines.Length; ++i)
+        {
+            mapScaleLines[i] = Instantiate(mapScaleLinePrefab, this.transform);
+            if (i % 2 == 1)
+                mapScaleLines[i].SmallLine();
+        }
     }
+
+    protected float distanceToMap;
+    protected float normalizedVisiblePartOfMap;
+    protected float normalizedBigGapSize;
+    protected float screenBigGapSize;
 
     public void UpdateScale()
     {
-        //float distanceToMap = Vector3.Distance(mainCam.transform.position, map.transform.position) / Map.MAP_SCALE_POS_RATIO;
-        float distanceToMap = Mathf.Abs(mainCam.transform.position.z - map.transform.position.z) / Map.MAP_SCALE_POS_RATIO; //TODO does not work always
-        float normalizedVisiblePartOfMap = GetNormalizedVisiblePartOfMap(distanceToMap);
-        float bigGapSize = CalcBigGapSize(normalizedVisiblePartOfMap);
+        bool zoomLevelChange = false;
 
-        if (bigGapSize < 1 / maxScaleGaps)
+        float currentDistanceToMap = Mathf.Abs(mainCam.transform.position.z - map.transform.position.z) / Map.MAP_SCALE_POS_RATIO; //TODO does not work always
+        if (distanceToMap != currentDistanceToMap) //Needs only a recalc if the distance has changed (zoom has happend)
         {
-            zoomLevel /= zoomLevelFactor;
-            Debug.Log("Switch zoom level to: " + zoomLevel);
-            bigGapSize = CalcBigGapSize(normalizedVisiblePartOfMap);
-            SetScaleAxis(maxScaleGaps * bigGapSize);
-            UpdatePos(true);
-        }
-        else if (bigGapSize > 1 / minScaleGaps)
-        {
-            zoomLevel *= zoomLevelFactor;
-            Debug.Log("Switch zoom level to: " + zoomLevel);
-            bigGapSize = CalcBigGapSize(normalizedVisiblePartOfMap);
-            SetScaleAxis(maxScaleGaps * bigGapSize);
-            UpdatePos(true);
-        }
-        else
-        {
-            SetScaleAxis(maxScaleGaps * bigGapSize);
-            UpdatePos(false);
+            distanceToMap = currentDistanceToMap;
+            normalizedVisiblePartOfMap = GetNormalizedVisiblePartOfMap(distanceToMap);
+            normalizedBigGapSize = CalcNormalizedBigGapSize(normalizedVisiblePartOfMap);
+            screenBigGapSize = CalcScreenBigGapSize(normalizedBigGapSize);
+
+
+            if (normalizedBigGapSize < 1 / maxScaleGaps)
+            {
+                zoomLevel /= zoomLevelFactor;
+                normalizedBigGapSize = CalcNormalizedBigGapSize(normalizedVisiblePartOfMap);
+                screenBigGapSize = CalcScreenBigGapSize(normalizedBigGapSize);
+                zoomLevelChange = true;
+            }
+            else if (normalizedBigGapSize > 1 / minScaleGaps)
+            {
+                zoomLevel *= zoomLevelFactor;
+                normalizedBigGapSize = CalcNormalizedBigGapSize(normalizedVisiblePartOfMap);
+                screenBigGapSize = CalcScreenBigGapSize(normalizedBigGapSize);
+                zoomLevelChange = true;
+            }
         }
 
-        
-    }
+        float scalePos = scaleScale * NormalizedScalePos;
+        float bigLineNumber = scaleScale / (maxScaleGaps * zoomLevel);
+        //float currentShownScale = GetScreenScaleLength() / screenBigGapSize * bigLineNumber;
+        float currentShownScale = normalizedVisiblePartOfMap * scaleScale;
+        float delta = scalePos % bigLineNumber;
+        float closestBigScaleNumberBelow = scalePos - delta;
 
-    public void UpdatePos(bool zoomLevelChange = false)
-    {
-        float curPos = scaleScale * ScalePos;
-        float bigScaleNumber = scaleScale / (maxScaleGaps * zoomLevel);
-        float currentShownScale = scaleScale / (zoomLevel * GetScaleAxis());
-        float delta = curPos % bigScaleNumber;
-        float closestBigScaleNumberBelow = curPos - delta;
+        float screenDelta = GetScreenScaleLength() * delta / currentShownScale;
+        //float screenDelta = delta * screenBigGapSize * bigLineNumber;
 
-        MovePartOfAxis(delta / currentShownScale);
+        SetScaleLinePos(screenDelta, screenBigGapSize);
+
+        //MovePartOfAxis(delta / currentShownScale);
 
         if (currentClosestNumberBelow != closestBigScaleNumberBelow || zoomLevelChange)
         {
-            UpdateNumber(closestBigScaleNumberBelow, bigScaleNumber);
+            UpdateNumber(closestBigScaleNumberBelow, bigLineNumber);
         }
-            
     }
 
     protected void UpdateNumber(float closestNumberBelow, float bigScaleNumber)
@@ -107,19 +118,17 @@ public abstract class MapScale : MonoBehaviour
         float steps = bigScaleNumber / 2;
         float start = closestNumberBelow - bigScaleNumber * 2;
 
-        for(int i = 0; i < numbers.Length; ++i)
+        for(int i = 0; i < mapScaleLines.Length; ++i)
         {
-            numbers[i].text = (start + steps * i).ToString();
+            mapScaleLines[i].SetText((start + steps * i).ToString());
         }
     }
 
-    protected float CalcBigGapSize(float normalizedVisiblePartOfMap)
-    {
-        return 1 / (normalizedVisiblePartOfMap * zoomLevel * maxScaleGaps);
-    }
+    protected float CalcNormalizedBigGapSize(float normalizedVisiblePartOfMap) => 1 / (normalizedVisiblePartOfMap * zoomLevel * maxScaleGaps);
+    protected float CalcScreenBigGapSize(float normalizedBigGapSize) => normalizedBigGapSize * GetScreenScaleLength();
 
     protected abstract float GetNormalizedVisiblePartOfMap(float distanceToMap);
-    protected abstract void SetScaleAxis(float scale);
-    protected abstract float GetScaleAxis();
-    protected abstract void MovePartOfAxis(float delta);
+
+    protected abstract void SetScaleLinePos(float delta, float steps);
+    protected abstract float GetScreenScaleLength();
 }

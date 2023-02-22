@@ -29,14 +29,6 @@ public class DocumentHolder : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            focusHandler.SetFocusObject(documents[0]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            focusHandler.SetFocusObject(documents[1]);
-        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             focusHandler.StopFocus();

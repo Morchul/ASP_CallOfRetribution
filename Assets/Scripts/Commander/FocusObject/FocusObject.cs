@@ -17,7 +17,7 @@ public class FocusObject : MonoBehaviour, IFocusable
     private float timer;
     protected bool animate;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         InFocus = false;
     }

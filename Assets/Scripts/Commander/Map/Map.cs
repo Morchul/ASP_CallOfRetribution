@@ -94,8 +94,8 @@ public class Map : MovableFocusObject
         return new Vector2(mapPos.x / MapWidth * worldWidth, mapPos.y / MapHeight * worldHeight);
     }
 
-    public Vector2 MapCoordinateToWorldPos(string mapCoordinate)
+    public Vector2 MapCoordinateToWorldPos(int x, int y)
     {
-        return new Vector2();
+        return new Vector2(x / horizontalScale.Range * worldWidth, y / verticalScale.Range * worldHeight);
     }
 }

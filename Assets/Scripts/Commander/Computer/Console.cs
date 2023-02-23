@@ -11,6 +11,9 @@ public class Console : MonoBehaviour
     [SerializeField]
     private TMP_Text consoleLog;
 
+    [SerializeField]
+    private TMP_InputField commandInput;
+
     public void SetNavigation(Selectable[] navigation)
     {
         this.navigation = navigation;

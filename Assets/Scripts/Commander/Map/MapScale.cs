@@ -23,6 +23,7 @@ public abstract class MapScale : MonoBehaviour
     [SerializeField]
     [Tooltip("What is the scale of the whole scale e.g.: 100 =>  scale goes from 0 - 100")]
     private int scaleScale;
+    public int Range => scaleScale;
 
     protected float zoomLevel;
     protected float zoomLevelFactor;

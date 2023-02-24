@@ -2032,6 +2032,7 @@ MonoBehaviour:
   minScaleGaps: 2
   mapScaleLinePrefab: {fileID: 8968519291102484166, guid: fedb75e5b19fd6d48a475de0fd8d60b2, type: 3}
   scaleScale: 100
+  maxZoomLevel: 4
 --- !u!1 &1892344806
 GameObject:
   m_ObjectHideFlags: 0
@@ -2120,6 +2121,7 @@ MonoBehaviour:
   minScaleGaps: 2
   mapScaleLinePrefab: {fileID: 2416115363081516712, guid: 79be3476c1ed6b644b507548c3d363cd, type: 3}
   scaleScale: 150
+  maxZoomLevel: 4
 --- !u!1 &2079234395
 GameObject:
   m_ObjectHideFlags: 0

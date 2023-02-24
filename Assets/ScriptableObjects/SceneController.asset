@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0bcbb6efb999424aafa4b35752a2549, type: 3}
   m_Name: SceneController
   m_EditorClassIdentifier: 
-  mainLevel: Assets/Scenes/MainLevel.unity
+  mainLevel: Assets/Scenes/DemoLevelSilvan.unity
   commanderScene: Assets/Scenes/Commander.unity
   loadingScreen: Assets/Scenes/LoadingScreen.unity
   mainMenu: Assets/Scenes/MainMenu.unity

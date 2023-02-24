@@ -58,6 +58,8 @@ public class Map : MovableFocusObject
 
             horizontalScale.gameObject.SetActive(true);
             verticalScale.gameObject.SetActive(true);
+            horizontalScale.UpdateZoom();
+            verticalScale.UpdateZoom();
             horizontalScale.NormalizedScalePos = currentPos.x;
             verticalScale.NormalizedScalePos = currentPos.y;
         }
@@ -74,14 +76,33 @@ public class Map : MovableFocusObject
 
     protected override void Zoom(float zoom)
     {
-        base.Zoom(zoom);
-        horizontalScale.UpdateScale();
-        verticalScale.UpdateScale();
+        zoom = horizontalScale.SetZoomBoundaries(zoom);
+        zoom = verticalScale.SetZoomBoundaries(zoom);
+
+        if(zoom != 0)
+        {
+            base.Zoom(zoom);
+            horizontalScale.UpdateZoom();
+            verticalScale.UpdateZoom();
+
+            Move(Vector2.zero);
+        }
     }
 
     protected override void Move(Vector2 delta)
     {
-        base.Move(delta);
+        //base.Move(delta);
+        delta *= Time.deltaTime * moveSpeed;
+        //transform.Translate(new Vector3(delta.x, 0, delta.y), Space.Self);
+
+        float boundX = horizontalScale.GetPosBoundaries();
+        float boundY = verticalScale.GetPosBoundaries();
+
+        float x = Mathf.Clamp(transform.position.x + delta.x, startPos.x - boundX, startPos.x + boundX);
+        float y = Mathf.Clamp(transform.position.y + delta.y, startPos.y - boundY, startPos.y + boundY);
+
+        transform.position = new Vector3(x, y, transform.position.z);
+
         Vector2 mapDelta = transform.position - startPos;
         currentPos = normalizedStartPos - (mapDelta / MAP_SCALE_POS_RATIO / localScale);
         horizontalScale.NormalizedScalePos = currentPos.x;

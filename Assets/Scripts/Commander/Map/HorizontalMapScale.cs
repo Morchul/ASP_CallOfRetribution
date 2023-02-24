@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class HorizontalMapScale : MapScale
 {
+    public override float GetPosBoundaries()
+    {
+        return (1 - normalizedVisiblePartOfMap) / 2 * Map.MAP_SCALE_POS_RATIO * map.MapWidth;
+    }
 
     protected override float GetNormalizedVisiblePartOfMap(float distanceToMap)
     {

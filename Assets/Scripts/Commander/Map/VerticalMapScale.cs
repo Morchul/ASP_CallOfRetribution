@@ -3,6 +3,11 @@ using UnityEngine.UI;
 
 public class VerticalMapScale : MapScale
 {
+    public override float GetPosBoundaries()
+    {
+        return (1 - normalizedVisiblePartOfMap) / 2 * Map.MAP_SCALE_POS_RATIO * map.MapHeight;
+    }
+
     protected override float GetNormalizedVisiblePartOfMap(float distanceToMap)
     {
         return 2.0f * distanceToMap * Mathf.Tan(mainCam.fieldOfView * 0.5f * Mathf.Deg2Rad) / map.MapHeight;

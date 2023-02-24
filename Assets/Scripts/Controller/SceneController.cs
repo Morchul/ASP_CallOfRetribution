@@ -21,17 +21,17 @@ public class SceneController : ScriptableObject
     [Scene]
     private string mainMenu;
 
-    [SerializeField]
-    [Scene]
-    private string lobby;
+    //[SerializeField]
+    //[Scene]
+    //private string lobby;
 
     [Header("Events")]
     public GameEvent OnMissionLoaded;
 
-    public void JoinLobby()
-    {
-        SceneManager.LoadScene(lobby, LoadSceneMode.Single);
-    }
+    //public void JoinLobby()
+    //{
+    //    SceneManager.LoadScene(lobby, LoadSceneMode.Single);
+    //}
 
     public void GoToMainMenu()
     {

@@ -16,8 +16,11 @@ public class MainMenu : MonoBehaviour
     private TMP_Dropdown ipSelection;
 
     [Header("Scene Controller")]
+    //[SerializeField]
+    //private SceneController sceneController;
+
     [SerializeField]
-    private SceneController sceneController;
+    private Lobby lobby;
 
     [Header("Events")]
     [SerializeField]
@@ -28,10 +31,6 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField]
     private GameEvent OnConnectionFailure;
-
-    
-
-    
 
     private void Start()
     {
@@ -68,7 +67,7 @@ public class MainMenu : MonoBehaviour
         if (!NetworkManager.Instance.ConnectionHandler.IsHost())
         {
             Debug.Log("Join lobby as Client");
-            sceneController.JoinLobby();
+            Lobby(false);
             //Join lobby as client
         }
     }
@@ -79,9 +78,25 @@ public class MainMenu : MonoBehaviour
         if (NetworkManager.Instance.ConnectionHandler.Running)
         {
             Debug.Log("Join lobby as host");
-            sceneController.JoinLobby();
+            Lobby(true);
             //Join lobby as host
         }
+    }
+
+    private void Lobby(bool host)
+    {
+        lobby.ShowLobby(host);
+        Hide();
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
     }
 
     public void JoinGame()

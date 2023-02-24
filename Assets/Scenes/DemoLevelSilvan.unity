@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db8eb9f38c273b49b0f13c5b2bed67e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 3
+  interactDistance: 200
   player: {fileID: 1547414968}
   OnInteractAction:
     m_PersistentCalls:
@@ -380,6 +380,7 @@ GameObject:
   - component: {fileID: 1547414967}
   - component: {fileID: 1547414966}
   - component: {fileID: 1547414965}
+  - component: {fileID: 1547414969}
   m_Layer: 0
   m_Name: PlayerTemp
   m_TagString: Untagged
@@ -464,6 +465,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1547414969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547414964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eff13def307f7047ac0219ec2e0d1e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eLock: {fileID: 1207469270}
+  onBugUpdate: {fileID: 11400000, guid: 8ae02f8a2a98e7045a28bac4ae8553a2, type: 2}
+  bugID: 0
 --- !u!1 &1618906992
 GameObject:
   m_ObjectHideFlags: 0

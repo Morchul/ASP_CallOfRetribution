@@ -1,9 +1,12 @@
+using UnityEngine;
+
 public class ClientMessageHandler : MessageHandler
 {
     public GameEvent OnConnectionRefused;
 
     public override void BugUpdateMessageReceived(string message)
     {
+        Debug.Log("BugUpdateMessageReceived: " + message);
         int[] bugUpdateValues = MessageUtility.GetBugUpdateValues(message);
         OnBugUpdate.RaiseEvent(bugUpdateValues[0], (IBugable.Type)bugUpdateValues[1], bugUpdateValues[2]);
     }

@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 7755b86345e70a2439ecdeb5ccb3ce95
   - enabled: 1
-    path: Assets/Scenes/Lobby.unity
-    guid: a8bbfd5879950a84d8f8b23e15761cf4
-  - enabled: 1
     path: Assets/Scenes/LoadingScreen.unity
     guid: 8773153eb750db44bb5e0c4e735e54d9
   - enabled: 1
@@ -23,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mission1_Test.unity
     guid: 168844fc6bd7ce748b05315ae3145bdc
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dalton.unity
     guid: 7cd5e452400d2c14f9100b9f84f182de
   m_configObjects: {}

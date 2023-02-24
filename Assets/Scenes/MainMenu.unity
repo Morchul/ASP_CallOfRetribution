@@ -2562,7 +2562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1279073550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4264,6 +4264,7 @@ MonoBehaviour:
   mainMenu: {fileID: 678244047}
   OnConnectionLost: {fileID: 11400000, guid: 20ae5e08772fd354f97cfbb0e6831bf3, type: 2}
   OnConnectionShutdown: {fileID: 11400000, guid: 2dac19d47796ce84884b8c78ad9c1ad7, type: 2}
+  OnMissionSelect: {fileID: 0}
 --- !u!114 &1815036096
 MonoBehaviour:
   m_ObjectHideFlags: 0

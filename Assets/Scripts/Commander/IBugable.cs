@@ -5,9 +5,9 @@ using UnityEngine;
 public interface IBugable
 {
     bool Bugged { get; }
+    int State { get; }
     Type ObjectType { get; }
-    void Hack();
-    void PlaceBug();
+    void PlaceBug(int id);
 
     [System.Serializable]
     public enum Type

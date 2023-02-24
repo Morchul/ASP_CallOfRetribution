@@ -23,15 +23,21 @@ public class Door : MonoBehaviour
             else
                 OpenDoor();
         }
+        else
+        {
+            Debug.Log("Door is locked");
+        }
     }
 
     private void CloseDoor()
     {
+        Debug.Log("Close door");
         Open = false;
     }
 
     private void OpenDoor()
     {
+        Debug.Log("Open door");
         Open = true;
     }
 }

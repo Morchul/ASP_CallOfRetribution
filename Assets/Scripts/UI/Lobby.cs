@@ -26,6 +26,8 @@ public class Lobby : MonoBehaviour
     private GameEvent OnConnectionLost;
     [SerializeField]
     private GameEvent OnConnectionShutdown;
+    [SerializeField]
+    private IntEvent OnMissionSelect;
 
     private bool host;
 
@@ -44,6 +46,7 @@ public class Lobby : MonoBehaviour
 
         OnConnectionLost.AddListener(ReturnToMainMenu);
         OnConnectionShutdown.AddListener(ReturnToMainMenu);
+        OnMissionSelect.AddListener(MissionSelectEvent);
     }
 
     private void ReturnToMainMenu()
@@ -51,7 +54,7 @@ public class Lobby : MonoBehaviour
         if (!host)
         {
             CloseLobby();
-        }   
+        }
     }
 
     public void LeaveLobby()
@@ -63,10 +66,16 @@ public class Lobby : MonoBehaviour
         }
     }
 
+    private void MissionSelectEvent(int _)
+    {
+        CloseLobby();
+    }
+
     private void CloseLobby()
     {
         OnConnectionLost.RemoveListener(ReturnToMainMenu);
         OnConnectionShutdown.RemoveListener(ReturnToMainMenu);
+        OnMissionSelect.RemoveListener(MissionSelectEvent);
 
         //Disable lobby screen
         if (host)

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class LockProgram : Program
 {
     private BugReferenc bug;
-    private Lock.LockState state;
+    private ElectricalLock.LockState state;
 
     [SerializeField]
     private List<Selectable> uiElements;
@@ -35,7 +35,7 @@ public class LockProgram : Program
     public void SetBugReferenc(BugReferenc bug)
     {
         this.bug = bug;
-        state = (Lock.LockState)bug.Status;
+        state = (ElectricalLock.LockState)bug.Status;
 
         bug.OnStatusChanged += BugStatusChanged;
         bug.OnTypeChanged += CloseProgram;
@@ -45,14 +45,14 @@ public class LockProgram : Program
 
     public void BugStatusChanged(int oldState, int newState)
     {
-        state = (Lock.LockState)newState;
+        state = (ElectricalLock.LockState)newState;
 
-        int open = (newState & (int)Lock.LockState.Open);
+        int open = (newState & (int)ElectricalLock.LockState.Open);
         string stateText = "Lock state: " + ((open == 0) ? "Closed" : "Open");
 
-        if ((newState & (int)Lock.LockState.Hacked) != 0 && (oldState & (int)Lock.LockState.Hacked) == 0)
+        if ((newState & (int)ElectricalLock.LockState.Hacked) != 0 && (oldState & (int)ElectricalLock.LockState.Hacked) == 0)
             console.AddLog("Access gained");
-        if(open != (oldState & (int)Lock.LockState.Open))
+        if(open != (oldState & (int)ElectricalLock.LockState.Open))
         {
             console.AddLog(stateText);
         }
@@ -62,7 +62,7 @@ public class LockProgram : Program
 
     private void UpdateUI()
     {
-        string stateText = ((state & Lock.LockState.Open) == 0) ? "Closed" : "Open";
+        string stateText = ((state & ElectricalLock.LockState.Open) == 0) ? "Closed" : "Open";
         lockState.text = "Lock state: " + stateText;
     }
 
@@ -91,21 +91,21 @@ public class LockProgram : Program
             yield return new WaitForSeconds(1);
         }
 
-        transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | Lock.LockState.Hacked)));
+        transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | ElectricalLock.LockState.Hacked)));
     }
 
     private IEnumerator CloseLock()
     {
         console.AddLog("Closing lock...");
         
-        if ((state & Lock.LockState.Hacked) == 0)
+        if ((state & ElectricalLock.LockState.Hacked) == 0)
         {
             yield return new WaitForSeconds(1);
             console.AddLog("Access denied!");
         }
         else
         {
-            transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state & ~Lock.LockState.Open)));
+            transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state & ~ElectricalLock.LockState.Open)));
         }
             
     }
@@ -114,14 +114,14 @@ public class LockProgram : Program
     {
         console.AddLog("Opening lock...");
 
-        if ((state & Lock.LockState.Hacked) == 0)
+        if ((state & ElectricalLock.LockState.Hacked) == 0)
         {
             yield return new WaitForSeconds(1);
             console.AddLog("Access denied!");
         }
         else
         {
-            transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | Lock.LockState.Open)));
+            transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | ElectricalLock.LockState.Open)));
         }
     }
 

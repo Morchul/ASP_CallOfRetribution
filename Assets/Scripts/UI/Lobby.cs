@@ -14,9 +14,12 @@ public class Lobby : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI ipAddress;
 
-    [Header("Controller")]
+    //[Header("Controller")]
+    //[SerializeField]
+    //private SceneController sceneController;
+
     [SerializeField]
-    private SceneController sceneController;
+    private MainMenu mainMenu;
 
     [Header("Events")]
     [SerializeField]
@@ -24,9 +27,12 @@ public class Lobby : MonoBehaviour
     [SerializeField]
     private GameEvent OnConnectionShutdown;
 
-    void Start()
+    private bool host;
+
+    public void ShowLobby(bool host)
     {
-        if (NetworkManager.Instance.ConnectionHandler.IsHost())
+        this.host = host;
+        if (host)
         {
             hostLobbyScreen.SetActive(true);
             ipAddress.text = NetworkManager.Instance.ConnectionHandler.IP;
@@ -42,7 +48,7 @@ public class Lobby : MonoBehaviour
 
     private void ReturnToMainMenu()
     {
-        if (!NetworkManager.Instance.ConnectionHandler.IsHost())
+        if (!host)
         {
             CloseLobby();
         }   
@@ -51,7 +57,7 @@ public class Lobby : MonoBehaviour
     public void LeaveLobby()
     {
         NetworkManager.Instance.ConnectionHandler.Shutdown();
-        if(NetworkManager.Instance.ConnectionHandler.IsHost())
+        if(host)
         {
             CloseLobby();
         }
@@ -61,6 +67,13 @@ public class Lobby : MonoBehaviour
     {
         OnConnectionLost.RemoveListener(ReturnToMainMenu);
         OnConnectionShutdown.RemoveListener(ReturnToMainMenu);
-        sceneController.GoToMainMenu();
+
+        //Disable lobby screen
+        if (host)
+            hostLobbyScreen.SetActive(false);
+        else
+            clientLobbyScreen.SetActive(false);
+
+        mainMenu.Show();
     }
 }

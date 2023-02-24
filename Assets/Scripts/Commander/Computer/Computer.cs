@@ -71,6 +71,10 @@ public class Computer : MonoBehaviour, IFocusable
             {
                 console.SelectNext();
             }
+            if(Input.GetKeyDown(KeyCode.Return))
+            {
+                console.SubmitCommand();
+            }
         }
     }
 

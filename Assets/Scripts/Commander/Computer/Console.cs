@@ -15,20 +15,50 @@ public class Console : MonoBehaviour
     [SerializeField]
     private TMP_InputField commandInput;
 
-    public void SetNavigation(Selectable[] navigation)
+    [Header("Events")]
+    [SerializeField]
+    private BoolEvent OnDroneConnectionStateChange;
+    [SerializeField]
+    private StringEvent OnScanOnCooldown;
+
+    private bool droneConnected;
+
+    //All lower case
+    public const string MOVE_COMMAND = "move";
+    public const string SCAN_COMMAND = "scan";
+
+    private void Awake()
     {
-        this.navigation = navigation;
-        selected = navigation.Length - 1;
-        navigationLength = navigation.Length + 1;
-        //SelectNext();
+        OnDroneConnectionStateChange.AddListener(DroneStateChanged);
+        OnScanOnCooldown.AddListener(ScanOnCooldown);
+        droneConnected = true;
     }
 
+    #region Drone
     public void SubmitCommand()
     {
-        if(selected == navigation.Length)
+        if (selected == navigation.Length)
         {
             ExecuteCommand(commandInput.text);
         }
+    }
+
+    private void DroneStateChanged(bool connected)
+    {
+        droneConnected = connected;
+        if (droneConnected)
+        {
+            AddLog("Connection to drone");
+        }
+        else
+        {
+            AddLog("Lost connection to drone");
+        }
+    }
+
+    private void ScanOnCooldown(string cooldown)
+    {
+        AddLog("Scan on cooldown: " + cooldown + " seconds");
     }
 
     private void ExecuteCommand(string command)
@@ -36,7 +66,28 @@ public class Console : MonoBehaviour
         commandInput.text = "";
         commandInput.ActivateInputField();
         AddLog("Execute command: " + command);
+
+        if (!droneConnected)
+        {
+            AddLog("No connection to drone");
+            return;
+        }
+
+        if (command.ToLower().StartsWith(MOVE_COMMAND))
+        {
+            string coordinates = command.Substring(command.IndexOf(' '));
+            if (MessageUtility.TryConvertToCoordinates(coordinates, out Vector2 coord))
+            {
+                NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.CreateMoveDroneMessage(coord));
+            }
+        }
+
+        if (command.ToLower() == SCAN_COMMAND)
+        {
+            NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.CreateScanDroneMessage());
+        }
     }
+    #endregion
 
     public void AddLog(string log)
     {
@@ -48,6 +99,15 @@ public class Console : MonoBehaviour
         }
 
         consoleLog.text = text + "\n" + log;
+    }
+
+    #region Navigation
+    public void SetNavigation(Selectable[] navigation)
+    {
+        this.navigation = navigation;
+        selected = navigation.Length - 1;
+        navigationLength = navigation.Length + 1;
+        //SelectNext();
     }
 
     public void Enable()
@@ -98,4 +158,5 @@ public class Console : MonoBehaviour
             }
         }
     }
+    #endregion
 }

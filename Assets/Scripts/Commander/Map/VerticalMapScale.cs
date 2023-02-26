@@ -5,7 +5,7 @@ public class VerticalMapScale : MapScale
 {
     public override float GetPosBoundaries()
     {
-        return (1 - normalizedVisiblePartOfMap) / 2 * Map.MAP_SCALE_POS_RATIO * map.MapHeight;
+        return (1 - normalizedVisiblePartOfMap) / 2 * map.MapHeight;
     }
 
     protected override float GetNormalizedVisiblePartOfMap(float distanceToMap)

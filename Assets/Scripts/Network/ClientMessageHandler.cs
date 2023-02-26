@@ -4,6 +4,38 @@ public class ClientMessageHandler : MessageHandler
 {
     public GameEvent OnConnectionRefused;
 
+    public BoolEvent OnDroneConnectionStateChange;
+    public StringEvent OnScanOnCooldown;
+
+    public Vector2Event OnDronePosUpdate;
+    public Vector2Event OnThiefPosUpdate;
+
+    public override void HandleMessage(string message)
+    {
+        base.HandleMessage(message);
+
+        if (message == MessageTransmitterCommands.REFUSE)
+        {
+            OnConnectionRefused.RaiseEvent();
+        }
+        else if (message.StartsWith(MessageUtility.SCAN_COOLDOWN_PREFIX))
+        {
+            OnScanOnCooldown.RaiseEvent(message.Substring(MessageUtility.SCAN_COOLDOWN_PREFIX.Length));
+        }
+        else if (message.StartsWith(MessageUtility.DRONE_STATE_CHANGE_PREFIX))
+        {
+            OnDroneConnectionStateChange.RaiseEvent(MessageUtility.GetDroneState(message));
+        }
+        else if (message.StartsWith(MessageUtility.DRONE_POS_PREFIX))
+        {
+            OnDronePosUpdate.RaiseEvent(MessageUtility.GetDronePosFromMessage(message));
+        }
+        else if (message.StartsWith(MessageUtility.THIEF_POS_PREFIX))
+        {
+            OnThiefPosUpdate.RaiseEvent(MessageUtility.GetThiefPosFromMessage(message));
+        }
+    }
+
     public override void BugUpdateMessageReceived(string message)
     {
         Debug.Log("BugUpdateMessageReceived: " + message);
@@ -14,16 +46,6 @@ public class ClientMessageHandler : MessageHandler
     public override void ChatMessageReceived(string message)
     {
         OnChatMessageReceived.RaiseEvent(MessageUtility.GetChatMessage(message));
-    }
-
-    public override void HandleMessage(string message)
-    {
-        base.HandleMessage(message);
-
-        if (message == MessageTransmitterCommands.REFUSE)
-        {
-            OnConnectionRefused.RaiseEvent();
-        }
     }
 
     public override void SelectMissionReceived(string message)

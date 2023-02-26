@@ -34,7 +34,8 @@ public class MovableFocusObject : FocusObject
     {
         if (InFocus && !animate)
         {
-            Move(new Vector2(Input.mousePosition.x - lastPos.x, Input.mousePosition.y - lastPos.y));
+            Move(Input.mousePosition - lastPos);
+            //Move(new Vector2(Input.mousePosition.x - lastPos.x, Input.mousePosition.y - lastPos.y));
             lastPos = Input.mousePosition;
         }
     }

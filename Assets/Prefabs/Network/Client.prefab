@@ -44,12 +44,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transmitter: {fileID: 6099518835256828096}
+  gameController: {fileID: 11400000, guid: 8d56789aec344864aa4812991fa68b34, type: 2}
   OnConnectionShutdown: {fileID: 11400000, guid: 2dac19d47796ce84884b8c78ad9c1ad7, type: 2}
   OnChatMessageReceived: {fileID: 11400000, guid: c8692811bef704a4ea50805f44773594, type: 2}
   OnMissionSelect: {fileID: 11400000, guid: b814887e908ba654ab84db5d34cf4606, type: 2}
   OnBugUpdate: {fileID: 11400000, guid: 8ae02f8a2a98e7045a28bac4ae8553a2, type: 2}
-  gameController: {fileID: 11400000, guid: 8d56789aec344864aa4812991fa68b34, type: 2}
   OnConnectionRefused: {fileID: 11400000, guid: 29eac446f27846642929b3d14f6a8bcd, type: 2}
+  OnDroneConnectionStateChange: {fileID: 11400000, guid: 2ded24303165cf74ea46b25e1edc906e, type: 2}
+  OnScanOnCooldown: {fileID: 11400000, guid: 626f53595df92cb42bd8e46fc3edf7c9, type: 2}
+  OnDronePosUpdate: {fileID: 11400000, guid: a9eb02a4947d64d418b8376b93a99dde, type: 2}
+  OnThiefPosUpdate: {fileID: 11400000, guid: 7439af8c6ce48b64e818f1e410eec391, type: 2}
 --- !u!1 &4642389896659224290
 GameObject:
   m_ObjectHideFlags: 0

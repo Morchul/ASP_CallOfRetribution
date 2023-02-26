@@ -736,6 +736,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   consoleLog: {fileID: 2116848187411772368}
   commandInput: {fileID: 2116848185786947875}
+  OnDroneConnectionStateChange: {fileID: 11400000, guid: 2ded24303165cf74ea46b25e1edc906e, type: 2}
+  OnScanOnCooldown: {fileID: 11400000, guid: 626f53595df92cb42bd8e46fc3edf7c9, type: 2}
 --- !u!225 &2116848186000506633
 CanvasGroup:
   m_ObjectHideFlags: 0

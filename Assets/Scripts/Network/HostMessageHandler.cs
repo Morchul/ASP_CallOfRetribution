@@ -2,6 +2,26 @@ using UnityEngine;
 
 public class HostMessageHandler : MessageHandler
 {
+    [SerializeField]
+    private Vector2Event OnDroneMoveMessage;
+    [SerializeField]
+    private GameEvent OnDrownScanMessage;
+
+    public override void HandleMessage(string message)
+    {
+        base.HandleMessage(message);
+
+        if (message.StartsWith(MessageUtility.MOVE_DRONE_PREFIX))
+        {
+            OnDroneMoveMessage.RaiseEvent(MessageUtility.GetCoordinates(message));
+        }
+
+        if (message.StartsWith(MessageUtility.SCAN_DRONE_PREFIX))
+        {
+            OnDrownScanMessage.RaiseEvent();
+        }
+    }
+
     public override void ChatMessageReceived(string message)
     {
         OnChatMessageReceived.RaiseEvent(MessageUtility.GetChatMessage(message));

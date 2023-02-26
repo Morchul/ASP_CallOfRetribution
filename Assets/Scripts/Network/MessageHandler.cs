@@ -5,15 +5,15 @@ public abstract class MessageHandler : MonoBehaviour
     [SerializeField]
     protected MessageTransmitter transmitter;
 
+    [Header("Controller")]
+    [SerializeField]
+    protected GameController gameController;
+
     [Header("Events")]
     public GameEvent OnConnectionShutdown;
     public StringEvent OnChatMessageReceived;
     public IntEvent OnMissionSelect;
     public BugUpdateEvent OnBugUpdate;
-
-    [Header("Controller")]
-    [SerializeField]
-    protected GameController gameController;
 
     public virtual void HandleMessage(string message)
     {

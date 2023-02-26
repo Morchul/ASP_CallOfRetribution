@@ -71,7 +71,7 @@ public abstract class MapScale : MonoBehaviour
 
     public void UpdateZoom()
     {
-        float currentDistanceToMap = Mathf.Abs(mainCam.transform.position.z - map.transform.position.z) / Map.MAP_SCALE_POS_RATIO; //TODO does not work always
+        float currentDistanceToMap = Mathf.Abs(mainCam.transform.position.z - map.transform.position.z); //TODO does not work always
         if (distanceToMap != currentDistanceToMap) //Needs only a recalc if the distance has changed (zoom has happend)
         {
             distanceToMap = currentDistanceToMap;

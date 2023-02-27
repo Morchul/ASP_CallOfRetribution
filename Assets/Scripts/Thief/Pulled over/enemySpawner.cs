@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
 public class enemySpawner : MonoBehaviour
 {
-    public GameObject[] spawnPoints;
+    /*public GameObject[] spawnPoints;
     public GameObject enemy;
     //we need time between each spawning
     float timeBetweenSpawns;
@@ -45,5 +44,5 @@ public class enemySpawner : MonoBehaviour
                 timeBetweenSpawns -= Time.deltaTime;
             }
         }
-    }
+    }*/
 }

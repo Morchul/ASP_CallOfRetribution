@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyControllor : MonoBehaviour
 {
-    playerControler[] players;
+    /*playerControler[] players;
     playerControler nearestPlayer;
     public float speed;
     // Start is called before the first frame update
@@ -34,5 +34,5 @@ public class EnemyControllor : MonoBehaviour
             //now we have the nerest player, we need to move the enemny towards the player
             transform.position = Vector3.MoveTowards(transform.position,nearestPlayer.transform.position,speed*Time.deltaTime);
         }
-    }
+    }*/
 }

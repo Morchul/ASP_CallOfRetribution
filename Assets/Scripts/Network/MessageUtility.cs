@@ -9,6 +9,7 @@ public static class MessageUtility
     public const string BUG_UPDATE_PREFIX = "BUG_UPDATE:";
     public const string MOVE_DRONE_PREFIX = "M_DRONE:";
     public const string SCAN_DRONE_PREFIX = "S_DRONE:";
+    public const string PING_DRONE_PREFIX = "P_DRONE:";
     public const string SCAN_RESULT_PREFIX = "SCAN_RES:";
     public const string SCAN_COOLDOWN_PREFIX = "SCAN_COOLDOWN:";
     public const string DRONE_STATE_CHANGE_PREFIX = "DRONE_ST_CH:";
@@ -87,6 +88,11 @@ public static class MessageUtility
     public static string CreateScanDroneMessage()
     {
         return SCAN_DRONE_PREFIX;
+    }
+
+    public static string CreatePingDroneMessage()
+    {
+        return PING_DRONE_PREFIX;
     }
 
     public static string CreateScanResultMessage(Vector3 pos)

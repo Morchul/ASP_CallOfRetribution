@@ -8,7 +8,7 @@ public class WorldObjectRefPos : MonoBehaviour
     private Vector2Event OnPosUpdateEvent;
 
     [SerializeField]
-    private Map map;
+    private MapData mapData;
 
     // Start is called before the first frame update
     void Awake()
@@ -18,7 +18,7 @@ public class WorldObjectRefPos : MonoBehaviour
 
     private void UpdatePos(Vector2 worldPos)
     {
-        Vector2 mapPos = map.WorldPosToMapPos(worldPos);
+        Vector2 mapPos = mapData.WorldPosToMapPos(worldPos);
         transform.localPosition = new Vector3(mapPos.x, 0, mapPos.y);
     }
 }

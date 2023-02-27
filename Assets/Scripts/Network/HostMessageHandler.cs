@@ -6,6 +6,8 @@ public class HostMessageHandler : MessageHandler
     private Vector2Event OnDroneMoveMessage;
     [SerializeField]
     private GameEvent OnDrownScanMessage;
+    [SerializeField]
+    private GameEvent OnDrownPingMessage;
 
     public override void HandleMessage(string message)
     {
@@ -19,6 +21,11 @@ public class HostMessageHandler : MessageHandler
         if (message.StartsWith(MessageUtility.SCAN_DRONE_PREFIX))
         {
             OnDrownScanMessage.RaiseEvent();
+        }
+
+        if (message.StartsWith(MessageUtility.PING_DRONE_PREFIX))
+        {
+            OnDrownPingMessage.RaiseEvent();
         }
     }
 

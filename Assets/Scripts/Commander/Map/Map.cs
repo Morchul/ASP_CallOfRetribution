@@ -10,17 +10,7 @@ public class Map : MovableFocusObject
 
     [Header("Map")]
     [SerializeField]
-    private float worldWidth;
-    [SerializeField]
-    private float worldHeight;
-
-    [SerializeField]
-    [Tooltip("With a scale of 1 how big is the map")]
-    protected float mapScaleSizeRatio = 10;
-    public float MapScaleSizeRatio => mapScaleSizeRatio;
-
-    public float MapWidth { get; private set; }
-    public float MapHeight { get; private set; }
+    private MapData mapData;
 
     [Header("UI")]
     [SerializeField]
@@ -42,9 +32,7 @@ public class Map : MovableFocusObject
     {
         base.Awake();
         FocusHandler = focusHandler;
-        MapWidth = Mathf.Abs(transform.localScale.x) * MapScaleSizeRatio;
-        MapHeight = Mathf.Abs(transform.localScale.z) * MapScaleSizeRatio;
-        mapSize = new Vector2(MapWidth, MapHeight);
+        mapSize = new Vector2(mapData.MapSizeX, mapData.MapSizeY);
     }
 
     public override void EnableFocus(FocusAnimationParam focusPos)
@@ -113,25 +101,5 @@ public class Map : MovableFocusObject
         currentPos = normalizedStartPos - (mapDelta / mapSize);
         horizontalScale.NormalizedScalePos = currentPos.x;
         verticalScale.NormalizedScalePos = currentPos.y;
-    }
-
-    public Vector3 MapPosToWorldPos(Vector2 mapPos)
-    {
-        return new Vector3(mapPos.x / MapScaleSizeRatio * worldWidth, 0, mapPos.y / MapScaleSizeRatio * worldHeight);
-    }
-
-    public Vector3 MapCoordinateToWorldPos(int x, int y)
-    {
-        return new Vector3(x / horizontalScale.Range * worldWidth, 0, y / verticalScale.Range * worldHeight);
-    }
-
-    public Vector2 WorldPosToMapCoordinate(Vector2 worldPos)
-    {
-        return new Vector2(worldPos.x / worldWidth * horizontalScale.Range, worldPos.y / worldHeight * verticalScale.Range);
-    }
-
-    public Vector2 WorldPosToMapPos(Vector2 worldPos)
-    {
-        return new Vector2(worldPos.x / worldWidth, worldPos.y / worldHeight) * MapScaleSizeRatio;
     }
 }

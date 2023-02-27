@@ -734,6 +734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0d565b7470d3a4cbd8f5887f09512e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapData: {fileID: 11400000, guid: ef44887147996f24fa48aae1399aabed, type: 2}
   consoleLog: {fileID: 2116848187411772368}
   commandInput: {fileID: 2116848185786947875}
   OnDroneConnectionStateChange: {fileID: 11400000, guid: 2ded24303165cf74ea46b25e1edc906e, type: 2}

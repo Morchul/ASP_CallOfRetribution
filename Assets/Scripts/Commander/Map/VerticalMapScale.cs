@@ -5,13 +5,15 @@ public class VerticalMapScale : MapScale
 {
     public override float GetPosBoundaries()
     {
-        return (1 - normalizedVisiblePartOfMap) / 2 * map.MapHeight;
+        return (1 - normalizedVisiblePartOfMap) / 2 * mapData.MapHeight;
     }
 
     protected override float GetNormalizedVisiblePartOfMap(float distanceToMap)
     {
-        return 2.0f * distanceToMap * Mathf.Tan(mainCam.fieldOfView * 0.5f * Mathf.Deg2Rad) / map.MapHeight;
+        return 2.0f * distanceToMap * Mathf.Tan(mainCam.fieldOfView * 0.5f * Mathf.Deg2Rad) / mapData.MapHeight;
     }
+
+    protected override float GetScaleRange() => mapData.MapHeight;
 
     protected override float GetScreenScaleLength() => mainCam.pixelHeight;
 

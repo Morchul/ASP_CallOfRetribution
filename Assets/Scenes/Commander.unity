@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571409, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -736,9 +736,7 @@ MonoBehaviour:
   moveSpeed: 2
   focusHandler: {fileID: 301064207}
   mapFocusPos: {fileID: 2117100011}
-  worldWidth: 50
-  worldHeight: 50
-  mapScaleSizeRatio: 10
+  mapData: {fileID: 11400000, guid: ef44887147996f24fa48aae1399aabed, type: 2}
   mapOverlay: {fileID: 1072262151}
   horizontalScale: {fileID: 1964627606}
   verticalScale: {fileID: 1665983075}
@@ -1706,7 +1704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnPosUpdateEvent: {fileID: 11400000, guid: a9eb02a4947d64d418b8376b93a99dde, type: 2}
-  map: {fileID: 369441241}
+  mapData: {fileID: 11400000, guid: ef44887147996f24fa48aae1399aabed, type: 2}
 --- !u!65 &1471749730
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2143,7 +2141,7 @@ MonoBehaviour:
   maxScaleGaps: 4
   minScaleGaps: 2
   mapScaleLinePrefab: {fileID: 8968519291102484166, guid: fedb75e5b19fd6d48a475de0fd8d60b2, type: 3}
-  scaleScale: 100
+  mapData: {fileID: 11400000, guid: ef44887147996f24fa48aae1399aabed, type: 2}
   maxZoomLevel: 4
 --- !u!1 &1699816217
 GameObject:
@@ -2258,7 +2256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnPosUpdateEvent: {fileID: 11400000, guid: 7439af8c6ce48b64e818f1e410eec391, type: 2}
-  map: {fileID: 369441241}
+  mapData: {fileID: 11400000, guid: ef44887147996f24fa48aae1399aabed, type: 2}
 --- !u!65 &1897340813
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2374,7 +2372,7 @@ MonoBehaviour:
   maxScaleGaps: 5
   minScaleGaps: 2
   mapScaleLinePrefab: {fileID: 2416115363081516712, guid: 79be3476c1ed6b644b507548c3d363cd, type: 3}
-  scaleScale: 150
+  mapData: {fileID: 11400000, guid: ef44887147996f24fa48aae1399aabed, type: 2}
   maxZoomLevel: 4
 --- !u!1 &2079234395
 GameObject:
@@ -2538,6 +2536,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2116848186000506630, guid: 017ae8316a910a24e90183b9ba569cfc, type: 3}
+      propertyPath: map
+      value: 
+      objectReference: {fileID: 369441241}
     - target: {fileID: 2116848186000506631, guid: 017ae8316a910a24e90183b9ba569cfc, type: 3}
       propertyPath: m_Camera
       value: 

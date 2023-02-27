@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThiefTest : MonoBehaviour
+public class ThiefTest : PositionSensor
 {
     [SerializeField]
     private ElectricalLock eLock;
@@ -12,6 +12,11 @@ public class ThiefTest : MonoBehaviour
 
     [SerializeField]
     private int bugID;
+
+    private void Awake()
+    {
+        UpdateCreateFunc = MessageUtility.CreateThiefPosMessage;
+    }
 
     // Update is called once per frame
     void Update()

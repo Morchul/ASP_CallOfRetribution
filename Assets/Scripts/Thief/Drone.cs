@@ -1,8 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class Drone : MonoBehaviour
+public class Drone : PositionSensor
 {
+    [SerializeField]
+    private MapData mapData;
+
     [Header("Events")]
     [SerializeField]
     private Vector2Event OnDroneMoveMessage;
@@ -10,11 +13,13 @@ public class Drone : MonoBehaviour
     private GameEvent OnDrownScanMessage;
     [SerializeField]
     private Vector2Event OnGuardScanned;
+    [SerializeField]
+    private GameEvent OnDrownPingMessage;
 
     private bool moving;
-    private Vector2 targetPos;
+    private Vector3 targetPos;
 
-    private Vector2 moveDir;
+    private Vector3 moveDir;
 
     [Header("Move params")]
     [SerializeField]
@@ -41,32 +46,30 @@ public class Drone : MonoBehaviour
     private float posUpdateInterval;
     private float posUpdateTimer;
 
-    private bool connected;
-    public bool Connected
+    [Header("Ping params")]
+    [SerializeField]
+    private GameEvent flairePrefab;
+
+    public override bool Disturbed
     {
-        get => connected;
+        get => base.Disturbed;
         set
         {
-            connected = value;
-            //OnDrownConnectionStateChanged.RaiseEvent(connected);
-            NetworkManager.Instance.Transmitter.WriteToClient(MessageUtility.CreateDroneStateChangedMessage(connected));
-            if (!connected) //Disconnect
-            {
+            base.Disturbed = value;
+            NetworkManager.Instance.Transmitter.WriteToClient(MessageUtility.CreateDroneStateChangedMessage(value));
+            if (!value)
                 moving = false;
-                SendPosUpdate();
-            }
         }
     }
+
 
     private void Awake()
     {
         OnDroneMoveMessage.AddListener(MoveCommand);
         OnDrownScanMessage.AddListener(ScanCommand);
-    }
+        OnDrownPingMessage.AddListener(PingCommand);
 
-    private void SendPosUpdate()
-    {
-        NetworkManager.Instance.Transmitter.WriteToClient(MessageUtility.CreateDronePosMessage(transform.position));
+        UpdateCreateFunc = MessageUtility.CreateDronePosMessage;
     }
 
     private void Start()
@@ -78,7 +81,7 @@ public class Drone : MonoBehaviour
     {
         if (moving)
         {
-            float disSqrt = (targetPos - (Vector2)transform.position).sqrMagnitude;
+            float disSqrt = (targetPos - transform.position).sqrMagnitude;
             transform.Translate(moveDir * moveSpeed * Time.deltaTime);
 
             if (disSqrt < minDistToTarget * minDistToTarget)
@@ -101,15 +104,32 @@ public class Drone : MonoBehaviour
             cooldownTimer -= Time.deltaTime;
     }
 
+    public void PingCommand()
+    {
+        if (Disturbed) return;
+        //TODO
+        Instantiate(flairePrefab, transform.position, Quaternion.identity);
+    }
+
     public void MoveCommand(Vector2 targetPos)
     {
+        Debug.Log("Move command, target pos: " + targetPos);
+        if (Disturbed) return;
+
+        Vector3 worldTargetPos = mapData.MapCoordinateToWorldPos(targetPos);
+
         moving = true;
-        this.targetPos = targetPos;
-        moveDir = new Vector3(targetPos.x - transform.position.x, 0, targetPos.y - transform.position.z).normalized;
+        Debug.Log("this.position: " + this.transform.position);
+        this.targetPos = new Vector3(worldTargetPos.x, transform.position.y, worldTargetPos.z);
+        Debug.Log("this.targetPos: " + this.targetPos);
+        moveDir = (this.targetPos - transform.position).normalized;
+        Debug.Log("moveDir: " + moveDir);
     }
 
     public void ScanCommand()
     {
+        if (Disturbed) return;
+
         if(cooldownTimer > 0)
         {
             Debug.Log("Scan in cooldown");

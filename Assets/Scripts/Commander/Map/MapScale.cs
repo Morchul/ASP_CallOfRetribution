@@ -21,9 +21,8 @@ public abstract class MapScale : MonoBehaviour
 
     //public char[] ScaleSectionSymbols;
     [SerializeField]
-    [Tooltip("What is the scale of the whole scale e.g.: 100 =>  scale goes from 0 - 100")]
-    private int scaleScale;
-    public int Range => scaleScale;
+    protected MapData mapData;
+    private float scaleRange;
 
     [Header("Boundaries")]
     [SerializeField]
@@ -61,6 +60,8 @@ public abstract class MapScale : MonoBehaviour
             if (i % 2 == 1)
                 mapScaleLines[i].SmallLine();
         }
+
+        scaleRange = GetScaleRange();
     }
 
     protected float distanceToMap;
@@ -99,9 +100,9 @@ public abstract class MapScale : MonoBehaviour
 
     public void UpdateScale()
     {
-        float scalePos = scaleScale * NormalizedScalePos;
-        float bigLineNumber = scaleScale / (maxScaleGaps * zoomLevel);
-        float currentShownScale = normalizedVisiblePartOfMap * scaleScale;
+        float scalePos = scaleRange * NormalizedScalePos;
+        float bigLineNumber = scaleRange / (maxScaleGaps * zoomLevel);
+        float currentShownScale = normalizedVisiblePartOfMap * scaleRange;
         float delta = scalePos % bigLineNumber;
         float closestBigScaleNumberBelow = scalePos - delta;
 
@@ -152,4 +153,5 @@ public abstract class MapScale : MonoBehaviour
 
     protected abstract void SetScaleLinePos(float delta, float steps);
     protected abstract float GetScreenScaleLength();
+    protected abstract float GetScaleRange();
 }

@@ -10,6 +10,9 @@ public class Console : MonoBehaviour
     private int navigationLength;
 
     [SerializeField]
+    private MapData mapData;
+
+    [SerializeField]
     private TMP_Text consoleLog;
 
     [SerializeField]

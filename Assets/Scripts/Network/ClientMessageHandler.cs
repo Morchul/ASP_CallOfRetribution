@@ -10,6 +10,8 @@ public class ClientMessageHandler : MessageHandler
     public Vector2Event OnDronePosUpdate;
     public Vector2Event OnThiefPosUpdate;
 
+    public Vector2Event OnGuardScanned;
+
     public override void HandleMessage(string message)
     {
         base.HandleMessage(message);
@@ -33,6 +35,11 @@ public class ClientMessageHandler : MessageHandler
         else if (message.StartsWith(MessageUtility.THIEF_POS_PREFIX))
         {
             OnThiefPosUpdate.RaiseEvent(MessageUtility.GetThiefPosFromMessage(message));
+        }
+        else if(message.StartsWith(MessageUtility.SCAN_RESULT_PREFIX))
+        {
+            MessageUtility.TryConvertToCoordinates(message.Substring(MessageUtility.SCAN_RESULT_PREFIX.Length), out Vector2 coord);
+            OnGuardScanned.RaiseEvent(coord);
         }
     }
 

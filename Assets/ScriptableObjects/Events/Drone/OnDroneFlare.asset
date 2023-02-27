@@ -9,13 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a6a52d04a7267441a1e6a085e348757, type: 3}
-  m_Name: MapData
+  m_Script: {fileID: 11500000, guid: bc6d6636e6aab704084c2d86a6c250e6, type: 3}
+  m_Name: OnDroneFlare
   m_EditorClassIdentifier: 
-  WorldWidth: 150
-  WorldHeight: 100
-  MapWidth: 150
-  MapHeight: 100
-  MapSizeX: 15
-  MapSizeY: 10
-  MapScaleSizeRatio: 10

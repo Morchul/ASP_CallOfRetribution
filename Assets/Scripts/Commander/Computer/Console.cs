@@ -29,6 +29,7 @@ public class Console : MonoBehaviour
     //All lower case
     public const string MOVE_COMMAND = "move";
     public const string SCAN_COMMAND = "scan";
+    public const string FLARE_COMMAND = "fire flare";
 
     private void Awake()
     {
@@ -68,7 +69,6 @@ public class Console : MonoBehaviour
     {
         commandInput.text = "";
         commandInput.ActivateInputField();
-        AddLog("Execute command: " + command);
 
         if (!droneConnected)
         {
@@ -81,13 +81,25 @@ public class Console : MonoBehaviour
             string coordinates = command.Substring(command.IndexOf(' '));
             if (MessageUtility.TryConvertToCoordinates(coordinates, out Vector2 coord))
             {
+                AddLog("Move drone to position: " + coord);
                 NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.CreateMoveDroneMessage(coord));
             }
         }
 
-        if (command.ToLower() == SCAN_COMMAND)
+        else if (command.ToLower() == SCAN_COMMAND)
         {
+            AddLog("Start scanning");
             NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.CreateScanDroneMessage());
+        }
+
+        else if(command.ToLower() == FLARE_COMMAND)
+        {
+            AddLog("Fire flare");
+            NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.CreateFlareDroneMessage());
+        }
+        else
+        {
+            AddLog("Unknown command: " + command + " read the computer manual for commands");
         }
     }
     #endregion

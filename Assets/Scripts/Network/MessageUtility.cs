@@ -9,21 +9,21 @@ public static class MessageUtility
     public const string BUG_UPDATE_PREFIX = "BUG_UPDATE:";
     public const string MOVE_DRONE_PREFIX = "M_DRONE:";
     public const string SCAN_DRONE_PREFIX = "S_DRONE:";
-    public const string PING_DRONE_PREFIX = "P_DRONE:";
+    public const string FLARE_DRONE_PREFIX = "F_DRONE:";
     public const string SCAN_RESULT_PREFIX = "SCAN_RES:";
     public const string SCAN_COOLDOWN_PREFIX = "SCAN_COOLDOWN:";
     public const string DRONE_STATE_CHANGE_PREFIX = "DRONE_ST_CH:";
     public const string DRONE_POS_PREFIX = "DRONE_POS:";
     public const string THIEF_POS_PREFIX = "THIEF_POS:";
 
-    public static string CreateDronePosMessage(Vector2 dronePos)
+    public static string CreateDronePosMessage(Vector3 dronePos)
     {
-        return DRONE_POS_PREFIX + dronePos.x + "/" + dronePos.y;
+        return DRONE_POS_PREFIX + dronePos.x + "/" + dronePos.z;
     }
 
-    public static string CreateThiefPosMessage(Vector2 thiefPos)
+    public static string CreateThiefPosMessage(Vector3 thiefPos)
     {
-        return THIEF_POS_PREFIX + thiefPos.x + "/" + thiefPos.y;
+        return THIEF_POS_PREFIX + thiefPos.x + "/" + thiefPos.z;
     }
 
     public static Vector2 GetDronePosFromMessage(string message)
@@ -90,9 +90,9 @@ public static class MessageUtility
         return SCAN_DRONE_PREFIX;
     }
 
-    public static string CreatePingDroneMessage()
+    public static string CreateFlareDroneMessage()
     {
-        return PING_DRONE_PREFIX;
+        return FLARE_DRONE_PREFIX;
     }
 
     public static string CreateScanResultMessage(Vector3 pos)

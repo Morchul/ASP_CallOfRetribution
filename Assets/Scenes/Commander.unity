@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571409, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1668,7 +1668,6 @@ GameObject:
   - component: {fileID: 1471749728}
   - component: {fileID: 1471749732}
   - component: {fileID: 1471749731}
-  - component: {fileID: 1471749730}
   - component: {fileID: 1471749729}
   m_Layer: 0
   m_Name: DronePos
@@ -1705,19 +1704,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnPosUpdateEvent: {fileID: 11400000, guid: a9eb02a4947d64d418b8376b93a99dde, type: 2}
   mapData: {fileID: 11400000, guid: ef44887147996f24fa48aae1399aabed, type: 2}
---- !u!65 &1471749730
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1471749727}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1471749731
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2152,6 +2138,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1699816218}
+  - component: {fileID: 1699816219}
   m_Layer: 0
   m_Name: LocalCoordinates
   m_TagString: Untagged
@@ -2175,6 +2162,21 @@ Transform:
   m_Father: {fileID: 369441240}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1699816219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699816217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8957230da9028646b0e700a1fb1d485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnGuardScanned: {fileID: 11400000, guid: 491ca8868fa7a4945876d1cf550bf831, type: 2}
+  mapData: {fileID: 11400000, guid: ef44887147996f24fa48aae1399aabed, type: 2}
+  ScanObjectPrefab: {fileID: 3243079721956601123, guid: 7c6bccb9cc379114fb6cc004925bcc8e, type: 3}
 --- !u!1 &1892344806
 GameObject:
   m_ObjectHideFlags: 0
@@ -2220,7 +2222,6 @@ GameObject:
   - component: {fileID: 1897340811}
   - component: {fileID: 1897340815}
   - component: {fileID: 1897340814}
-  - component: {fileID: 1897340813}
   - component: {fileID: 1897340812}
   m_Layer: 0
   m_Name: ThiefPos
@@ -2237,7 +2238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897340810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 9.92, y: 0, z: 9.85}
   m_LocalScale: {x: 0.1, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 1699816218}
@@ -2257,19 +2258,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnPosUpdateEvent: {fileID: 11400000, guid: 7439af8c6ce48b64e818f1e410eec391, type: 2}
   mapData: {fileID: 11400000, guid: ef44887147996f24fa48aae1399aabed, type: 2}
---- !u!65 &1897340813
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1897340810}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1897340814
 MeshRenderer:
   m_ObjectHideFlags: 0

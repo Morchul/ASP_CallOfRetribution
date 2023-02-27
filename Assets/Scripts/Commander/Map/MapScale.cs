@@ -62,6 +62,7 @@ public abstract class MapScale : MonoBehaviour
         }
 
         scaleRange = GetScaleRange();
+        maxDistance = GetMaxDistance();
     }
 
     protected float distanceToMap;
@@ -69,13 +70,14 @@ public abstract class MapScale : MonoBehaviour
     protected float normalizedBigGapSize;
     protected float screenBigGapSize;
     protected bool zoomLevelChanged;
+    protected float maxDistance;
 
     public void UpdateZoom()
     {
         float currentDistanceToMap = Mathf.Abs(mainCam.transform.position.z - map.transform.position.z); //TODO does not work always
         if (distanceToMap != currentDistanceToMap) //Needs only a recalc if the distance has changed (zoom has happend)
         {
-            distanceToMap = currentDistanceToMap;
+            distanceToMap = Mathf.Min(maxDistance, currentDistanceToMap);
             normalizedVisiblePartOfMap = GetNormalizedVisiblePartOfMap(distanceToMap);
             normalizedBigGapSize = CalcNormalizedBigGapSize(normalizedVisiblePartOfMap);
             screenBigGapSize = CalcScreenBigGapSize(normalizedBigGapSize);
@@ -154,4 +156,5 @@ public abstract class MapScale : MonoBehaviour
     protected abstract void SetScaleLinePos(float delta, float steps);
     protected abstract float GetScreenScaleLength();
     protected abstract float GetScaleRange();
+    protected abstract float GetMaxDistance();
 }

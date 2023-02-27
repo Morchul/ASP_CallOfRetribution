@@ -13,6 +13,10 @@ public class ThiefTest : PositionSensor
     [SerializeField]
     private int bugID;
 
+    [SerializeField]
+    private float posUpdateInterval;
+    private float posUpdateTimer;
+
     private void Awake()
     {
         UpdateCreateFunc = MessageUtility.CreateThiefPosMessage;
@@ -26,6 +30,12 @@ public class ThiefTest : PositionSensor
             eLock.PlaceBug(bugID);
             NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bugID, eLock.ObjectType, eLock.State));
         }
-
+        if (posUpdateTimer > 0)
+            posUpdateTimer -= Time.deltaTime;
+        else
+        {
+            SendPosUpdate();
+            posUpdateTimer = posUpdateInterval;
+        }
     }
 }

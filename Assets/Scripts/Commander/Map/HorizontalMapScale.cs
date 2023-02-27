@@ -6,12 +6,17 @@ public class HorizontalMapScale : MapScale
 {
     public override float GetPosBoundaries()
     {
-        return (1 - normalizedVisiblePartOfMap) / 2 * mapData.MapWidth;
+        return (1 - normalizedVisiblePartOfMap) / 2 * mapData.MapSizeX;
     }
 
     protected override float GetNormalizedVisiblePartOfMap(float distanceToMap)
     {
-        return 2.0f * distanceToMap * Mathf.Tan(mainCam.fieldOfView * 0.5f * Mathf.Deg2Rad) * mainCam.aspect / mapData.MapWidth;
+        return 2.0f * distanceToMap * Mathf.Tan(mainCam.fieldOfView * 0.5f * Mathf.Deg2Rad) * mainCam.aspect / mapData.MapSizeX;
+    }
+
+    protected override float GetMaxDistance()
+    {
+        return 1 / (2.0f * Mathf.Tan(mainCam.fieldOfView * 0.5f * Mathf.Deg2Rad) * mainCam.aspect / mapData.MapSizeX);
     }
 
     protected override float GetScaleRange() => mapData.MapWidth;

@@ -13,4 +13,9 @@ public class ElectronicDevice : MonoBehaviour
             disturbed = value;
         }
     }
+
+    private void Awake()
+    {
+        disturbed = false;
+    }
 }

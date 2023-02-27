@@ -14,7 +14,7 @@ public class Drone : PositionSensor
     [SerializeField]
     private Vector2Event OnGuardScanned;
     [SerializeField]
-    private GameEvent OnDrownPingMessage;
+    private GameEvent OnDrownFlareMessage;
 
     private bool moving;
     private Vector3 targetPos;
@@ -46,9 +46,9 @@ public class Drone : PositionSensor
     private float posUpdateInterval;
     private float posUpdateTimer;
 
-    [Header("Ping params")]
+    [Header("Flare params")]
     [SerializeField]
-    private GameEvent flairePrefab;
+    private Flare flairePrefab;
 
     public override bool Disturbed
     {
@@ -67,7 +67,7 @@ public class Drone : PositionSensor
     {
         OnDroneMoveMessage.AddListener(MoveCommand);
         OnDrownScanMessage.AddListener(ScanCommand);
-        OnDrownPingMessage.AddListener(PingCommand);
+        OnDrownFlareMessage.AddListener(FlareCommand);
 
         UpdateCreateFunc = MessageUtility.CreateDronePosMessage;
     }
@@ -104,10 +104,9 @@ public class Drone : PositionSensor
             cooldownTimer -= Time.deltaTime;
     }
 
-    public void PingCommand()
+    public void FlareCommand()
     {
         if (Disturbed) return;
-        //TODO
         Instantiate(flairePrefab, transform.position, Quaternion.identity);
     }
 
@@ -152,6 +151,7 @@ public class Drone : PositionSensor
             {
                 NetworkManager.Instance.Transmitter.WriteToClient(MessageUtility.CreateScanResultMessage(collider.transform.position));
                 OnGuardScanned.RaiseEvent(collider.transform.position);
+                Debug.Log("OnGuardscanned: " + collider.transform.position);
             }
             yield return new WaitForSeconds(scanInterval);
         }

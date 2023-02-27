@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PositionSensor : ElectronicDevice
 {
-    protected System.Func<Vector2, string> UpdateCreateFunc;
+    protected System.Func<Vector3, string> UpdateCreateFunc;
 
     public void SendPosUpdate()
     {

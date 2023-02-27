@@ -54,6 +54,7 @@ MonoBehaviour:
   OnScanOnCooldown: {fileID: 11400000, guid: 626f53595df92cb42bd8e46fc3edf7c9, type: 2}
   OnDronePosUpdate: {fileID: 11400000, guid: a9eb02a4947d64d418b8376b93a99dde, type: 2}
   OnThiefPosUpdate: {fileID: 11400000, guid: 7439af8c6ce48b64e818f1e410eec391, type: 2}
+  OnGuardScanned: {fileID: 11400000, guid: 491ca8868fa7a4945876d1cf550bf831, type: 2}
 --- !u!1 &4642389896659224290
 GameObject:
   m_ObjectHideFlags: 0

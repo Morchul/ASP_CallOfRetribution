@@ -51,6 +51,7 @@ MonoBehaviour:
   OnBugUpdate: {fileID: 11400000, guid: 8ae02f8a2a98e7045a28bac4ae8553a2, type: 2}
   OnDroneMoveMessage: {fileID: 11400000, guid: b85cf2e3df46b6247bc84cab16c1601d, type: 2}
   OnDrownScanMessage: {fileID: 11400000, guid: 8a7b863b976692d4ca433b923f48ce22, type: 2}
+  OnDrownFlareMessage: {fileID: 11400000, guid: 83acf8aaf8da3c145adcdc543a1fb600, type: 2}
 --- !u!1 &6278398998381815395
 GameObject:
   m_ObjectHideFlags: 0

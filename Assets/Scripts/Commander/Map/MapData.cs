@@ -35,7 +35,7 @@ public class MapData : ScriptableObject
         return new Vector2(worldPos.x / WorldWidth * MapWidth, worldPos.y / WorldHeight * MapHeight);
     }
 
-    public Vector2 WorldPosToMapPos(Vector2 worldPos)
+    public Vector2 XZWorldPosToMapPos(Vector2 worldPos)
     {
         return new Vector2(worldPos.x / WorldWidth, worldPos.y / WorldHeight) * MapScaleSizeRatio;
     }

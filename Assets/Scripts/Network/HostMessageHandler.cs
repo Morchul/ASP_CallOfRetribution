@@ -7,7 +7,7 @@ public class HostMessageHandler : MessageHandler
     [SerializeField]
     private GameEvent OnDrownScanMessage;
     [SerializeField]
-    private GameEvent OnDrownPingMessage;
+    private GameEvent OnDrownFlareMessage;
 
     public override void HandleMessage(string message)
     {
@@ -23,9 +23,9 @@ public class HostMessageHandler : MessageHandler
             OnDrownScanMessage.RaiseEvent();
         }
 
-        if (message.StartsWith(MessageUtility.PING_DRONE_PREFIX))
+        if (message.StartsWith(MessageUtility.FLARE_DRONE_PREFIX))
         {
-            OnDrownPingMessage.RaiseEvent();
+            OnDrownFlareMessage.RaiseEvent();
         }
     }
 

@@ -5,7 +5,19 @@ using UnityEngine;
 public class ElectricalLock : Lock, IBugable
 {
     private LockState state;
-    public int State => (int)state;
+    public int State
+    {
+        get => (int)state;
+        set
+        {
+            this.state = (LockState)value;
+            if ((this.state & LockState.Open) > 0)
+                Unlock();
+            else
+                LockAction();
+        }
+    }
+
     private int bugID;
 
     [System.Flags]
@@ -15,28 +27,15 @@ public class ElectricalLock : Lock, IBugable
         Open = 2
     }
 
-    [SerializeField]
-    private BugUpdateEvent OnBugUpdate;
+    protected override void Awake()
+    {
+        base.Awake();
+        bugID = -1;
+    }
 
     public bool Bugged => bugID >= 0;
 
     public IBugable.Type ObjectType => IBugable.Type.Lock;
-
-    private void Awake()
-    {
-        OnBugUpdate.AddListener(BugUpdate);
-        Locked = true;
-    }
-
-    private void BugUpdate(int id, IBugable.Type type, int state)
-    {
-        if (id != bugID) return;
-        this.state = (LockState)state;
-        if ((this.state & LockState.Open) > 0)
-            Unlock();
-        else
-            LockAction();
-    }
 
     public void PlaceBug(int id)
     {

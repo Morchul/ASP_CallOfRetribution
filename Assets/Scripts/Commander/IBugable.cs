@@ -5,8 +5,9 @@ using UnityEngine;
 public interface IBugable
 {
     bool Bugged { get; }
-    int State { get; }
+    int State { get; set; }
     Type ObjectType { get; }
+
     void PlaceBug(int id);
 
     [System.Serializable]

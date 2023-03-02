@@ -32,7 +32,7 @@ public class GuardNPC : MonoBehaviour
         if (InSight())
         {
             suspicionLevel += 0.1f;
-            if (suspicionLevel >= 1)
+            if (suspicionLevel >= 10)
             {
                 FollowTarget();
                 patrolling = false;

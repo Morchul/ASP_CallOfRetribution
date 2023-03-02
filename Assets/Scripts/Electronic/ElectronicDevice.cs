@@ -11,11 +11,17 @@ public class ElectronicDevice : MonoBehaviour
         set
         {
             disturbed = value;
+            AfterDisturbedChange();
         }
     }
 
     private void Awake()
     {
         disturbed = false;
+    }
+
+    protected virtual void AfterDisturbedChange()
+    {
+
     }
 }

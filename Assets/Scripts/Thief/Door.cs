@@ -32,12 +32,14 @@ public class Door : MonoBehaviour
     private void CloseDoor()
     {
         Debug.Log("Close door");
+        transform.eulerAngles = Vector3.zero;
         Open = false;
     }
 
     private void OpenDoor()
     {
         Debug.Log("Open door");
+        transform.eulerAngles = new Vector3(0,90,0);
         Open = true;
     }
 }

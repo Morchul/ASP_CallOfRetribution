@@ -12,6 +12,8 @@ public class ClientMessageHandler : MessageHandler
 
     public Vector2Event OnGuardScanned;
 
+    public BugUpdateEvent OnBugUpdate;
+
     public override void HandleMessage(string message)
     {
         base.HandleMessage(message);
@@ -45,7 +47,6 @@ public class ClientMessageHandler : MessageHandler
 
     public override void BugUpdateMessageReceived(string message)
     {
-        Debug.Log("BugUpdateMessageReceived: " + message);
         int[] bugUpdateValues = MessageUtility.GetBugUpdateValues(message);
         OnBugUpdate.RaiseEvent(bugUpdateValues[0], (IBugable.Type)bugUpdateValues[1], bugUpdateValues[2]);
     }

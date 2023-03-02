@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4999994135674766337}
   - component: {fileID: 2560444855318293792}
   - component: {fileID: -4911355909360625185}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bug
   m_TagString: Bug
   m_Icon: {fileID: 0}
@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bugUpdateEvent: {fileID: 11400000, guid: 8ae02f8a2a98e7045a28bac4ae8553a2, type: 2}
+  bugUpdateRequestEvent: {fileID: 11400000, guid: cc5b3cc79e2a87b4a8b1efc6172af7a5, type: 2}
 --- !u!54 &-4911355909360625185
 Rigidbody:
   m_ObjectHideFlags: 0

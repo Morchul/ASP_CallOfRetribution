@@ -13,7 +13,6 @@ public abstract class MessageHandler : MonoBehaviour
     public GameEvent OnConnectionShutdown;
     public StringEvent OnChatMessageReceived;
     public IntEvent OnMissionSelect;
-    public BugUpdateEvent OnBugUpdate;
     public GameEvent OnMissionLoaded;
     public GameEvent OnGameReady;
 

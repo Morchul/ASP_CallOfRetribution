@@ -52,32 +52,21 @@ public class Drone : PositionSensor
     [SerializeField]
     private Flare flairePrefab;
 
-    public override bool Disturbed
-    {
-        get => base.Disturbed;
-        set
-        {
-            base.Disturbed = value;
-            NetworkManager.Instance.Transmitter.WriteToClient(MessageUtility.CreateDroneStateChangedMessage(value));
-            if (value)
-                moving = false;
-        }
-    }
-
-
     private void Awake()
     {
         OnDroneMoveMessage.AddListener(MoveCommand);
         OnDrownScanMessage.AddListener(ScanCommand);
         OnDrownFlareMessage.AddListener(FlareCommand);
-        OnGameReady.AddListener(GameReady);
+        OnGameReady.AddListener(() => SendPosUpdate());
 
         UpdateCreateFunc = MessageUtility.CreateDronePosMessage;
     }
 
-    private void GameReady()
+    protected override void AfterDisturbedChange()
     {
-        SendPosUpdate();
+        NetworkManager.Instance.Transmitter.WriteToClient(MessageUtility.CreateDroneStateChangedMessage(Disturbed));
+        if (Disturbed)
+            moving = false;
     }
 
     void Update()

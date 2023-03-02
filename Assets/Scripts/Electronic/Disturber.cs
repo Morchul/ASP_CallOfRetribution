@@ -5,41 +5,34 @@ using UnityEngine;
 public class Disturber : MonoBehaviour
 {
     private List<ElectronicDevice> devices;
-    private bool disabled;
+    public bool Disabled { get; private set; }
 
     private void Awake()
     {
         devices = new List<ElectronicDevice>(2);
-        disabled = false;
+        Disabled = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void ElectronicDeviceEntered(ElectronicDevice ed)
     {
-        Debug.Log("Enter disturber: " + other.gameObject.name);
-
-        if (disabled) return;
-        ElectronicDevice ed = other.gameObject.GetComponent<ElectronicDevice>();
-        if(ed != null)
-        {
-            devices.Add(ed);
-            ed.Disturbed = true;
-        }
+        if (Disabled)
+            return;
+        devices.Add(ed);
+        ed.Disturbed = true;
     }
 
-    private void OnTriggerExit(Collider other)
+    public void ElectronicDeviceLeft(ElectronicDevice ed)
     {
-        if (disabled) return;
-        ElectronicDevice ed = other.gameObject.GetComponent<ElectronicDevice>();
-        if (ed != null)
-        {
-            devices.Remove(ed);
-            ed.Disturbed = false;
-        }
+        if (Disabled)
+            return;
+        devices.Remove(ed);
+        ed.Disturbed = false;
     }
 
     public void Disable()
     {
-        foreach(ElectronicDevice ed in devices)
+        Disabled = true;
+        foreach (ElectronicDevice ed in devices)
         {
             ed.Disturbed = false;
         }

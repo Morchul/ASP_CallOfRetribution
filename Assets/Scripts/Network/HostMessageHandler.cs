@@ -8,6 +8,10 @@ public class HostMessageHandler : MessageHandler
     private GameEvent OnDrownScanMessage;
     [SerializeField]
     private GameEvent OnDrownFlareMessage;
+    [SerializeField]
+    private BugUpdateEvent OnBugUpdateRequestEvent;
+    [SerializeField]
+    private BugUpdateEvent OnBugUpdateEvent;
 
     private int missionLoadedCounter;
 
@@ -15,6 +19,8 @@ public class HostMessageHandler : MessageHandler
     {
         base.Awake();
         missionLoadedCounter = 0;
+
+        OnBugUpdateEvent.AddListener((id, type, state) => transmitter.WriteToClient(MessageUtility.CreateBugUpdateMessage(id, type, state)));
     }
 
     public override void HandleMessage(string message)
@@ -61,8 +67,7 @@ public class HostMessageHandler : MessageHandler
 
     public override void BugUpdateMessageReceived(string message)
     {
-        transmitter.WriteToClient(message);
         int[] bugUpdateValues = MessageUtility.GetBugUpdateValues(message);
-        OnBugUpdate.RaiseEvent(bugUpdateValues[0], (IBugable.Type)bugUpdateValues[1], bugUpdateValues[2]);
+        OnBugUpdateRequestEvent.RaiseEvent(bugUpdateValues[0], (IBugable.Type)bugUpdateValues[1], bugUpdateValues[2]);
     }
 }

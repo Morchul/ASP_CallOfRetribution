@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CommanderTest : MonoBehaviour
+public class CommanderDebug : MonoBehaviour
 {
     [Header("Test values")]
     [SerializeField]

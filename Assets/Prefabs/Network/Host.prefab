@@ -49,6 +49,8 @@ MonoBehaviour:
   OnChatMessageReceived: {fileID: 11400000, guid: c8692811bef704a4ea50805f44773594, type: 2}
   OnMissionSelect: {fileID: 11400000, guid: b814887e908ba654ab84db5d34cf4606, type: 2}
   OnBugUpdate: {fileID: 11400000, guid: 8ae02f8a2a98e7045a28bac4ae8553a2, type: 2}
+  OnMissionLoaded: {fileID: 11400000, guid: 18ca4a8f77d5ee149aca6106844ca4d0, type: 2}
+  OnGameReady: {fileID: 11400000, guid: 6cf8f5c234a9cdd42b4a2543a5548fa8, type: 2}
   OnDroneMoveMessage: {fileID: 11400000, guid: b85cf2e3df46b6247bc84cab16c1601d, type: 2}
   OnDrownScanMessage: {fileID: 11400000, guid: 8a7b863b976692d4ca433b923f48ce22, type: 2}
   OnDrownFlareMessage: {fileID: 11400000, guid: 83acf8aaf8da3c145adcdc543a1fb600, type: 2}

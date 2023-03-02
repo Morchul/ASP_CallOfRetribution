@@ -47,9 +47,9 @@ public class Console : MonoBehaviour
         }
     }
 
-    private void DroneStateChanged(bool connected)
+    private void DroneStateChanged(bool disturbed)
     {
-        droneConnected = connected;
+        droneConnected = !disturbed;
         if (droneConnected)
         {
             AddLog("Connection to drone");
@@ -89,13 +89,13 @@ public class Console : MonoBehaviour
         else if (command.ToLower() == SCAN_COMMAND)
         {
             AddLog("Start scanning");
-            NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.CreateScanDroneMessage());
+            NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.SCAN_DRONE);
         }
 
         else if(command.ToLower() == FLARE_COMMAND)
         {
             AddLog("Fire flare");
-            NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.CreateFlareDroneMessage());
+            NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.FLARE_DRONE);
         }
         else
         {

@@ -14,6 +14,13 @@ public abstract class MessageHandler : MonoBehaviour
     public StringEvent OnChatMessageReceived;
     public IntEvent OnMissionSelect;
     public BugUpdateEvent OnBugUpdate;
+    public GameEvent OnMissionLoaded;
+    public GameEvent OnGameReady;
+
+    protected virtual void Awake()
+    {
+        OnMissionLoaded.AddListener(() => transmitter.WriteToHost(MessageUtility.MISSION_LOADED));
+    }
 
     public virtual void HandleMessage(string message)
     {
@@ -32,6 +39,10 @@ public abstract class MessageHandler : MonoBehaviour
         else if (message.StartsWith(MessageUtility.BUG_UPDATE_PREFIX))
         {
             BugUpdateMessageReceived(message);
+        }
+        else if (message.StartsWith(MessageUtility.GAME_READY))
+        {
+            OnGameReady.RaiseEvent();
         }
         else
         {

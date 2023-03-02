@@ -8,13 +8,15 @@ public static class MessageUtility
     public const string SELECT_MISSION_PREFIX = "MISSION:";
     public const string BUG_UPDATE_PREFIX = "BUG_UPDATE:";
     public const string MOVE_DRONE_PREFIX = "M_DRONE:";
-    public const string SCAN_DRONE_PREFIX = "S_DRONE:";
-    public const string FLARE_DRONE_PREFIX = "F_DRONE:";
+    public const string SCAN_DRONE = "S_DRONE:";
+    public const string FLARE_DRONE = "F_DRONE:";
     public const string SCAN_RESULT_PREFIX = "SCAN_RES:";
     public const string SCAN_COOLDOWN_PREFIX = "SCAN_COOLDOWN:";
     public const string DRONE_STATE_CHANGE_PREFIX = "DRONE_ST_CH:";
     public const string DRONE_POS_PREFIX = "DRONE_POS:";
     public const string THIEF_POS_PREFIX = "THIEF_POS:";
+    public const string MISSION_LOADED = "MISSION_LOADED";
+    public const string GAME_READY = "GAME_READY";
 
     public static string CreateDronePosMessage(Vector3 dronePos)
     {
@@ -83,16 +85,6 @@ public static class MessageUtility
     {
         TryConvertToCoordinates(message.Substring(MOVE_DRONE_PREFIX.Length), out Vector2 coord);
         return coord;
-    }
-
-    public static string CreateScanDroneMessage()
-    {
-        return SCAN_DRONE_PREFIX;
-    }
-
-    public static string CreateFlareDroneMessage()
-    {
-        return FLARE_DRONE_PREFIX;
     }
 
     public static string CreateScanResultMessage(Vector3 pos)

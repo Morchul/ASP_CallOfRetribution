@@ -15,6 +15,8 @@ public class Disturber : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Enter disturber: " + other.gameObject.name);
+
         if (disabled) return;
         ElectronicDevice ed = other.gameObject.GetComponent<ElectronicDevice>();
         if(ed != null)

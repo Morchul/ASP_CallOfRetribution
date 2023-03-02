@@ -9,6 +9,14 @@ public class HostMessageHandler : MessageHandler
     [SerializeField]
     private GameEvent OnDrownFlareMessage;
 
+    private int missionLoadedCounter;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        missionLoadedCounter = 0;
+    }
+
     public override void HandleMessage(string message)
     {
         base.HandleMessage(message);
@@ -18,14 +26,23 @@ public class HostMessageHandler : MessageHandler
             OnDroneMoveMessage.RaiseEvent(MessageUtility.GetCoordinates(message));
         }
 
-        if (message.StartsWith(MessageUtility.SCAN_DRONE_PREFIX))
+        else if (message.StartsWith(MessageUtility.SCAN_DRONE))
         {
             OnDrownScanMessage.RaiseEvent();
         }
 
-        if (message.StartsWith(MessageUtility.FLARE_DRONE_PREFIX))
+        else if (message.StartsWith(MessageUtility.FLARE_DRONE))
         {
             OnDrownFlareMessage.RaiseEvent();
+        }
+
+        else if (message.StartsWith(MessageUtility.MISSION_LOADED))
+        {
+            if(++missionLoadedCounter == 2)
+            {
+                transmitter.WriteToClient(MessageUtility.GAME_READY);
+                transmitter.WriteToHost(MessageUtility.GAME_READY); //Can be replaced through direct RaiseEvent call
+            }
         }
     }
 

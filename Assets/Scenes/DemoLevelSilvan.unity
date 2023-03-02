@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 97914356}
   - component: {fileID: 97914355}
   - component: {fileID: 97914359}
+  - component: {fileID: 97914360}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Untagged
@@ -236,6 +237,7 @@ MonoBehaviour:
   OnDrownScanMessage: {fileID: 11400000, guid: 8a7b863b976692d4ca433b923f48ce22, type: 2}
   OnGuardScanned: {fileID: 11400000, guid: 491ca8868fa7a4945876d1cf550bf831, type: 2}
   OnDrownFlareMessage: {fileID: 11400000, guid: 83acf8aaf8da3c145adcdc543a1fb600, type: 2}
+  OnGameReady: {fileID: 11400000, guid: 6cf8f5c234a9cdd42b4a2543a5548fa8, type: 2}
   moveSpeed: 10
   minDistToTarget: 2
   scanInterval: 2
@@ -247,6 +249,22 @@ MonoBehaviour:
     m_Bits: 4294967295
   posUpdateInterval: 0
   flairePrefab: {fileID: 2892183704682539078, guid: 8076f0334e20ffe4bb95f4c5fad0a8c1, type: 3}
+--- !u!54 &97914360
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97914354}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &247948210 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8794782009673432853, guid: 55121f23d5c5ca4419a8f81158c0adcb, type: 3}
@@ -267,7 +285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &669579123
 Transform:
   m_ObjectHideFlags: 0
@@ -280,6 +298,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1610895786}
+  - {fileID: 2089040420}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -296,11 +315,12 @@ GameObject:
   - component: {fileID: 1207469267}
   - component: {fileID: 1207469266}
   - component: {fileID: 1207469265}
-  - component: {fileID: 1207469264}
   - component: {fileID: 1207469270}
+  - component: {fileID: 1207469264}
+  - component: {fileID: 1207469271}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -317,8 +337,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db8eb9f38c273b49b0f13c5b2bed67e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 200
-  player: {fileID: 1547414968}
   OnInteractAction:
     m_PersistentCalls:
       m_Calls:
@@ -334,6 +352,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isSuspicious: 0
 --- !u!114 &1207469265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,7 +437,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 20.14, y: 1.6, z: 17.17}
   m_LocalScale: {x: 3.5006, y: 2.4145, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1658199953}
   m_Father: {fileID: 2079956954}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -435,6 +455,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedAtBeginning: 1
+  bugPosition: {fileID: 1658199953}
+--- !u!114 &1207469271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207469263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f328ce21c6225144a7a1b2a4665501a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1401411921
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,6 +561,82 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1536334667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1536334668}
+  - component: {fileID: 1536334671}
+  - component: {fileID: 1536334670}
+  - component: {fileID: 1536334669}
+  m_Layer: 0
+  m_Name: Interaction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1536334668
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536334667}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.25}
+  m_LocalScale: {x: 1.3988, y: 1.844, z: 1.2096}
+  m_Children: []
+  m_Father: {fileID: 1547414968}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1536334669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536334667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb5b085e209625e41915febf90cd6dd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thief: {fileID: 1547414969}
+  OnSuspiciousActionExecuted: {fileID: 11400000, guid: 2c2b94ce3b2e7b145b2b0f4ef018cc71, type: 2}
+--- !u!54 &1536334670
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536334667}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1536334671
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536334667}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1547414964
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +654,7 @@ GameObject:
   - component: {fileID: 1547414971}
   - component: {fileID: 1547414970}
   m_Layer: 0
-  m_Name: PlayerTemp
+  m_Name: ThiefTemp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -626,6 +735,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2134572185}
+  - {fileID: 1536334668}
   m_Father: {fileID: 2079956954}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -644,7 +754,6 @@ MonoBehaviour:
   missionController: {fileID: 11400000, guid: 768426e8a2ef50a4594206db78e130f3, type: 2}
   bugPrefab: {fileID: 2560444855318293792, guid: 5b93cc844d0b2ad4eb04c0ebee80add7, type: 3}
   posUpdateInterval: 2
-  eLock: {fileID: 1207469270}
 --- !u!114 &1547414970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1008,6 +1117,36 @@ Transform:
   m_Father: {fileID: 2079956954}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -45.661, y: 0, z: 0}
+--- !u!1 &1658199952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1658199953}
+  m_Layer: 0
+  m_Name: BugPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1658199953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658199952}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.58}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1207469269}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1666654796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,6 +1292,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2089040419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2089040420}
+  - component: {fileID: 2089040421}
+  m_Layer: 0
+  m_Name: ThiefDebug
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2089040420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089040419}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 669579123}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2089040421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089040419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76bc0d6010f467c4aa0bf94a8aebcc6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testMission: {fileID: 11400000, guid: 1b395dc88c3bf4645aee84306dcaffa4, type: 2}
+  OnMissionSelect: {fileID: 11400000, guid: b814887e908ba654ab84db5d34cf4606, type: 2}
+  missionController: {fileID: 11400000, guid: 768426e8a2ef50a4594206db78e130f3, type: 2}
 --- !u!1 &2134572182
 GameObject:
   m_ObjectHideFlags: 0

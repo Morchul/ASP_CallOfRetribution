@@ -15,6 +15,8 @@ public class Drone : PositionSensor
     private Vector2Event OnGuardScanned;
     [SerializeField]
     private GameEvent OnDrownFlareMessage;
+    [SerializeField]
+    private GameEvent OnGameReady;
 
     private bool moving;
     private Vector3 targetPos;
@@ -57,7 +59,7 @@ public class Drone : PositionSensor
         {
             base.Disturbed = value;
             NetworkManager.Instance.Transmitter.WriteToClient(MessageUtility.CreateDroneStateChangedMessage(value));
-            if (!value)
+            if (value)
                 moving = false;
         }
     }
@@ -68,11 +70,12 @@ public class Drone : PositionSensor
         OnDroneMoveMessage.AddListener(MoveCommand);
         OnDrownScanMessage.AddListener(ScanCommand);
         OnDrownFlareMessage.AddListener(FlareCommand);
+        OnGameReady.AddListener(GameReady);
 
         UpdateCreateFunc = MessageUtility.CreateDronePosMessage;
     }
 
-    private void Start()
+    private void GameReady()
     {
         SendPosUpdate();
     }

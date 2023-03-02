@@ -8,6 +8,8 @@ TagManager:
   - Guard
   - Waypoints
   - NPC
+  - Bug
+  - Interactable
   layers:
   - Default
   - TransparentFX

@@ -6,29 +6,14 @@ using UnityEngine.Events;
 public class Interactable : MonoBehaviour
 {
     [SerializeField]
-    private float interactDistance;
-    private float interactDistanceSquared;
+    private UnityEvent OnInteractAction;
 
-    [Header("Debug")]
     [SerializeField]
-    private Transform player;
+    private bool isSuspicious;
+    public bool IsSuspicious => isSuspicious;
 
-    //[SerializeField]
-    public UnityEvent OnInteractAction;
-
-    private void Awake()
+    public void Interact()
     {
-        interactDistanceSquared = interactDistance * interactDistance;
-    }
-
-    private void Update()
-    {
-        if((player.position - transform.position).sqrMagnitude < interactDistanceSquared)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                OnInteractAction.Invoke();
-            }
-        }
+        OnInteractAction.Invoke();
     }
 }

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ElectricalLock : Lock, IBugable
 {
+    [SerializeField]
+    private Transform bugPosition;
+
     private LockState state;
     public int State
     {
@@ -34,11 +37,13 @@ public class ElectricalLock : Lock, IBugable
     }
 
     public bool Bugged => bugID >= 0;
-
     public IBugable.Type ObjectType => IBugable.Type.Lock;
+    public Transform GetBugPosition() => bugPosition;
 
     public void PlaceBug(int id)
     {
         bugID = id;
     }
+
+    
 }

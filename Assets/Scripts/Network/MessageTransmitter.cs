@@ -125,7 +125,7 @@ public abstract class MessageTransmitter : MonoBehaviour
     {
         if (!Running)
         {
-            Debug.LogError("Can't write, Socket is not connected");
+            Debug.LogWarning("Can't write, Socket is not connected");
             return;
         }
 

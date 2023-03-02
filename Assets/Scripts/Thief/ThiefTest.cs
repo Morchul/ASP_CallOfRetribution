@@ -15,10 +15,6 @@ public class ThiefTest : PositionSensor
     private float posUpdateInterval;
     private float posUpdateTimer;
 
-    [Header("DEBUG")]
-    [SerializeField]
-    private ElectricalLock eLock;
-
     private Queue<Bug> bugs;
 
     private void Awake()
@@ -37,34 +33,25 @@ public class ThiefTest : PositionSensor
         }
     }
 
-    public void PlaceABug(IBugable bugable)
+    public Bug GetBug()
     {
         if(bugs.Count > 0)
         {
-            Bug bug = bugs.Dequeue();
-            bug.PlaceOn(bugable);
+            return bugs.Dequeue();
         }
         else
         {
-
+            return null;
         }
     }
 
     public void ReceiveABug(Bug bug)
     {
-        bug.Remove();
         bugs.Enqueue(bug);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            PlaceABug(eLock);
-        }
-
-
         if (posUpdateTimer > 0)
             posUpdateTimer -= Time.deltaTime;
         else

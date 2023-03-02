@@ -9,6 +9,7 @@ public interface IBugable
     Type ObjectType { get; }
 
     void PlaceBug(int id);
+    Transform GetBugPosition();
 
     [System.Serializable]
     public enum Type

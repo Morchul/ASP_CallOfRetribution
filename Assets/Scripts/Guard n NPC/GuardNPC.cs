@@ -14,6 +14,8 @@ public class GuardNPC : MonoBehaviour
     public Transform[] waypoints;
     public bool patrolling;
     public int currentWaypoint;
+    public float sightRange;
+
 
 
     // Start is called before the first frame update
@@ -24,6 +26,7 @@ public class GuardNPC : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         patrolling = true;
         currentWaypoint = 0;
+        sightRange = 100;
     }
 
     // Update is called once per frame
@@ -44,27 +47,31 @@ public class GuardNPC : MonoBehaviour
             patrolling = true;
         }
 
-/*        // Patrol if the NPC is not following the target using NavMesh
-        if (navMeshAgent.destination == null && patrolling == true)
-        {
-            // Move to the next waypoint
-            navMeshAgent.destination = waypoints[currentWaypoint].position;
-            currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
-        }
-*/
+        /*        // Patrol if the NPC is not following the target
+                if (navMeshAgent.destination == null && patrolling == true)
+        */
 
-        // Patrol if the NPC is not following the target using Linear Interpolation (Lerp)
+        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        {                currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
+                navMeshAgent.SetDestination(waypoints[currentWaypoint].position);
+        }
+               
+        /*// Patrol if the NPC is not following the target
         if (patrolling == true && !navMeshAgent.pathPending)
         {
-            if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+            // Check to see if the player is within the sight range of the guard
+            if (Vector3.Distance(target.transform.position, transform.position) < sightRange)
             {
-                // Lerp (Linear interpolation) to the next waypoint
+                navMeshAgent.destination = target.transform.position;
+            }
+            else
+            {
+                // Move to the next waypoint
                 currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
                 navMeshAgent.SetDestination(waypoints[currentWaypoint].position);
             }
-        }
+        }*/
     }
-
     // Check if the target is in sight
     bool InSight()
     {
@@ -72,25 +79,28 @@ public class GuardNPC : MonoBehaviour
         Vector3 direction = target.position - transform.position;
         float angle = Vector3.Angle(direction, transform.forward);
 
-
-        // Check if the target is within the field of view
-        if (angle < fieldOfView * 0.5f)
+        // Check to see if the player is within the sight range of the guard
+        if (Vector3.Distance(target.transform.position, transform.position) < sightRange)
         {
-            // Check if there is an obstacle between the target and the NPC
-            Vector3 directionUp = target.position - (transform.position + transform.up);
-            float angleUp = Vector3.Angle(directionUp, transform.forward);
-            Vector3 directionDown = target.position - (transform.position - transform.up);
-            float angleDown = Vector3.Angle(directionDown, transform.forward);
-
-            // Check the angles in all three directions
-            if (angle < fieldOfView * 0.5f && angleUp < fieldOfView * 0.5f && angleDown < fieldOfView * 0.5f)
+            // Check if the target is within the field of view
+            if (angle < fieldOfView * 0.5f)
             {
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, direction.normalized, out hit, fieldOfView))
+                // Check if there is an obstacle between the target and the NPC
+                Vector3 directionUp = target.position - (transform.position + transform.up);
+                float angleUp = Vector3.Angle(directionUp, transform.forward);
+                Vector3 directionDown = target.position - (transform.position - transform.up);
+                float angleDown = Vector3.Angle(directionDown, transform.forward);
+
+                // Check the angles in all three directions
+                if (angle < fieldOfView * 0.5f && angleUp < fieldOfView * 0.5f && angleDown < fieldOfView * 0.5f)
                 {
-                    if (hit.transform == target)
+                    RaycastHit hit;
+                    if (Physics.Raycast(transform.position, direction.normalized, out hit, fieldOfView))
                     {
-                        return true;
+                        if (hit.transform == target)
+                        {
+                            return true;
+                        }
                     }
                 }
             }

@@ -23,6 +23,10 @@ public class Console : MonoBehaviour
     private BoolEvent OnDroneConnectionStateChange;
     [SerializeField]
     private StringEvent OnScanOnCooldown;
+    [SerializeField]
+    private GameEvent OnBugDisturbed;
+    [SerializeField]
+    private GameEvent OnBugDenied;
 
     private bool droneConnected;
 
@@ -35,6 +39,8 @@ public class Console : MonoBehaviour
     {
         OnDroneConnectionStateChange.AddListener(DroneStateChanged);
         OnScanOnCooldown.AddListener(ScanOnCooldown);
+        OnBugDisturbed.AddListener(() => AddLog("Bug did not respond"));
+        OnBugDenied.AddListener(() => AddLog("Access denied!"));
         droneConnected = true;
     }
 

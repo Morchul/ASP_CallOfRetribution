@@ -1,23 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class MessageUtility
 {
-    public const string CHAT_PREFIX = "CHAT:";
-    public const string SELECT_MISSION_PREFIX = "MISSION:";
-    public const string BUG_UPDATE_PREFIX = "BUG_UPDATE:";
+    //Synchronization
+    public const string CHAT_PREFIX = "CHAT:"; //Sends a chat message
+    public const string SELECT_MISSION_PREFIX = "MISSION:"; //Sends the selected mission
+    public const string DRONE_POS_PREFIX = "DRONE_POS:"; //Send to update drone pos
+    public const string THIEF_POS_PREFIX = "THIEF_POS:"; //Send to update thief pos
+    public const string MISSION_LOADED = "MISSION_LOADED"; //Send by client and host when the mission is loaded like a ready flag
+    public const string GAME_READY = "GAME_READY"; //Is send to both if both have send a mission loaded to inform that all members are now ready
+
+    //-------------------------------------------------------
+    //------------------Drone commands-----------------------
+    //-------------------------------------------------------
+    //Client will send either a move / scan / flare command
     public const string MOVE_DRONE_PREFIX = "M_DRONE:";
     public const string SCAN_DRONE = "S_DRONE:";
     public const string FLARE_DRONE = "F_DRONE:";
+    //Host will respond with a scan cooldown if the scan is on cooldown or several scan result messages for each scanned object
     public const string SCAN_RESULT_PREFIX = "SCAN_RES:";
     public const string SCAN_COOLDOWN_PREFIX = "SCAN_COOLDOWN:";
+    //Send by the host if the connection state of the drone changes (if drone flies into a disturber)
     public const string DRONE_STATE_CHANGE_PREFIX = "DRONE_ST_CH:";
-    public const string DRONE_POS_PREFIX = "DRONE_POS:";
-    public const string THIEF_POS_PREFIX = "THIEF_POS:";
-    public const string MISSION_LOADED = "MISSION_LOADED";
-    public const string GAME_READY = "GAME_READY";
 
+    //-------------------------------------------------------
+    //-------------------Bug commands-----------------------
+    //-------------------------------------------------------
+    //Client will send a bug update the host will verify it and either respond with:
+    //                              disturbed (if the bug is disturbed)
+    //                              denied (if the bug has no access)
+    //                              bug update to verify the change request by client
+    public const string BUG_UPDATE_PREFIX = "BUG_UPDATE:";
+    public const string BUG_DISTURBED = "BUG_DISTURBED";
+    public const string BUG_DENIED = "BUG_DENIED";
+
+    #region Message Helper methods
     public static string CreateDronePosMessage(Vector3 dronePos)
     {
         return DRONE_POS_PREFIX + dronePos.x + "/" + dronePos.z;
@@ -112,6 +129,7 @@ public static class MessageUtility
     {
         return message.Substring(DRONE_STATE_CHANGE_PREFIX.Length) == "1";
     }
+    #endregion
 
     public static bool TryConvertToCoordinates(string coordinates, out Vector2 coord)
     {

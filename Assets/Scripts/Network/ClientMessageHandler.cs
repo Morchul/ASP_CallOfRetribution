@@ -13,6 +13,8 @@ public class ClientMessageHandler : MessageHandler
     public Vector2Event OnGuardScanned;
 
     public BugUpdateEvent OnBugUpdate;
+    public GameEvent OnBugDenied;
+    public GameEvent OnBugDisturbed;
 
     public override void HandleMessage(string message)
     {
@@ -42,6 +44,14 @@ public class ClientMessageHandler : MessageHandler
         {
             MessageUtility.TryConvertToCoordinates(message.Substring(MessageUtility.SCAN_RESULT_PREFIX.Length), out Vector2 coord);
             OnGuardScanned.RaiseEvent(coord);
+        }
+        else if (message.StartsWith(MessageUtility.BUG_DENIED))
+        {
+            OnBugDenied.RaiseEvent();
+        }
+        else if (message.StartsWith(MessageUtility.BUG_DISTURBED))
+        {
+            OnBugDisturbed.RaiseEvent();
         }
     }
 

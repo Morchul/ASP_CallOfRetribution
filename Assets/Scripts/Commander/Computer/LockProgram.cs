@@ -51,7 +51,8 @@ public class LockProgram : Program
         string stateText = "Lock state: " + ((open == 0) ? "Closed" : "Open");
 
         if ((newState & (int)ElectricalLock.LockState.Hacked) != 0 && (oldState & (int)ElectricalLock.LockState.Hacked) == 0)
-            console.AddLog("Access gained");
+            StartCoroutine(HackLock());
+        
         if(open != (oldState & (int)ElectricalLock.LockState.Open))
         {
             console.AddLog(stateText);
@@ -68,7 +69,8 @@ public class LockProgram : Program
 
     public void Hack()
     {
-        StartCoroutine(HackLock());
+        console.AddLog("Getting access to lock...");
+        transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | ElectricalLock.LockState.Hacked)));
     }
 
     public void LockAction()
@@ -83,46 +85,28 @@ public class LockProgram : Program
 
     public IEnumerator HackLock()
     {
-        console.AddLog("Getting access to lock...");
-        yield return new WaitForSeconds(1);
         for(int i = 0; i < 3; ++i)
         {
             console.AddLog("Hacking...");
             yield return new WaitForSeconds(1);
         }
 
-        transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | ElectricalLock.LockState.Hacked)));
+        console.AddLog("Access gained");
     }
 
     private IEnumerator CloseLock()
     {
         console.AddLog("Closing lock...");
-        
-        if ((state & ElectricalLock.LockState.Hacked) == 0)
-        {
-            yield return new WaitForSeconds(1);
-            console.AddLog("Access denied!");
-        }
-        else
-        {
-            transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state & ~ElectricalLock.LockState.Open)));
-        }
-            
+
+        yield return new WaitForSeconds(1);
+        transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state & ~ElectricalLock.LockState.Open)));  
     }
 
     private IEnumerator OpenLock()
     {
         console.AddLog("Opening lock...");
-
-        if ((state & ElectricalLock.LockState.Hacked) == 0)
-        {
-            yield return new WaitForSeconds(1);
-            console.AddLog("Access denied!");
-        }
-        else
-        {
-            transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | ElectricalLock.LockState.Open)));
-        }
+        yield return new WaitForSeconds(1);
+        transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | ElectricalLock.LockState.Open)));
     }
 
     public override void CloseProgram()

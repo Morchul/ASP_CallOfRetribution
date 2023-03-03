@@ -5,8 +5,10 @@ using UnityEngine;
 public interface IBugable
 {
     bool Bugged { get; }
-    int State { get; set; }
+    int State { get; }
     Type ObjectType { get; }
+
+    bool TryChangeState(int state);
 
     void PlaceBug(int id);
     Transform GetBugPosition();
@@ -16,5 +18,6 @@ public interface IBugable
     {
         None,
         Lock,
+        Alarm,
     }
 }

@@ -25,10 +25,21 @@ public class Bug : ElectronicDevice
 
     private void StateUpdate(int bugID, IBugable.Type type, int state)
     {
-        if (this.BugID != bugID || placedOnItem == null || Disturbed) return;
+        if (this.BugID != bugID || placedOnItem == null) return;
 
-        placedOnItem.State = state;
-        bugUpdateEvent.RaiseEvent(BugID, placedOnItem.ObjectType, placedOnItem.State);
+        if (Disturbed)
+        {
+            NetworkManager.Instance.Transmitter.WriteToClient(MessageUtility.BUG_DISTURBED);
+            return;
+        }
+        if (placedOnItem.TryChangeState(state))
+        {
+            bugUpdateEvent.RaiseEvent(BugID, placedOnItem.ObjectType, placedOnItem.State);
+        }
+        else
+        {
+            NetworkManager.Instance.Transmitter.WriteToClient(MessageUtility.BUG_DENIED);
+        }        
     }
 
     protected override void AfterDisturbedChange()

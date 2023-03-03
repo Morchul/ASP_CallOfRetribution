@@ -29,6 +29,9 @@ public class Computer : MonoBehaviour, IFocusable
     [SerializeField]
     private LockProgram lockProgram;
 
+    [SerializeField]
+    private AlarmProgram alarmProgram;
+
     private Program currentProgram;
 
     private void Start()
@@ -67,11 +70,11 @@ public class Computer : MonoBehaviour, IFocusable
             {
                 console.SelectPrevious();
             }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.Tab))
             {
                 console.SelectNext();
             }
-            if(Input.GetKeyDown(KeyCode.Return))
+            else if(Input.GetKeyDown(KeyCode.Return))
             {
                 console.SubmitCommand();
             }
@@ -88,6 +91,9 @@ public class Computer : MonoBehaviour, IFocusable
                 case IBugable.Type.Lock:
                     lockProgram.SetBugReferenc(bugReferenc);
                     StartProgram(lockProgram); break;
+                case IBugable.Type.Alarm:
+                    alarmProgram.SetBugReferenc(bugReferenc);
+                    StartProgram(alarmProgram); break;
                 default: break;
             }
         }

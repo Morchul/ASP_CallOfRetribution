@@ -15,7 +15,10 @@ public class GuardNPC : MonoBehaviour
     public bool patrolling;
     public int currentWaypoint;
     public float sightRange;
-
+    public Transform player;
+    public float followSpeed = 5f;
+    public bool isFollowing = false;
+    private bool hasStolen = false;
 
 
     // Start is called before the first frame update
@@ -46,17 +49,20 @@ public class GuardNPC : MonoBehaviour
             suspicionLevel = 0f;
             patrolling = true;
         }
-
-        /*        // Patrol if the NPC is not following the target
-                if (navMeshAgent.destination == null && patrolling == true)
-        */
-
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {                currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
                 navMeshAgent.SetDestination(waypoints[currentWaypoint].position);
         }
-               
-        /*// Patrol if the NPC is not following the target
+        if (hasStolen == true)
+        {
+            Vector3 targetPosition = new Vector3(player.position.x, this.transform.position.y, player.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, followSpeed * Time.deltaTime);
+        }
+
+        /*        // Patrol if the NPC is not following the target
+                if (navMeshAgent.destination == null && patrolling == true)
+
+        // Patrol if the NPC is not following the target
         if (patrolling == true && !navMeshAgent.pathPending)
         {
             // Check to see if the player is within the sight range of the guard
@@ -115,6 +121,12 @@ public class GuardNPC : MonoBehaviour
         NavMeshAgent navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.destination = target.position;
     }
-
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            hasStolen = true;
+        }
+    }
 }
 

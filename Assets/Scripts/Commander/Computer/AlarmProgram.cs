@@ -51,7 +51,7 @@ public class AlarmProgram : Program
         string stateText = "Alarm state: " + ((disabled == 0) ? "Enabled" : "Disabled");
 
         if ((newState & (int)Alarm.AlarmState.Hacked) != 0 && (oldState & (int)Alarm.AlarmState.Hacked) == 0)
-            console.AddLog("Access gained");
+            StartCoroutine(HackAlarm());
 
         if (disabled != (oldState & (int)Alarm.AlarmState.Disabled))
         {
@@ -69,30 +69,34 @@ public class AlarmProgram : Program
 
     public void Hack()
     {
-        StartCoroutine(HackLock());
+        console.AddLog("Getting access to lock...");
+        transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | Alarm.AlarmState.Hacked)));
+        StartCoroutine(HackAlarm());
     }
 
     public void Enable()
     {
+        if (computer.Busy) return;
         StartCoroutine(EnableAlarm());
     }
 
     public void Disable()
     {
+        if (computer.Busy) return;
         StartCoroutine(DisableAlarm());
     }
 
-    public IEnumerator HackLock()
+    private IEnumerator HackAlarm()
     {
-        console.AddLog("Getting access to lock...");
-        yield return new WaitForSeconds(1);
+        computer.Busy = true;
         for (int i = 0; i < 3; ++i)
         {
             console.AddLog("Hacking...");
             yield return new WaitForSeconds(1);
         }
 
-        transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | Alarm.AlarmState.Hacked)));
+        console.AddLog("Access gained");
+        computer.Busy = false;
     }
 
     private IEnumerator EnableAlarm()

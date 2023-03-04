@@ -34,6 +34,8 @@ public class Computer : MonoBehaviour, IFocusable
 
     private Program currentProgram;
 
+    public bool Busy { get; set; }
+
     private void Start()
     {
         bugList.Init();

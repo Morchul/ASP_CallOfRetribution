@@ -75,16 +75,19 @@ public class LockProgram : Program
 
     public void LockAction()
     {
+        if (computer.Busy) return;
         StartCoroutine(CloseLock());
     }
 
     public void Unlock()
     {
+        if (computer.Busy) return;
         StartCoroutine(OpenLock());
     }
 
-    public IEnumerator HackLock()
+    private IEnumerator HackLock()
     {
+        computer.Busy = true;
         for(int i = 0; i < 3; ++i)
         {
             console.AddLog("Hacking...");
@@ -92,6 +95,7 @@ public class LockProgram : Program
         }
 
         console.AddLog("Access gained");
+        computer.Busy = false;
     }
 
     private IEnumerator CloseLock()

@@ -302,6 +302,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &832974814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 832974815}
+  m_Layer: 0
+  m_Name: BugPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &832974815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832974814}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.54, z: -0.244}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 247948210}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &891780880
 GameObject:
   m_ObjectHideFlags: 0
@@ -1717,6 +1747,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2079956954}
     m_Modifications:
+    - target: {fileID: 2294913289108826154, guid: 55121f23d5c5ca4419a8f81158c0adcb, type: 3}
+      propertyPath: OnInteractAction.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2294913289108826154, guid: 55121f23d5c5ca4419a8f81158c0adcb, type: 3}
+      propertyPath: OnInteractAction.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2294913289108826154, guid: 55121f23d5c5ca4419a8f81158c0adcb, type: 3}
+      propertyPath: OnInteractAction.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8794782009568517290}
+    - target: {fileID: 2294913289108826154, guid: 55121f23d5c5ca4419a8f81158c0adcb, type: 3}
+      propertyPath: OnInteractAction.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2294913289108826154, guid: 55121f23d5c5ca4419a8f81158c0adcb, type: 3}
+      propertyPath: OnInteractAction.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetOff
+      objectReference: {fileID: 0}
+    - target: {fileID: 2294913289108826154, guid: 55121f23d5c5ca4419a8f81158c0adcb, type: 3}
+      propertyPath: OnInteractAction.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Alarm, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2294913289108826154, guid: 55121f23d5c5ca4419a8f81158c0adcb, type: 3}
+      propertyPath: OnInteractAction.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8794782009673432853, guid: 55121f23d5c5ca4419a8f81158c0adcb, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1763,7 +1821,41 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8794782009673432854, guid: 55121f23d5c5ca4419a8f81158c0adcb, type: 3}
       propertyPath: m_Name
-      value: Disturber
+      value: DisturberWithAlarm
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55121f23d5c5ca4419a8f81158c0adcb, type: 3}
+--- !u!1 &8794782009568517288 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8794782009673432854, guid: 55121f23d5c5ca4419a8f81158c0adcb, type: 3}
+  m_PrefabInstance: {fileID: 8794782009568517287}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8794782009568517289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8794782009568517288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f328ce21c6225144a7a1b2a4665501a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8794782009568517290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8794782009568517288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ae36fd686172041a2ab151baafdb43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bugPosition: {fileID: 832974815}
+  alarmRadius: 10
+  guardLayer:
+    serializedVersion: 2
+    m_Bits: 1024

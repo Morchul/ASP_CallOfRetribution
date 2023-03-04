@@ -26,8 +26,7 @@ public class Alarm : MonoBehaviour, IBugable
 
         foreach(Collider collider in Physics.OverlapSphere(transform.position, alarmRadius, guardLayer))
         {
-            Debug.Log("Alarm heard!");
-            //collider.GetComponent<GuardNPC>().AlarmOnPosition(transform.position);
+            collider.GetComponent<GuardNPC>().AlarmOnPosition(transform.position);
         }
     }
 

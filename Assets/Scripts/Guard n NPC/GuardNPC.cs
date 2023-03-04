@@ -20,6 +20,14 @@ public class GuardNPC : MonoBehaviour
     public bool isFollowing = false;
     private bool hasStolen = false;
 
+    [Header("Events")]
+    [SerializeField]
+    private GameEvent OnSuspiciousActionExecuted;
+
+    private void Awake()
+    {
+        OnSuspiciousActionExecuted.AddListener(OnSuspiciousAction);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -127,6 +135,16 @@ public class GuardNPC : MonoBehaviour
         {
             hasStolen = true;
         }
+    }
+
+    public void AlarmOnPosition(Vector3 alarmPosition)
+    {
+        // TODO
+    }
+
+    public void OnSuspiciousAction()
+    {
+        // TODO
     }
 }
 

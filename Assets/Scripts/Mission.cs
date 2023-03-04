@@ -19,7 +19,12 @@ public class Mission : ScriptableObject
     private int amountOfBugs;
     public int AmountOfBugs => amountOfBugs;
 
+    [Header("Events")]
     public IntEvent OnNewInformation;
+
+    [Header("Story")]
+    public Conversation BeginConversation;
+    public Conversation EndConversation;
 
     public void Start()
     {

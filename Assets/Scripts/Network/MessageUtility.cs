@@ -7,6 +7,7 @@ public static class MessageUtility
     public const string SELECT_MISSION_PREFIX = "MISSION:"; //Sends the selected mission
     public const string DRONE_POS_PREFIX = "DRONE_POS:"; //Send to update drone pos
     public const string THIEF_POS_PREFIX = "THIEF_POS:"; //Send to update thief pos
+    public const string EXTRACTION_POS_PREFIX = "EXT_POS:"; //Send to give the position of the extraction point
     public const string MISSION_LOADED = "MISSION_LOADED"; //Send by client and host when the mission is loaded like a ready flag
     public const string GAME_READY = "GAME_READY"; //Is send to both if both have send a mission loaded to inform that all members are now ready
 
@@ -35,6 +36,11 @@ public static class MessageUtility
     public const string BUG_DENIED = "BUG_DENIED";
 
     #region Message Helper methods
+    public static string CreateExtractionPointPosMessage(Vector3 extractionPointPos)
+    {
+        return EXTRACTION_POS_PREFIX + extractionPointPos.x + "/" + extractionPointPos.z;
+    }
+
     public static string CreateDronePosMessage(Vector3 dronePos)
     {
         return DRONE_POS_PREFIX + dronePos.x + "/" + dronePos.z;
@@ -54,6 +60,12 @@ public static class MessageUtility
     public static Vector2 GetThiefPosFromMessage(string message)
     {
         TryConvertToCoordinates(message.Substring(THIEF_POS_PREFIX.Length), out Vector2 pos);
+        return pos;
+    }
+
+    public static Vector2 GetExtractionPointPosFromMessage(string message)
+    {
+        TryConvertToCoordinates(message.Substring(EXTRACTION_POS_PREFIX.Length), out Vector2 pos);
         return pos;
     }
 

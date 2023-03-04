@@ -10,6 +10,8 @@ public class ClientMessageHandler : MessageHandler
     public Vector2Event OnDronePosUpdate;
     public Vector2Event OnThiefPosUpdate;
 
+    public Vector2Event OnExtractionPointDiscovered;
+
     public Vector2Event OnGuardScanned;
 
     public BugUpdateEvent OnBugUpdate;
@@ -42,8 +44,7 @@ public class ClientMessageHandler : MessageHandler
         }
         else if(message.StartsWith(MessageUtility.SCAN_RESULT_PREFIX))
         {
-            MessageUtility.TryConvertToCoordinates(message.Substring(MessageUtility.SCAN_RESULT_PREFIX.Length), out Vector2 coord);
-            OnGuardScanned.RaiseEvent(coord);
+            OnGuardScanned.RaiseEvent(MessageUtility.GetScanResultPos(message));
         }
         else if (message.StartsWith(MessageUtility.BUG_DENIED))
         {
@@ -52,6 +53,10 @@ public class ClientMessageHandler : MessageHandler
         else if (message.StartsWith(MessageUtility.BUG_DISTURBED))
         {
             OnBugDisturbed.RaiseEvent();
+        }
+        else if (message.StartsWith(MessageUtility.EXTRACTION_POS_PREFIX))
+        {
+            OnExtractionPointDiscovered.RaiseEvent(MessageUtility.GetExtractionPointPosFromMessage(message));
         }
     }
 

@@ -16,5 +16,7 @@ MonoBehaviour:
   OnMissionSelect: {fileID: 11400000, guid: b814887e908ba654ab84db5d34cf4606, type: 2}
   OnMissionLoaded: {fileID: 11400000, guid: 18ca4a8f77d5ee149aca6106844ca4d0, type: 2}
   OnBugUpdate: {fileID: 11400000, guid: 8ae02f8a2a98e7045a28bac4ae8553a2, type: 2}
+  OnMissionFinishedSuccessfully: {fileID: 11400000, guid: 590e9cac908f6f44db2d5e61f4fa18f0, type: 2}
   missions:
   - {fileID: 11400000, guid: 1b395dc88c3bf4645aee84306dcaffa4, type: 2}
+  progressController: {fileID: 11400000, guid: 9d7379fd4abfae04eb9d49ef5a27680c, type: 2}

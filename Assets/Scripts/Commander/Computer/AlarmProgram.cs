@@ -86,6 +86,13 @@ public class AlarmProgram : Program
         StartCoroutine(DisableAlarm());
     }
 
+    public void SetOff()
+    {
+        if (computer.Busy) return;
+        console.AddLog("Set of alarm");
+        transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | Alarm.AlarmState.On)));
+    }
+
     private IEnumerator HackAlarm()
     {
         computer.Busy = true;

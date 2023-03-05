@@ -22,4 +22,9 @@ public class BugUpdateEvent : ScriptableObject
 	{
 		_event?.Invoke(ID, type, status);
 	}
+
+	public void Reset()
+	{
+		_event = null;
+	}
 }

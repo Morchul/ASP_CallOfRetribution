@@ -14,3 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneController: {fileID: 11400000, guid: 5ad3fdd38a1013c478f253fdad388701, type: 2}
   missionController: {fileID: 11400000, guid: 768426e8a2ef50a4594206db78e130f3, type: 2}
+  OnResetGame: {fileID: 11400000, guid: 1a60a4871b9a1ac4fa4a778541729734, type: 2}
+  OnConnectionLost: {fileID: 11400000, guid: 20ae5e08772fd354f97cfbb0e6831bf3, type: 2}
+  OnConnectionShutdown: {fileID: 11400000, guid: 2dac19d47796ce84884b8c78ad9c1ad7, type: 2}
+  OnMissionFinishedSuccessfully: {fileID: 11400000, guid: 590e9cac908f6f44db2d5e61f4fa18f0, type: 2}
+  OnMissionFailed: {fileID: 11400000, guid: 334470a4e5b191b43b31b0a1c603ae26, type: 2}

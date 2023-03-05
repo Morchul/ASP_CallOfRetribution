@@ -22,6 +22,8 @@ public class NetworkManager : MonoBehaviour
     public MessageTransmitter Transmitter { get; private set; }
     public IConnectionHandler ConnectionHandler { get; private set; }
 
+    public bool IsConnected => ConnectionHandler != null && ConnectionHandler.Running && Transmitter.Running;
+
 
     #region Singleton
     private static NetworkManager instance;
@@ -32,8 +34,11 @@ public class NetworkManager : MonoBehaviour
     {
         if (instance != null && instance != this)
         {
-            instance.Refresh();
-            Debug.Log("Singleton NetworkManager does already exist. Reseting existing one!");
+            if (!IsConnected)
+            {
+                instance.Refresh();
+                Debug.Log("Singleton NetworkManager does already exist. Reseting existing one!");
+            }
             Destroy(this.gameObject);
         }
         else

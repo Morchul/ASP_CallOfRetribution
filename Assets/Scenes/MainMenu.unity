@@ -2790,6 +2790,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionController: {fileID: 11400000, guid: 768426e8a2ef50a4594206db78e130f3, type: 2}
+  gameController: {fileID: 11400000, guid: 8d56789aec344864aa4812991fa68b34, type: 2}
+  eventController: {fileID: 11400000, guid: c008301ee33eeac4da33cb75c0cc3c62, type: 2}
 --- !u!4 &1461379559
 Transform:
   m_ObjectHideFlags: 0

@@ -18,6 +18,9 @@ public class ClientMessageHandler : MessageHandler
     public GameEvent OnBugDenied;
     public GameEvent OnBugDisturbed;
 
+    public GameEvent OnMissionFinishedSuccessfuly;
+    public GameEvent OnMissionFailed;
+
     public override void HandleMessage(string message)
     {
         base.HandleMessage(message);
@@ -46,17 +49,25 @@ public class ClientMessageHandler : MessageHandler
         {
             OnGuardScanned.RaiseEvent(MessageUtility.GetScanResultPos(message));
         }
-        else if (message.StartsWith(MessageUtility.BUG_DENIED))
+        else if (message.Equals(MessageUtility.BUG_DENIED))
         {
             OnBugDenied.RaiseEvent();
         }
-        else if (message.StartsWith(MessageUtility.BUG_DISTURBED))
+        else if (message.Equals(MessageUtility.BUG_DISTURBED))
         {
             OnBugDisturbed.RaiseEvent();
         }
         else if (message.StartsWith(MessageUtility.EXTRACTION_POS_PREFIX))
         {
             OnExtractionPointDiscovered.RaiseEvent(MessageUtility.GetExtractionPointPosFromMessage(message));
+        }
+        else if (message.Equals(MessageUtility.MISSION_SUCCESSFUL))
+        {
+            OnMissionFinishedSuccessfuly.RaiseEvent();
+        }
+        else if (message.Equals(MessageUtility.MISSION_FAILED))
+        {
+            OnMissionFailed.RaiseEvent();
         }
     }
 

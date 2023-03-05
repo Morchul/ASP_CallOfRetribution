@@ -39,7 +39,7 @@ public class Bug : ElectronicDevice
         else
         {
             NetworkManager.Instance.Transmitter.WriteToClient(MessageUtility.BUG_DENIED);
-        }        
+        }
     }
 
     protected override void AfterDisturbedChange()

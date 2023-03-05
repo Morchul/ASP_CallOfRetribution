@@ -14,6 +14,8 @@ public class ConversationHandler : MonoBehaviour, IPointerClickHandler
     [Header("Events")]
     [SerializeField]
     private GameEvent OnGameReady;
+    [SerializeField]
+    private GameEvent OnMissionFinishedSuccessfully;
 
     [Header("UI")]
     [SerializeField]
@@ -27,13 +29,19 @@ public class ConversationHandler : MonoBehaviour, IPointerClickHandler
 
     private void Awake()
     {
-        OnGameReady.AddListener(StartConversation);
+        OnGameReady.AddListener(StartBeginConversation);
+        OnMissionFinishedSuccessfully.AddListener(StartEndConversation);
         gameObject.SetActive(false);
     }
 
-    public void StartConversation()
+    public void StartBeginConversation()
     {
         StartConversation(missionController.CurrentMission.BeginConversation);
+    }
+
+    private void StartEndConversation()
+    {
+        StartConversation(missionController.CurrentMission.EndConversation);
     }
 
     public void StartConversation(Conversation conversation)

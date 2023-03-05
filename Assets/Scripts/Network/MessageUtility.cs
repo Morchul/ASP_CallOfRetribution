@@ -10,6 +10,8 @@ public static class MessageUtility
     public const string EXTRACTION_POS_PREFIX = "EXT_POS:"; //Send to give the position of the extraction point
     public const string MISSION_LOADED = "MISSION_LOADED"; //Send by client and host when the mission is loaded like a ready flag
     public const string GAME_READY = "GAME_READY"; //Is send to both if both have send a mission loaded to inform that all members are now ready
+    public const string MISSION_SUCCESSFUL = "MIS_SUC"; //Send if mission is finished successfully
+    public const string MISSION_FAILED = "MIS_FAI"; //Send if mission failed
 
     //-------------------------------------------------------
     //------------------Drone commands-----------------------

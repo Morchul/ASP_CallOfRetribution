@@ -22,6 +22,11 @@ public class GameEvent : ScriptableObject
 	{
 		_event?.Invoke();
 	}
+
+	public void Reset()
+	{
+		_event = null;
+	}
 }
 
 public class GameEvent<T> : ScriptableObject
@@ -42,5 +47,10 @@ public class GameEvent<T> : ScriptableObject
 	public void RaiseEvent(T value)
 	{
 		_event?.Invoke(value);
+	}
+
+	public void Reset()
+	{
+		_event = null;
 	}
 }

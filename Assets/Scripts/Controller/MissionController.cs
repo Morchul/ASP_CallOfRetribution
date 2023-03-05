@@ -13,11 +13,16 @@ public class MissionController : ScriptableObject
     public IntEvent OnMissionSelect;
     public GameEvent OnMissionLoaded;
     public BugUpdateEvent OnBugUpdate;
+    public GameEvent OnMissionFinishedSuccessfully;
 
     public Mission CurrentMission { get; private set; }
 
+    [Header("")]
     [SerializeField]
     private Mission[] missions;
+
+    [SerializeField]
+    private ProgressController progressController;
 
     public BugReferenc[] Bugs;
 
@@ -25,8 +30,10 @@ public class MissionController : ScriptableObject
     {
         OnMissionSelect.AddListener(SetMission);
         OnMissionLoaded.AddListener(StartMission);
+        OnMissionFinishedSuccessfully.AddListener(UpdateMissionProgress);
 
-        currentAvailableInformation = new List<int>();
+        if(currentAvailableInformation == null)
+            currentAvailableInformation = new List<int>();
     }
 
     private void StartMission()
@@ -45,6 +52,11 @@ public class MissionController : ScriptableObject
             Bugs[i] = new BugReferenc(i);
         }
         OnBugUpdate.AddListener(BugUpdate);
+    }
+
+    private void UpdateMissionProgress()
+    {
+        progressController.SetCurrentProgress(CurrentMission.ID);
     }
 
     private void BugUpdate(int bugID, IBugable.Type type, int status)

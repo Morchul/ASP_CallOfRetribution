@@ -12,6 +12,10 @@ public class HostMessageHandler : MessageHandler
     private BugUpdateEvent OnBugUpdateRequestEvent;
     [SerializeField]
     private BugUpdateEvent OnBugUpdateEvent;
+    [SerializeField]
+    private GameEvent OnMissionFinishedSuccessfully;
+    [SerializeField]
+    private GameEvent OnMissionFailed;
 
     private int missionLoadedCounter;
 
@@ -21,6 +25,8 @@ public class HostMessageHandler : MessageHandler
         missionLoadedCounter = 0;
 
         OnBugUpdateEvent.AddListener((id, type, state) => transmitter.WriteToClient(MessageUtility.CreateBugUpdateMessage(id, type, state)));
+        OnMissionFinishedSuccessfully.AddListener(() => transmitter.WriteToClient(MessageUtility.MISSION_SUCCESSFUL));
+        OnMissionFailed.AddListener(() => transmitter.WriteToClient(MessageUtility.MISSION_FAILED));
     }
 
     public override void HandleMessage(string message)

@@ -20,10 +20,14 @@ public class Alarm : MonoBehaviour, IBugable
         Disabled = false;
     }
 
+    public void Interact()
+    {
+        if (!Disabled) State = (int)(state | AlarmState.On);
+    }
+
     public void SetOff()
     {
-        if (Disabled) return;
-
+        Debug.Log("Set off alarm");
         foreach(Collider collider in Physics.OverlapSphere(transform.position, alarmRadius, guardLayer))
         {
             collider.GetComponent<GuardNPC>().AlarmOnPosition(transform.position);
@@ -37,7 +41,8 @@ public class Alarm : MonoBehaviour, IBugable
     public enum AlarmState : int
     {
         Hacked = 1,
-        Disabled = 2
+        Disabled = 2,
+        On = 4
     }
 
     private AlarmState state;
@@ -48,6 +53,7 @@ public class Alarm : MonoBehaviour, IBugable
         {
             this.state = (AlarmState)value;
             Disabled = (this.state & AlarmState.Disabled) > 0;
+            if((this.state & AlarmState.On) > 0) SetOff();
         }
     }
 

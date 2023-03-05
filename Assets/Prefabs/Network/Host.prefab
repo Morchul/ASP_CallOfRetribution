@@ -55,6 +55,8 @@ MonoBehaviour:
   OnDrownFlareMessage: {fileID: 11400000, guid: 83acf8aaf8da3c145adcdc543a1fb600, type: 2}
   OnBugUpdateRequestEvent: {fileID: 11400000, guid: cc5b3cc79e2a87b4a8b1efc6172af7a5, type: 2}
   OnBugUpdateEvent: {fileID: 11400000, guid: 8ae02f8a2a98e7045a28bac4ae8553a2, type: 2}
+  OnMissionFinishedSuccessfully: {fileID: 11400000, guid: 590e9cac908f6f44db2d5e61f4fa18f0, type: 2}
+  OnMissionFailed: {fileID: 11400000, guid: 334470a4e5b191b43b31b0a1c603ae26, type: 2}
 --- !u!1 &6278398998381815395
 GameObject:
   m_ObjectHideFlags: 0

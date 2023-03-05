@@ -34,22 +34,29 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        OnConnectionRefused.AddListener(ConnectionRefused);
-        OnConnectionEstablished.AddListener(ConnectionEstablished);
-        OnConnectionFailure.AddListener(ConnectionFailure);
-
-        ipSelection.options.Clear();
-        
-        string strHostName = Dns.GetHostName();
-        IPHostEntry host = Dns.GetHostEntry(strHostName);
-
-        foreach(IPAddress ipA in host.AddressList)
+        if (NetworkManager.Instance.IsConnected)
         {
-            ipSelection.options.Add(new TMP_Dropdown.OptionData(ipA.ToString()));
+            Lobby(NetworkManager.Instance.ConnectionHandler.IsHost());
         }
+        else
+        {
+            OnConnectionRefused.AddListener(ConnectionRefused);
+            OnConnectionEstablished.AddListener(ConnectionEstablished);
+            OnConnectionFailure.AddListener(ConnectionFailure);
 
-        if(ipSelection.options.Count > 1)
-            ipSelection.value = 1;
+            ipSelection.options.Clear();
+
+            string strHostName = Dns.GetHostName();
+            IPHostEntry host = Dns.GetHostEntry(strHostName);
+
+            foreach (IPAddress ipA in host.AddressList)
+            {
+                ipSelection.options.Add(new TMP_Dropdown.OptionData(ipA.ToString()));
+            }
+
+            if (ipSelection.options.Count > 1)
+                ipSelection.value = 1;
+        }
     }
 
     private void ConnectionRefused()

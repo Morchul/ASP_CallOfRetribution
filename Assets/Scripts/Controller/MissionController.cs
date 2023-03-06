@@ -14,6 +14,7 @@ public class MissionController : ScriptableObject
     public GameEvent OnMissionLoaded;
     public BugUpdateEvent OnBugUpdate;
     public GameEvent OnMissionFinishedSuccessfully;
+    public GameEvent OnResetGame;
 
     public Mission CurrentMission { get; private set; }
 
@@ -30,15 +31,18 @@ public class MissionController : ScriptableObject
     {
         OnMissionSelect.AddListener(SetMission);
         OnMissionLoaded.AddListener(StartMission);
+        OnResetGame.AddListener(() => CurrentMission = null);
         OnMissionFinishedSuccessfully.AddListener(UpdateMissionProgress);
 
-        if(currentAvailableInformation == null)
+        if (currentAvailableInformation == null)
             currentAvailableInformation = new List<int>();
+        else
+            currentAvailableInformation.Clear();
     }
 
     private void StartMission()
     {
-        CurrentMission.Start();
+        CurrentMission.ShowStartDocuments();
     }
 
     private void SetMission(int missionID)

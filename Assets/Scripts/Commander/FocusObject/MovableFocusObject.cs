@@ -48,9 +48,15 @@ public class MovableFocusObject : FocusObject
     protected virtual void Move(Vector2 delta)
     {
         if (Time.deltaTime > 0.1)
+        {
             Debug.Log("Time spike: " + Time.deltaTime);
+            delta *= 0.1f * moveSpeed;
+        }
+        else
+        {
+            delta *= Time.deltaTime * moveSpeed;
+        }
 
-        delta *= Time.deltaTime * moveSpeed;
         transform.Translate(new Vector3(delta.x, 0, delta.y), Space.Self);
     }
 }

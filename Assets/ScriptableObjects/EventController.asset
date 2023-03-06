@@ -28,6 +28,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 334470a4e5b191b43b31b0a1c603ae26, type: 2}
   - {fileID: 11400000, guid: 590e9cac908f6f44db2d5e61f4fa18f0, type: 2}
   - {fileID: 11400000, guid: 18ca4a8f77d5ee149aca6106844ca4d0, type: 2}
+  - {fileID: 11400000, guid: 1a60a4871b9a1ac4fa4a778541729734, type: 2}
   - {fileID: 11400000, guid: 2c2b94ce3b2e7b145b2b0f4ef018cc71, type: 2}
   boolEventsToResetAfterGame:
   - {fileID: 11400000, guid: 2ded24303165cf74ea46b25e1edc906e, type: 2}

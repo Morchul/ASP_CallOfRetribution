@@ -16,14 +16,16 @@ public abstract class MessageHandler : MonoBehaviour
     public GameEvent OnMissionLoaded;
     public GameEvent OnGameReady;
 
-    protected virtual void Awake()
+    public virtual void Refresh()
     {
         OnMissionLoaded.AddListener(() => transmitter.WriteToHost(MessageUtility.MISSION_LOADED));
     }
 
     public virtual void HandleMessage(string message)
     {
-        if(message == MessageTransmitterCommands.SHUTDOWN)
+        Debug.Log("Received Message: " + message);
+
+        if (message == MessageTransmitterCommands.SHUTDOWN)
         {
             OnConnectionShutdown.RaiseEvent();
         }
@@ -42,10 +44,6 @@ public abstract class MessageHandler : MonoBehaviour
         else if (message.StartsWith(MessageUtility.GAME_READY))
         {
             OnGameReady.RaiseEvent();
-        }
-        else
-        {
-            Debug.Log("Received Message: " + message);
         }
     }
 

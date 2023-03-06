@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f1726d2176c9e641ba5ee65dfaa9fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationMultiplier: 0.6
+  animationMultiplier: 2
   zoomSpeed: 5
   moveSpeed: 0.4
   id: 0

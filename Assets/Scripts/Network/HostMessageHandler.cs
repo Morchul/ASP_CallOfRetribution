@@ -19,9 +19,9 @@ public class HostMessageHandler : MessageHandler
 
     private int missionLoadedCounter;
 
-    protected override void Awake()
+    public override void Refresh()
     {
-        base.Awake();
+        base.Refresh();
         missionLoadedCounter = 0;
 
         OnBugUpdateEvent.AddListener((id, type, state) => transmitter.WriteToClient(MessageUtility.CreateBugUpdateMessage(id, type, state)));

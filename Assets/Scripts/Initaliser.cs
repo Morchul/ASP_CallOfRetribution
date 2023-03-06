@@ -12,23 +12,10 @@ public class Initaliser : MonoBehaviour
     [SerializeField]
     private EventController eventController;
 
-    private static bool initialised = false;
-
     void Awake()
     {
-        gameController.Init(); //Events will be reset so call every time
-        missionController.Init(); //Events will be reset so call every time
-
-        if (!initialised)
-        {
-            eventController.Init(); //Events won't be reset, call only once
-
-            DontDestroyOnLoad(this.gameObject);
-            initialised = true;
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+        gameController.Init();
+        missionController.Init();
+        eventController.Init();
     }
 }

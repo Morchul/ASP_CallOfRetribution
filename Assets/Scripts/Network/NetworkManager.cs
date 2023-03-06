@@ -34,12 +34,13 @@ public class NetworkManager : MonoBehaviour
     {
         if (instance != null && instance != this)
         {
-            if (!IsConnected)
+            if (!instance.IsConnected)
             {
-                instance.Refresh();
+                instance.ResetInstance();
                 Debug.Log("Singleton NetworkManager does already exist. Reseting existing one!");
             }
             Destroy(this.gameObject);
+            instance.Refresh();
         }
         else
         {
@@ -57,10 +58,20 @@ public class NetworkManager : MonoBehaviour
     }
     #endregion
 
-    //Destroy child (host or client) every time player returns to main menu and a new NetworkManager would be created
+    //Destroy child (host or client) every time player returns to main menu while connection handler is not connected
+    public void ResetInstance()
+    {
+        Destroy(instance.transform.GetChild(0).gameObject);
+        ConnectionHandler = null;
+    }
+    
     private void Refresh()
     {
-        Destroy(gameObject.transform.GetChild(0).gameObject);
+        if(ConnectionHandler != null)
+        {
+            ConnectionHandler.Refresh();
+            Transmitter.Refresh();
+        }
     }
 
     public void CreateHost(string hostIP)

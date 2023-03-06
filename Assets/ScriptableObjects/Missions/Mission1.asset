@@ -15,6 +15,8 @@ MonoBehaviour:
   MissionScene: Assets/Scenes/Mission1_Test.unity
   ID: 1
   missionDocuments:
+  - {fileID: 5639261320635288156, guid: 5fb9691a862712040a6a44ef69e40394, type: 3}
+  - {fileID: 902960539304111210, guid: c791f63d918a0a24ba2b147a20772e3e, type: 3}
   - {fileID: 8887146154713496517, guid: 67c59e1b652ff3c448cd28489648d14f, type: 3}
   radioMessages:
   - ID: 2

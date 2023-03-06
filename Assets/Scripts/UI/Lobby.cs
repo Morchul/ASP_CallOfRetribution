@@ -53,6 +53,7 @@ public class Lobby : MonoBehaviour
     {
         if (!host)
         {
+            NetworkManager.Instance.ResetInstance();
             CloseLobby();
         }
     }

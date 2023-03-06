@@ -65,7 +65,7 @@ public class FocusObject : MonoBehaviour, IFocusable
         else
         {
             transform.eulerAngles = rot;
-            transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
+            transform.localPosition = new Vector3(transform.localPosition.x, yPos, transform.localPosition.z);
         }
     }
 

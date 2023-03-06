@@ -7,7 +7,7 @@ public class EventController : ScriptableObject
 {
     /// <summary>
     /// Current events which wont be reseted:
-    /// - OnResetGame
+    /// 
     /// </summary>
 
     [SerializeField]

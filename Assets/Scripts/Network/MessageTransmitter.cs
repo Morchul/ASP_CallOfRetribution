@@ -37,7 +37,13 @@ public abstract class MessageTransmitter : MonoBehaviour
     {
         Running = false;
         receivedMessages = new Queue<string>();
+        Refresh();
+    }
+
+    public void Refresh()
+    {
         OnConnectionShutdown.AddListener(ConnectionShutdown);
+        messageHandler.Refresh();
     }
 
     public void SetConnectedSocket(Socket socket)

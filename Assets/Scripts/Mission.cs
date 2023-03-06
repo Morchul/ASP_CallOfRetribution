@@ -26,7 +26,7 @@ public class Mission : ScriptableObject
     public Conversation BeginConversation;
     public Conversation EndConversation;
 
-    public void Start()
+    public void ShowStartDocuments()
     {
         foreach(Document doc in missionDocuments)
         {

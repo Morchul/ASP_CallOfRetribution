@@ -19,5 +19,8 @@ public class FinishScreen : MonoBehaviour
     {
         OnMissionFinishedSuccessfully.AddListener(() => successfulScreen.SetActive(true));
         OnMissionFailed.AddListener(() => failedScreen.SetActive(true));
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }

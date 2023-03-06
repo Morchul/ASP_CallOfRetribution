@@ -1,18 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MissionButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private Mission mission;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField]
+    private GameController gameController;
+    [SerializeField]
+    private ProgressController progressController;
+
+    // Start is called before the first frame update
+    void Awake()
     {
-        
+        Button button = GetComponent<Button>();
+        if (mission != null && progressController.GetCurrentProgress() >= mission.ID - 1)
+        {
+            button.onClick.AddListener(() => gameController.SelectMission(mission));
+            button.interactable = true;
+        }
+        else
+            button.interactable = false;
     }
 }

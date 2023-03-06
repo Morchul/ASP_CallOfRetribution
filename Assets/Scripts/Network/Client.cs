@@ -22,9 +22,14 @@ public class Client : MonoBehaviour, IConnectionHandler
 
     private void Awake()
     {
+        Running = false;
+        Refresh();
+    }
+
+    public void Refresh()
+    {
         OnConnectionShutdown.AddListener(ShutdownCommandReceived);
         OnConnectionRefused.AddListener(ConnectionRefusedByHost);
-        Running = false;
     }
 
     public void StartHandler(string hostIP, int port)

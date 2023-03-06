@@ -20,8 +20,7 @@ public class DocumentHolder : MonoBehaviour
 
     private List<Document> documents;
 
-    // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         documents = new List<Document>();
         OnNewInformationEvent.AddListener(NewDocument);
@@ -29,7 +28,7 @@ public class DocumentHolder : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
         {
             focusHandler.StopFocus();
         }

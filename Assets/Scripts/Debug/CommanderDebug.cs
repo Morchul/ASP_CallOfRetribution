@@ -32,6 +32,8 @@ public class CommanderDebug : MonoBehaviour
     private BugUpdateEvent OnBugPlaced;
     [SerializeField]
     private IntEvent OnNewRadioMessage;
+    [SerializeField]
+    private GameEvent OnMissionLoaded;
 
     [Header("Controller")]
     [SerializeField]
@@ -41,6 +43,11 @@ public class CommanderDebug : MonoBehaviour
     {
         missionController.Init();
         OnMissionSelect.RaiseEvent(testMission.ID);
+    }
+
+    private void Start()
+    {
+        OnMissionLoaded.RaiseEvent();
     }
 
     public void ReleaseDocument()

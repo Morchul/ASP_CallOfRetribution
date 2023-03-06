@@ -30,9 +30,14 @@ public class Host : MonoBehaviour, IConnectionHandler
 
     private void Awake()
     {
+        Running = false;
+        Refresh();
+    }
+
+    public void Refresh()
+    {
         OnConnectionLost.AddListener(ConnectionLost);
         OnConnectionShutdown.AddListener(ConnectionLost);
-        Running = false;
     }
 
     public void StartHandler(string hostIP, int port)

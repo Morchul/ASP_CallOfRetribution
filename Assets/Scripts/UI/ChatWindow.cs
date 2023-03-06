@@ -17,7 +17,7 @@ public class ChatWindow : MonoBehaviour
     private StringEvent OnChatMessageReceived;
 
 
-    void Start()
+    private void Start()
     {
         OnChatMessageReceived.AddListener(NewChatMessage);
         chatInputField.onEndEdit.AddListener(SendNewMessage);

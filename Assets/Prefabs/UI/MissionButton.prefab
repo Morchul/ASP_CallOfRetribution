@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 6257361728938285690}
   - component: {fileID: 5057034721911406502}
   - component: {fileID: 3064250768147650230}
+  - component: {fileID: 6209897032799802490}
   m_Layer: 5
   m_Name: MissionButton
   m_TagString: Untagged
@@ -254,16 +255,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5057034721911406502}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 8d56789aec344864aa4812991fa68b34, type: 2}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: SelectMission
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: Mission, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &6209897032799802490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6395273477174480106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3383c228124c6114d9be0500397563b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mission: {fileID: 0}
+  gameController: {fileID: 11400000, guid: 8d56789aec344864aa4812991fa68b34, type: 2}
+  progressController: {fileID: 11400000, guid: 9d7379fd4abfae04eb9d49ef5a27680c, type: 2}

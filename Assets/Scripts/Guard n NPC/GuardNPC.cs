@@ -8,6 +8,7 @@ public class GuardNPC : MonoBehaviour
 {
     // Declare variables
     public float suspicionLevel;
+    public int suspicionTime;
     public float fieldOfView;
     public Transform target;
     public NavMeshAgent navMeshAgent;
@@ -23,16 +24,20 @@ public class GuardNPC : MonoBehaviour
     [Header("Events")]
     [SerializeField]
     private GameEvent OnSuspiciousActionExecuted;
+    [SerializeField]
+    private GameEvent OnItemStolden;
 
     private void Awake()
     {
         OnSuspiciousActionExecuted.AddListener(OnSuspiciousAction);
+        OnItemStolden.AddListener(ItemStolen);
     }
 
     // Start is called before the first frame update
     void Start()
     {
         suspicionLevel = 0f;
+        suspicionTime = 10;
         fieldOfView = 180f;
         navMeshAgent = GetComponent<NavMeshAgent>();
         patrolling = true;
@@ -45,8 +50,8 @@ public class GuardNPC : MonoBehaviour
     {
         if (InSight())
         {
-            suspicionLevel += 0.1f;
-            if (suspicionLevel >= 10)
+            suspicionLevel += Time.deltaTime;
+            if (suspicionLevel >= suspicionTime)
             {
                 FollowTarget();
                 patrolling = false;
@@ -145,6 +150,10 @@ public class GuardNPC : MonoBehaviour
     public void OnSuspiciousAction()
     {
         // TODO
+    }
+    public void ItemStolen()
+    {
+        
     }
 }
 

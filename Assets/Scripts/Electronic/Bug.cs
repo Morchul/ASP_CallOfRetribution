@@ -9,6 +9,8 @@ public class Bug : ElectronicDevice
     [SerializeField]
     private BugUpdateEvent bugUpdateRequestEvent;
 
+    private Vector3 defaultScale;
+
     public int BugID { get; private set; }
     private IBugable placedOnItem;
 
@@ -21,6 +23,7 @@ public class Bug : ElectronicDevice
     {
         bugUpdateRequestEvent.AddListener(StateUpdate);
         gameObject.SetActive(false);
+        defaultScale = transform.localScale;
     }
 
     private void StateUpdate(int bugID, IBugable.Type type, int state)
@@ -54,7 +57,7 @@ public class Bug : ElectronicDevice
         placedOnItem.PlaceBug(BugID);
 
         Transform bugTransform = bugable.GetBugPosition();
-        transform.parent = bugTransform;
+        transform.SetParent(bugTransform, true);
         transform.position = bugTransform.position;
         transform.rotation = bugTransform.rotation;
         gameObject.SetActive(true);
@@ -80,8 +83,8 @@ public class Bug : ElectronicDevice
 
         if (!Disturbed)
             bugUpdateEvent.RaiseEvent(BugID, IBugable.Type.None, 0);
-
         transform.parent = thief.transform;
+        transform.localScale = defaultScale;
         thief.ReceiveABug(this);
         gameObject.SetActive(false);
     }

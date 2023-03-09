@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571409, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2369,9 +2369,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicTracks:
-  - {fileID: 8300000, guid: 6618a9a2bc0f10e41a361f192199bfb1, type: 3}
-  - {fileID: 8300000, guid: c2f774ef9a5a06947b22e10fb42f2627, type: 3}
-  - {fileID: 8300000, guid: 0487641c6e3bc0c4684d81f9daeaaa37, type: 3}
+  - {fileID: 8300000, guid: b3bbf58762f86c74ca60e982671ae793, type: 3}
+  - {fileID: 8300000, guid: b89e3c20776b6ea46a31f8b27622c10d, type: 3}
   radioMessages:
   - {fileID: 8300000, guid: e0582b5433e25c241912a63031081ee5, type: 3}
   radioTurnOnSound: {fileID: 0}
@@ -3704,7 +3703,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1892344807
 Transform:
   m_ObjectHideFlags: 0

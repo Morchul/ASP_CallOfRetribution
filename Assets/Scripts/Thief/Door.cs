@@ -6,11 +6,14 @@ public class Door : MonoBehaviour
 {
     public bool Open { get; private set; }
     
+    [SerializeField]
     private Lock doorLock;
+
+    [SerializeField]
+    private Transform pivot;
 
     private void Awake()
     {
-        doorLock = GetComponent<Lock>();
         Debug.Log("DoorLock: " + doorLock);
     }
 
@@ -32,14 +35,14 @@ public class Door : MonoBehaviour
     private void CloseDoor()
     {
         Debug.Log("Close door");
-        transform.eulerAngles = Vector3.zero;
+        transform.RotateAround(pivot.position, Vector3.up, -90);
         Open = false;
     }
 
     private void OpenDoor()
     {
         Debug.Log("Open door");
-        transform.eulerAngles = new Vector3(0,90,0);
+        transform.RotateAround(pivot.position, Vector3.up, 90);
         Open = true;
     }
 }

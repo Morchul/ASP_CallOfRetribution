@@ -140,7 +140,7 @@ public abstract class MapScale : MonoBehaviour
             return 0;
         }
         //zoom out
-        if(zoom < 0 && normalizedVisiblePartOfMap >= 1)
+        if(zoom < 0 && distanceToMap >= maxDistance)
         {
             return 0;
         }

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a6a52d04a7267441a1e6a085e348757, type: 3}
   m_Name: MapData
   m_EditorClassIdentifier: 
-  WorldWidth: 150
-  WorldHeight: 100
-  MapWidth: 150
+  WorldWidth: 1000
+  WorldHeight: 1000
+  MapWidth: 100
   MapHeight: 100
-  MapSizeX: 15
+  MapSizeX: 10
   MapSizeY: 10
   MapScaleSizeRatio: 10
+  WorldOffset: {x: 0, y: 0, z: 0}

@@ -20,7 +20,7 @@ public class ThiefInteraction : MonoBehaviour
         {
             currentInteractable = other.GetComponent<Interactable>();
             currentBugable = other.GetComponent<Bugable>();
-            Debug.Log("Entered interactable");
+            Debug.Log("Entered interactable: " + currentInteractable.name);
         }
         if (other.CompareTag("Bug"))
         {

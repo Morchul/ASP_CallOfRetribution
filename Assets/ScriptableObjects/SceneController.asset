@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0bcbb6efb999424aafa4b35752a2549, type: 3}
   m_Name: SceneController
   m_EditorClassIdentifier: 
-  mainLevel: Assets/Scenes/DemoLevelSilvan.unity
+  mainLevel: Assets/Scenes/MainScene.unity
   commanderScene: Assets/Scenes/Commander.unity
   loadingScreen: Assets/Scenes/LoadingScreen.unity
   mainMenu: Assets/Scenes/MainMenu.unity
-  lobby: Assets/Scenes/Lobby.unity
   OnMissionLoaded: {fileID: 11400000, guid: 18ca4a8f77d5ee149aca6106844ca4d0, type: 2}

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571409, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4415798623429127805, guid: 292348d471febc540899fd400f362175, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2584.9
+      value: 415.1001
       objectReference: {fileID: 0}
     - target: {fileID: 4415798623429127805, guid: 292348d471febc540899fd400f362175, type: 3}
       propertyPath: m_LocalPosition.y
@@ -156,7 +156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4415798623429127805, guid: 292348d471febc540899fd400f362175, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3537.8
+      value: 537.80005
       objectReference: {fileID: 0}
     - target: {fileID: 4415798623429127805, guid: 292348d471febc540899fd400f362175, type: 3}
       propertyPath: m_LocalRotation.w
@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 334637738}
   - component: {fileID: 334637737}
   - component: {fileID: 334637736}
+  - component: {fileID: 334637741}
   m_Layer: 0
   m_Name: HolyHandgranade
   m_TagString: Interactable
@@ -320,8 +321,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 334637735}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2600, y: 2.01, z: 3500}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 400, y: 2.01, z: 500}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1969740244}
@@ -329,6 +330,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &334637741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334637735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db8eb9f38c273b49b0f13c5b2bed67e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnInteractAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 334637736}
+        m_TargetAssemblyTypeName: TargetItem, Assembly-CSharp
+        m_MethodName: Steal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isSuspicious: 1
 --- !u!1 &724133907
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +371,7 @@ GameObject:
   - component: {fileID: 724133909}
   - component: {fileID: 724133908}
   m_Layer: 0
-  m_Name: GateLock (1)
+  m_Name: Block
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,7 +447,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724133907}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2584.93, y: 0.3, z: 3537.68}
+  m_LocalPosition: {x: 415.07007, y: 0.3, z: 537.67993}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -448,7 +477,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907512587}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2591.91, y: 5.69, z: 3485.6}
+  m_LocalPosition: {x: 408.0901, y: 5.69, z: 485.6001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 939254715}
@@ -565,6 +594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorLock: {fileID: 1989266389}
+  pivot: {fileID: 907512588}
 --- !u!114 &939254720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,8 +610,8 @@ MonoBehaviour:
   OnInteractAction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 939254720}
-        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+      - m_Target: {fileID: 939254719}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
         m_MethodName: Interact
         m_Mode: 1
         m_Arguments:
@@ -860,7 +890,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989266388}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2586.5, y: 2.15, z: 3518.71}
+  m_LocalPosition: {x: 413.5, y: 2.15, z: 518.70996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 78611999}
@@ -891,8 +921,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8194802555068733832, guid: 596510305c3572c47b1bb29de033af93, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194802555068733832, guid: 596510305c3572c47b1bb29de033af93, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194802555068733832, guid: 596510305c3572c47b1bb29de033af93, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2496.58
+      value: 503.41992
       objectReference: {fileID: 0}
     - target: {fileID: 8194802555068733832, guid: 596510305c3572c47b1bb29de033af93, type: 3}
       propertyPath: m_LocalPosition.y
@@ -900,7 +938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8194802555068733832, guid: 596510305c3572c47b1bb29de033af93, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3494.73
+      value: 494.72998
       objectReference: {fileID: 0}
     - target: {fileID: 8194802555068733832, guid: 596510305c3572c47b1bb29de033af93, type: 3}
       propertyPath: m_LocalRotation.w
@@ -912,11 +950,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8194802555068733832, guid: 596510305c3572c47b1bb29de033af93, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8194802555068733832, guid: 596510305c3572c47b1bb29de033af93, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8194802555068733832, guid: 596510305c3572c47b1bb29de033af93, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

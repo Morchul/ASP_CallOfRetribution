@@ -55,13 +55,14 @@ public class ThiefInteraction : MonoBehaviour
         {
             text += currentInteractable.ActionName + " " + currentInteractable.name + " (E)\n";
         }
-        if(currentBugable != null)
-        {
-            text += "Place Bug on " + currentBugable.name + " (Q)\n";
-        }
-        if(currentBug != null)
+
+        if (currentBug != null)
         {
             text += "Retrieve Bug (Q)";
+        }
+        else if(currentBugable != null)
+        {
+            text += "Place Bug on " + currentBugable.name + " (Q)\n";
         }
 
         interactionText.text = text;
@@ -76,6 +77,7 @@ public class ThiefInteraction : MonoBehaviour
                 currentInteractable.Interact();
                 if(currentInteractable.IsSuspicious)
                     OnSuspiciousActionExecuted.RaiseEvent();
+                UpdateInteractText();
             }
         }
 
@@ -96,6 +98,7 @@ public class ThiefInteraction : MonoBehaviour
                     {
                         //no bugs left
                     }
+                    UpdateInteractText();
                 }
             }
         }

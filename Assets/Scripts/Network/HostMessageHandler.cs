@@ -38,23 +38,27 @@ public class HostMessageHandler : MessageHandler
             OnDroneMoveMessage.RaiseEvent(MessageUtility.GetCoordinates(message));
         }
 
-        else if (message.StartsWith(MessageUtility.SCAN_DRONE))
+        else if (message.Equals(MessageUtility.SCAN_DRONE))
         {
             OnDrownScanMessage.RaiseEvent();
         }
 
-        else if (message.StartsWith(MessageUtility.FLARE_DRONE))
+        else if (message.Equals(MessageUtility.FLARE_DRONE))
         {
             OnDrownFlareMessage.RaiseEvent();
         }
 
-        else if (message.StartsWith(MessageUtility.MISSION_LOADED))
+        else if (message.Equals(MessageUtility.MISSION_LOADED))
         {
             if(++missionLoadedCounter == 2)
             {
                 transmitter.WriteToClient(MessageUtility.GAME_READY);
                 transmitter.WriteToHost(MessageUtility.GAME_READY); //Can be replaced through direct RaiseEvent call
             }
+        }
+        else if (message.Equals(MessageUtility.MISSION_FAILED))
+        {
+            OnMissionFailed.RaiseEvent();
         }
     }
 

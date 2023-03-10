@@ -40,7 +40,7 @@ public class Alarm : MonoBehaviour, IBugable
     [System.Flags]
     public enum AlarmState : int
     {
-        Hacked = 1,
+        Hacked = Hacker.HACKED_STATE,
         Disabled = 2,
         On = 4
     }

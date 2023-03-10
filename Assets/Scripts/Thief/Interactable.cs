@@ -12,6 +12,10 @@ public class Interactable : MonoBehaviour
     private bool isSuspicious;
     public bool IsSuspicious => isSuspicious;
 
+    [SerializeField]
+    private string actionName;
+    public string ActionName => actionName;
+
     public void Interact()
     {
         OnInteractAction.Invoke();

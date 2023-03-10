@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ThiefInteraction : MonoBehaviour
@@ -9,6 +10,9 @@ public class ThiefInteraction : MonoBehaviour
 
     [SerializeField]
     private GameEvent OnSuspiciousActionExecuted;
+
+    [SerializeField]
+    private TMP_Text interactionText;
 
     private Interactable currentInteractable;
     private Bugable currentBugable;
@@ -20,12 +24,12 @@ public class ThiefInteraction : MonoBehaviour
         {
             currentInteractable = other.GetComponent<Interactable>();
             currentBugable = other.GetComponent<Bugable>();
-            Debug.Log("Entered interactable: " + currentInteractable.name);
+            UpdateInteractText();
         }
         if (other.CompareTag("Bug"))
         {
             currentBug = other.GetComponent<Bug>();
-            Debug.Log("Found bug");
+            UpdateInteractText();
         }
     }
 
@@ -35,13 +39,32 @@ public class ThiefInteraction : MonoBehaviour
         {
             currentInteractable = null;
             currentBugable = null;
-            Debug.Log("Left interactable");
+            UpdateInteractText();
         }
         if (other.CompareTag("Bug"))
         {
             currentBug = null;
-            Debug.Log("Left bug");
+            UpdateInteractText();
         }
+    }
+
+    private void UpdateInteractText()
+    {
+        string text = "";
+        if (currentInteractable != null)
+        {
+            text += currentInteractable.ActionName + " " + currentInteractable.name + " (E)\n";
+        }
+        if(currentBugable != null)
+        {
+            text += "Place Bug on " + currentBugable.name + " (Q)\n";
+        }
+        if(currentBug != null)
+        {
+            text += "Retrieve Bug (Q)";
+        }
+
+        interactionText.text = text;
     }
 
     private void Update()

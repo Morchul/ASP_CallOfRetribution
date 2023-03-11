@@ -629,7 +629,6 @@ Transform:
   m_Children:
   - {fileID: 1547414968}
   - {fileID: 97914358}
-  - {fileID: 2081865596}
   - {fileID: 1666654800}
   m_Father: {fileID: 2079956954}
   m_RootOrder: 0
@@ -1212,7 +1211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &669579123
 Transform:
   m_ObjectHideFlags: 0
@@ -1229,6 +1228,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &927358072 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8194802555068733837, guid: 596510305c3572c47b1bb29de033af93, type: 3}
+  m_PrefabInstance: {fileID: 8194802557147899636}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6deb010065be44fa067ed0ada83634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &948121207
 GameObject:
   m_ObjectHideFlags: 0
@@ -1672,6 +1682,7 @@ Transform:
   - {fileID: 358280093}
   - {fileID: 473390363}
   - {fileID: 1662173406}
+  - {fileID: 2081865596}
   m_Father: {fileID: 2079956954}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2654,7 +2665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1508419416
 Transform:
   m_ObjectHideFlags: 0
@@ -3516,7 +3527,7 @@ Transform:
   m_LocalScale: {x: 3, y: 5, z: 3}
   m_Children: []
   m_Father: {fileID: 344093819}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1749078473
 GameObject:
@@ -4269,18 +4280,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b55fb5657fee24489e6ef007f25d692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  introductionText: 'Welcome to the tutorial of Road to Retribution
+  introductionText: 'Welcome to the Thief tutorial of Road to Retribution
 
-    Road to
-    Retribution is a two player cooperativ game. One player (The Host) will take
+    Road
+    to Retribution is a two player cooperativ game. One player (The Host) will take
     control of the thief. The other player (The one who joins) will take control
     over the commander.
 
-    First we will go through all the things the Thief has
-    to know and afterwards we have a look at the commander.
+    In this tutorial we will go through all the things the
+    Thief has to know.
 
-    Press the F key
-    to continue...'
+    Press the F key to continue...'
   basicControlTutorial: 'You can move around with the W, A, S, D keys and look around
     by moving your mouse.
 
@@ -4318,7 +4328,10 @@ MonoBehaviour:
     steal but you don''t know where to find it.
 
     Press F to continue'
-  informationGatherTutorial: '[HOW TO GATHER INFORMATION]
+  informationGatherTutorial: 'You can get the information about the whereabouts for
+    example when you find a document or a map or you see a clue when you walk through
+    the streets or overhear someone talking about it. Maybe the commander will find
+    it out and tell you.
 
     Press F to continue'
   stealItemTutorial: 'In this Tutorial you have to steal an expensive blue sphere.
@@ -4341,20 +4354,39 @@ MonoBehaviour:
     in the range of a Disturber.
 
     Go and steal the blue sphere'
-  guardsTutorial: 
-  extractionPointTutorial: 
+  guardsTutorial: 'During the game you will encounter guards. They are passive until
+    you either steal the target item, they get drawn to your position through an
+    alarm or they see you do a suspicous action. Suspicious actions include placing
+    a bug or disabeling a Disturber.
+
+    If a guard catches you the mission is failed.
+
+    Press
+    F to continue'
+  extractionPointTutorial: 'After you stole the item you have to get to an extraction
+    point. The commander knows where it is and can lead you to it.
+
+    Look out
+    for the flare which will show you where the extraction point is and move there.'
+  finishThiefTutorial: Congrats you successfully finished the tutorial mission of
+    the thief.
   tutorialText: {fileID: 948121209}
   OnDroneFireFlare: {fileID: 11400000, guid: 83acf8aaf8da3c145adcdc543a1fb600, type: 2}
   OnNewInformation: {fileID: 11400000, guid: 97bb02a1aacb8be44b4873997f735aaf, type: 2}
   OnBugUpdate: {fileID: 11400000, guid: 8ae02f8a2a98e7045a28bac4ae8553a2, type: 2}
   OnBugUpdateRequest: {fileID: 11400000, guid: cc5b3cc79e2a87b4a8b1efc6172af7a5, type: 2}
   OnItemStolen: {fileID: 11400000, guid: b3c06fe560113cd4480f9db776d9a178, type: 2}
-  drone: {fileID: 97914354}
+  OnMissionCompletedSuccessfully: {fileID: 11400000, guid: 590e9cac908f6f44db2d5e61f4fa18f0, type: 2}
+  drone: {fileID: 97914359}
   playerCamera: {fileID: 2134572184}
   alarm: {fileID: 1075390479}
+  extractionPoint: {fileID: 927358072}
   tutorialPart2: {fileID: 1000300315}
   tutorialPart3: {fileID: 2016732414}
   tutorialPart4: {fileID: 1508419415}
+  gameController: {fileID: 11400000, guid: 8d56789aec344864aa4812991fa68b34, type: 2}
+  testMission: {fileID: 11400000, guid: 1b395dc88c3bf4645aee84306dcaffa4, type: 2}
+  OnMissionSelect: {fileID: 11400000, guid: b814887e908ba654ab84db5d34cf4606, type: 2}
 --- !u!4 &2042703976
 Transform:
   m_ObjectHideFlags: 0
@@ -4610,11 +4642,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 344093819}
+    m_TransformParent: {fileID: 1000300316}
     m_Modifications:
     - target: {fileID: 8194802555068733832, guid: 596510305c3572c47b1bb29de033af93, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8194802555068733832, guid: 596510305c3572c47b1bb29de033af93, type: 3}
       propertyPath: m_LocalScale.x

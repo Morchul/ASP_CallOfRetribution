@@ -16,8 +16,8 @@ public class MainMenu : MonoBehaviour
     private TMP_Dropdown ipSelection;
 
     [Header("Scene Controller")]
-    //[SerializeField]
-    //private SceneController sceneController;
+    [SerializeField]
+    private SceneController sceneController;
 
     [SerializeField]
     private Lobby lobby;
@@ -34,7 +34,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-
+        NetworkManager.Instance.DEBUG_MODE = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -91,6 +91,13 @@ public class MainMenu : MonoBehaviour
             Lobby(true);
             //Join lobby as host
         }
+    }
+
+    public void StartThiefTutorial()
+    {
+        NetworkManager.Instance.DEBUG_MODE = true;
+        NetworkManager.Instance.CreateHost("");
+        sceneController.LoadThiefTutorial();
     }
 
     private void Lobby(bool host)

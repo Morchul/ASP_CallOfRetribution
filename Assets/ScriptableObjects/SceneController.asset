@@ -16,4 +16,5 @@ MonoBehaviour:
   commanderScene: Assets/Scenes/Commander.unity
   loadingScreen: Assets/Scenes/LoadingScreen.unity
   mainMenu: Assets/Scenes/MainMenu.unity
+  thiefTutorial: Assets/Scenes/ThiefTutorial.unity
   OnMissionLoaded: {fileID: 11400000, guid: 18ca4a8f77d5ee149aca6106844ca4d0, type: 2}

@@ -63,6 +63,10 @@ public class ThiefTutorial : MonoBehaviour
     [TextArea(3, 10)]
     private string extractionPointTutorial;
 
+    [SerializeField]
+    [TextArea(3, 10)]
+    private string finishThiefTutorial;
+
     [Header("UI")]
     [SerializeField]
     private TMP_Text tutorialText;
@@ -78,20 +82,34 @@ public class ThiefTutorial : MonoBehaviour
     private BugUpdateEvent OnBugUpdateRequest;
     [SerializeField]
     private GameEvent OnItemStolen;
+    [SerializeField]
+    private GameEvent OnMissionCompletedSuccessfully;
 
     [Header("Objects")]
     [SerializeField]
-    private GameObject drone;
+    private Drone drone;
     [SerializeField]
     private Camera playerCamera;
     [SerializeField]
     private Alarm alarm;
+    [SerializeField]
+    private ExtractionPoint extractionPoint;
     [SerializeField]
     private GameObject tutorialPart2; //interact
     [SerializeField]
     private GameObject tutorialPart3; //bug
     [SerializeField]
     private GameObject tutorialPart4; //final
+
+    [Header("Controller")]
+    [SerializeField]
+    private GameController gameController;
+
+    [Header("Test mission")]
+    [SerializeField]
+    private Mission testMission;
+    [SerializeField]
+    private IntEvent OnMissionSelect;
 
 
     private TutorialSteps stepCounter;
@@ -112,14 +130,19 @@ public class ThiefTutorial : MonoBehaviour
         Alarm,
         Disturber,
         Guards,
-        ExtractionPoint
+        ExtractionPoint,
+        Finish
     }
 
     private void Awake()
     {
+        OnMissionSelect.RaiseEvent(testMission.ID);
+
         stepCounter = TutorialSteps.None;
         OnBugUpdate.AddListener(OnBugUpdateEvent);
         OnItemStolen.AddListener(OnItemStolenEvent);
+        OnMissionCompletedSuccessfully.AddListener(FinishTutorial);
+        OnNewInformation.AddListener(InformationGathered);
         NextStep();
     }
     private void Update()
@@ -130,7 +153,8 @@ public class ThiefTutorial : MonoBehaviour
             stepCounter == TutorialSteps.BugFeature ||
             stepCounter == TutorialSteps.GameGoal ||
             stepCounter == TutorialSteps.InformationGather ||
-            stepCounter == TutorialSteps.Guards
+            stepCounter == TutorialSteps.Guards ||
+            stepCounter == TutorialSteps.Finish
             )
         {
             if (Input.GetKeyDown(KeyCode.F))
@@ -155,13 +179,23 @@ public class ThiefTutorial : MonoBehaviour
         if (stepCounter == TutorialSteps.StealItem)
             if (alarm.Bugged)
                 NextStep();
+
+        if(stepCounter == TutorialSteps.ExtractionPoint)
+        {
+            if((timer += Time.deltaTime) > 5)
+            {
+                OnDroneFireFlare.RaiseEvent();
+                timer = 0;
+            }
+        }
     }
 
     private int stateHelper;
+    private float timer;
     public void EnterTrigger(int triggerID)
     {
         //If document is picked up and enter trigger behind door
-        if(triggerID == 1 && stateHelper == 1)
+        if(triggerID == 1 && stateHelper == 1 && stepCounter == TutorialSteps.Interaction)
         {
             NextStep();
         }
@@ -186,6 +220,15 @@ public class ThiefTutorial : MonoBehaviour
         NextStep();
     }
 
+    private void FinishTutorial()
+    {
+        NextStep();
+        OnBugUpdate.RemoveListener(OnBugUpdateEvent);
+        OnItemStolen.RemoveListener(OnItemStolenEvent);
+        OnMissionCompletedSuccessfully.RemoveListener(FinishTutorial);
+        OnNewInformation.RemoveListener(InformationGathered);
+    }
+
     private void InformationGathered(int _)
     {
         stateHelper = 1;
@@ -204,13 +247,11 @@ public class ThiefTutorial : MonoBehaviour
                 tutorialText.text = interactionTutorial;
                 tutorialPart2.SetActive(true);
                 stateHelper = 0;
-                OnNewInformation.AddListener(InformationGathered);
                 break;
             case TutorialSteps.PlaceBug:
                 tutorialText.text = placeBugTutorial;
                 tutorialPart3.SetActive(true);
                 stateHelper = 0;
-                OnNewInformation.RemoveListener(InformationGathered);
                 break;
             case TutorialSteps.BugFeature:
                 tutorialText.text = bugFeatureTutorial;
@@ -225,6 +266,7 @@ public class ThiefTutorial : MonoBehaviour
             case TutorialSteps.StealItem:
                 tutorialText.text = stealItemTutorial;
                 tutorialPart4.SetActive(true);
+                drone.MoveCommand(extractionPoint.transform.position);
                 break;
             case TutorialSteps.Alarm:
                 tutorialText.text = alarmTutorial;
@@ -235,10 +277,18 @@ public class ThiefTutorial : MonoBehaviour
                 OnBugUpdateRequest.RaiseEvent(stateHelper, IBugable.Type.Alarm, (int)Alarm.AlarmState.Disabled | (int)Alarm.AlarmState.Hacked);
                 break;
             case TutorialSteps.Guards:
+                extractionPoint.gameObject.SetActive(false);
                 tutorialText.text = guardsTutorial;
                 break;
             case TutorialSteps.ExtractionPoint:
+                timer = 4.5f;
+                extractionPoint.gameObject.SetActive(true);
                 tutorialText.text = extractionPointTutorial;
+                break;
+            case TutorialSteps.Finish:
+                tutorialText.text = finishThiefTutorial;
+                break;
+            default:
                 break;
 
         }

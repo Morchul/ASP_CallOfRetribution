@@ -102,19 +102,20 @@ public class Drone : PositionSensor
         Instantiate(flairePrefab, transform.position, Quaternion.identity);
     }
 
-    public void MoveCommand(Vector2 targetPos)
+    public void MoveCommand(Vector2 mapCoordinateTargetPos)
     {
-        Debug.Log("Move command, target pos: " + targetPos);
         if (Disturbed) return;
 
-        Vector3 worldTargetPos = mapData.MapCoordinateToWorldPos(targetPos);
+        MoveCommand(mapData.MapCoordinateToWorldPos(mapCoordinateTargetPos));
+    }
+
+    public void MoveCommand(Vector3 worldTargetPos)
+    {
+        if (Disturbed) return;
 
         moving = true;
-        Debug.Log("this.position: " + this.transform.position);
         this.targetPos = new Vector3(worldTargetPos.x, transform.position.y, worldTargetPos.z);
-        Debug.Log("this.targetPos: " + this.targetPos);
         moveDir = (this.targetPos - transform.position).normalized;
-        Debug.Log("moveDir: " + moveDir);
     }
 
     public void ScanCommand()

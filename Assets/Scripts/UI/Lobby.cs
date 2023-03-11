@@ -14,10 +14,6 @@ public class Lobby : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI ipAddress;
 
-    //[Header("Controller")]
-    //[SerializeField]
-    //private SceneController sceneController;
-
     [SerializeField]
     private MainMenu mainMenu;
 
@@ -61,6 +57,7 @@ public class Lobby : MonoBehaviour
     public void LeaveLobby()
     {
         NetworkManager.Instance.ConnectionHandler.Shutdown();
+        NetworkManager.Instance.ResetInstance();
         if(host)
         {
             CloseLobby();

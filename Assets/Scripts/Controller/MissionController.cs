@@ -31,7 +31,11 @@ public class MissionController : ScriptableObject
     {
         OnMissionSelect.AddListener(SetMission);
         OnMissionLoaded.AddListener(StartMission);
-        OnResetGame.AddListener(() => CurrentMission = null);
+        OnResetGame.AddListener(() =>
+        {
+            CurrentMission = null;
+            Bugs = null;
+        });
         OnMissionFinishedSuccessfully.AddListener(UpdateMissionProgress);
 
         if (currentAvailableInformation == null)
@@ -47,6 +51,12 @@ public class MissionController : ScriptableObject
 
     private void SetMission(int missionID)
     {
+        if(Bugs != null)
+        {
+            Debug.LogWarning("Try to override selected mission!");
+            return;
+        }
+
         CurrentMission = missions.First((mission) => mission.ID == missionID);
         OnNewInformation.AddListener(NewInformation);
 
@@ -66,13 +76,6 @@ public class MissionController : ScriptableObject
     private void BugUpdate(int bugID, IBugable.Type type, int status)
     {
         Bugs[bugID].Update(type, status);
-    }
-
-    public void FinishMission()
-    {
-        CurrentMission = null;
-        currentAvailableInformation.Clear();
-        OnNewInformation.RemoveListener(NewInformation);
     }
 
     private void NewInformation(int infoID)

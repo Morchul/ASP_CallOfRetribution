@@ -13,11 +13,17 @@ public class Interactable : MonoBehaviour
     public bool IsSuspicious => isSuspicious;
 
     [SerializeField]
+    private bool oneTimeUse;
+    public bool OneTime => oneTimeUse;
+
+    [SerializeField]
     private string actionName;
     public string ActionName => actionName;
 
     public void Interact()
     {
         OnInteractAction.Invoke();
+        if (oneTimeUse)
+            gameObject.SetActive(false);
     }
 }

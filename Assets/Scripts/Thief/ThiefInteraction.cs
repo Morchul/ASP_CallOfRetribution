@@ -22,8 +22,14 @@ public class ThiefInteraction : MonoBehaviour
     {
         if (other.CompareTag("Interactable"))
         {
-            currentInteractable = other.GetComponent<Interactable>();
-            currentBugable = other.GetComponent<Bugable>();
+            Interactable tmp = other.GetComponent<Interactable>();
+            if (tmp != null)
+                currentInteractable = tmp;
+
+            Bugable bTmp = other.GetComponent<Bugable>();
+            if(bTmp != null)
+                currentBugable = bTmp;
+
             UpdateInteractText();
         }
         if (other.CompareTag("Bug"))
@@ -37,8 +43,14 @@ public class ThiefInteraction : MonoBehaviour
     {
         if (other.CompareTag("Interactable"))
         {
-            currentInteractable = null;
-            currentBugable = null;
+            Interactable tmp = other.GetComponent<Interactable>();
+            if (tmp != null)
+                currentInteractable = null;
+
+            Bugable bTmp = other.GetComponent<Bugable>();
+            if (bTmp != null)
+                currentBugable = null;
+
             UpdateInteractText();
         }
         if (other.CompareTag("Bug"))
@@ -53,14 +65,13 @@ public class ThiefInteraction : MonoBehaviour
         string text = "";
         if (currentInteractable != null)
         {
-            text += currentInteractable.ActionName + " " + currentInteractable.name + " (E)\n";
+            text += currentInteractable.ActionName + " (E)\n";
         }
-
         if (currentBug != null)
         {
             text += "Retrieve Bug (Q)";
         }
-        else if(currentBugable != null)
+        if(currentBugable != null && !currentBugable.GetBugable().Bugged)
         {
             text += "Place Bug on " + currentBugable.name + " (Q)\n";
         }
@@ -77,6 +88,8 @@ public class ThiefInteraction : MonoBehaviour
                 currentInteractable.Interact();
                 if(currentInteractable.IsSuspicious)
                     OnSuspiciousActionExecuted.RaiseEvent();
+                if (currentInteractable.OneTime)
+                    currentInteractable = null;
                 UpdateInteractText();
             }
         }

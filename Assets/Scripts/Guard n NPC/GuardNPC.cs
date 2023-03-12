@@ -136,7 +136,7 @@ public class GuardNPC : MonoBehaviour
     }
     void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == Thief.TAG)
         {
             hasStolen = true;
         }

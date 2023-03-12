@@ -23,7 +23,7 @@ public class Console : MonoBehaviour
     [SerializeField]
     private BoolEvent OnDroneConnectionStateChange;
     [SerializeField]
-    private StringEvent OnScanOnCooldown;
+    private FloatEvent OnScanOnCooldown;
     [SerializeField]
     private GameEvent OnBugDisturbed;
     [SerializeField]
@@ -83,7 +83,7 @@ public class Console : MonoBehaviour
         }
     }
 
-    private void ScanOnCooldown(string cooldown)
+    private void ScanOnCooldown(float cooldown)
     {
         AddLog("Scan on cooldown: " + cooldown + " seconds");
     }

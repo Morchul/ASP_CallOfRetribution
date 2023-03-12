@@ -1,13 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bug : ElectronicDevice
 {
     [SerializeField]
-    private BugUpdateEvent bugUpdateEvent;
+    private BugUpdateEvent onBugUpdateEvent;
     [SerializeField]
-    private BugUpdateEvent bugUpdateRequestEvent;
+    private BugUpdateEvent onBugUpdateRequestEvent;
+    [SerializeField]
+    private IntEvent onBugDisturbedEvent;
+    [SerializeField]
+    private IntEvent onBugDeniedEvent;
 
     private Vector3 defaultScale;
 
@@ -21,7 +24,7 @@ public class Bug : ElectronicDevice
 
     private void Awake()
     {
-        bugUpdateRequestEvent.AddListener(StateUpdate);
+        onBugUpdateRequestEvent.AddListener(StateUpdate);
         gameObject.SetActive(false);
         defaultScale = transform.localScale;
     }
@@ -32,23 +35,23 @@ public class Bug : ElectronicDevice
 
         if (Disturbed)
         {
-            NetworkManager.Instance.Transmitter.WriteToClient(MessageUtility.BUG_DISTURBED);
+            onBugDisturbedEvent.RaiseEvent(bugID);
             return;
         }
         if (placedOnItem.TryChangeState(state))
         {
-            bugUpdateEvent.RaiseEvent(BugID, placedOnItem.ObjectType, placedOnItem.State);
+            onBugUpdateEvent.RaiseEvent(BugID, placedOnItem.ObjectType, placedOnItem.State);
         }
         else
         {
-            NetworkManager.Instance.Transmitter.WriteToClient(MessageUtility.BUG_DENIED);
+            onBugDeniedEvent.RaiseEvent(bugID);
         }
     }
 
     protected override void AfterDisturbedChange()
     {
         if(!Disturbed)
-            bugUpdateEvent.RaiseEvent(BugID, placedOnItem.ObjectType, placedOnItem.State);
+            onBugUpdateEvent.RaiseEvent(BugID, placedOnItem.ObjectType, placedOnItem.State);
     }
 
     public void PlaceOn(IBugable bugable)
@@ -72,17 +75,17 @@ public class Bug : ElectronicDevice
 
         if (!Disturbed)
         {
-            bugUpdateEvent.RaiseEvent(BugID, placedOnItem.ObjectType, placedOnItem.State);
+            onBugUpdateEvent.RaiseEvent(BugID, placedOnItem.ObjectType, placedOnItem.State);
         }
     }
 
-    public void RemoveBy(ThiefTest thief)
+    public void RemoveBy(Thief thief)
     {
         placedOnItem.PlaceBug(-1);
         placedOnItem = null;
 
         if (!Disturbed)
-            bugUpdateEvent.RaiseEvent(BugID, IBugable.Type.None, 0);
+            onBugUpdateEvent.RaiseEvent(BugID, IBugable.Type.None, 0);
         transform.parent = thief.transform;
         transform.localScale = defaultScale;
         thief.ReceiveABug(this);

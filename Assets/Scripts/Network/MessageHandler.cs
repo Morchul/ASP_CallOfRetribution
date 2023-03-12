@@ -10,15 +10,22 @@ public abstract class MessageHandler : MonoBehaviour
     protected GameController gameController;
 
     [Header("Events")]
+    //Incoming
     public GameEvent OnConnectionShutdown;
     public StringEvent OnChatMessageReceived;
     public IntEvent OnMissionSelect;
-    public GameEvent OnMissionLoaded;
     public GameEvent OnGameReady;
+
+    //Outgoing
+    public StringEvent OnChatMessageSend;
+    public GameEvent OnMissionLoaded;
 
     public virtual void Refresh()
     {
+        if (NetworkManager.Instance.DEBUG_MODE) return;
+
         OnMissionLoaded.AddListener(() => transmitter.WriteToHost(MessageUtility.MISSION_LOADED));
+        OnChatMessageSend.AddListener((message) => transmitter.WriteToHost(MessageUtility.CreateChatMessage(message)));
     }
 
     public virtual void HandleMessage(string message)

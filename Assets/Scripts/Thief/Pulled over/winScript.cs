@@ -19,7 +19,7 @@ public class winScript : MonoBehaviour
     {
 
         
-        if (collider.tag == "Player")
+        if (collider.tag == Thief.TAG)
             Debug.Log("YOU WIN!!");
             WinSceneLoader();
                         

@@ -42,6 +42,8 @@ public abstract class MessageTransmitter : MonoBehaviour
 
     public void Refresh()
     {
+        if (NetworkManager.Instance.DEBUG_MODE) return;
+
         OnConnectionShutdown.AddListener(ConnectionShutdown);
         messageHandler.Refresh();
     }

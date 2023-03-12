@@ -15,6 +15,8 @@ public class ChatWindow : MonoBehaviour
     [Header("Events")]
     [SerializeField]
     private StringEvent OnChatMessageReceived;
+    [SerializeField]
+    private StringEvent OnChatMessageSend;
 
 
     private void Start()
@@ -26,7 +28,7 @@ public class ChatWindow : MonoBehaviour
 
     private void SendNewMessage(string message)
     {
-        NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.CreateChatMessage(message));
+        OnChatMessageSend.RaiseEvent(message);
     }
 
     private void NewChatMessage(string message)

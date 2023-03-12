@@ -5,15 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BugPlacedEvent", menuName = "Events/BugPlacedEvent")]
 public class BugUpdateEvent : ScriptableObject
 {
-	private event BugPlacedEventMethod _event;
+	private event BugUpdateEventMethod _event;
 
-	public delegate void BugPlacedEventMethod(int ID, IBugable.Type type, int status);
+	public delegate void BugUpdateEventMethod(int ID, IBugable.Type type, int status);
 
-	public void AddListener(BugPlacedEventMethod listener)
+	public void AddListener(BugUpdateEventMethod listener)
 	{
 		_event += listener;
 	}
-	public void RemoveListener(BugPlacedEventMethod listener)
+	public void RemoveListener(BugUpdateEventMethod listener)
 	{
 		_event -= listener;
 	}

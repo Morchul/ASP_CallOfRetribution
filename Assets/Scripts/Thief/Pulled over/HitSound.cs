@@ -8,7 +8,7 @@ public class HitSound : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     private void OnTriggerEnter(Collider Other)
     {
-        if (Other.tag == "Player")
+        if (Other.tag == Thief.TAG)
         {
             if (audioSource != null)
             {

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class HostMessageHandler : MessageHandler
 {
+    [Header("Incoming")]
     [SerializeField]
     private Vector2Event OnDroneMoveMessage;
     [SerializeField]
@@ -10,12 +11,28 @@ public class HostMessageHandler : MessageHandler
     private GameEvent OnDrownFlareMessage;
     [SerializeField]
     private BugUpdateEvent OnBugUpdateRequestEvent;
+
+    [Header("Outgoing")]
     [SerializeField]
     private BugUpdateEvent OnBugUpdateEvent;
     [SerializeField]
     private GameEvent OnMissionFinishedSuccessfully;
     [SerializeField]
     private GameEvent OnMissionFailed;
+    [SerializeField]
+    private Vector2Event OnGuardScanned;
+    [SerializeField]
+    private FloatEvent OnScanOnCooldown;
+    [SerializeField]
+    private Vector2Event OnExtractionPointActivate;
+    [SerializeField]
+    private BoolEvent OnDroneConnectionStateChanged;
+    [SerializeField]
+    private IntEvent OnBugDisturbedEvent;
+    [SerializeField]
+    private IntEvent OnBugDeniedEvent;
+    [SerializeField]
+    private PosUpdateEvent OnPosUpdateEvent;
 
     private int missionLoadedCounter;
 
@@ -27,6 +44,13 @@ public class HostMessageHandler : MessageHandler
         OnBugUpdateEvent.AddListener((id, type, state) => transmitter.WriteToClient(MessageUtility.CreateBugUpdateMessage(id, type, state)));
         OnMissionFinishedSuccessfully.AddListener(() => transmitter.WriteToClient(MessageUtility.MISSION_SUCCESSFUL));
         OnMissionFailed.AddListener(() => transmitter.WriteToClient(MessageUtility.MISSION_FAILED));
+        OnGuardScanned.AddListener((guardPos) => transmitter.WriteToClient(MessageUtility.CreateScanResultMessage(guardPos)));
+        OnScanOnCooldown.AddListener((cooldownTimer) => transmitter.WriteToClient(MessageUtility.CreateScanCooldownMessage(cooldownTimer)));
+        OnExtractionPointActivate.AddListener((extractionPointPos) => transmitter.WriteToClient(MessageUtility.CreateExtractionPointPosMessage(extractionPointPos)));
+        OnDroneConnectionStateChanged.AddListener((disturbed) => transmitter.WriteToClient(MessageUtility.CreateDroneStateChangedMessage(disturbed)));
+        OnBugDisturbedEvent.AddListener((bugID) => transmitter.WriteToClient(MessageUtility.BUG_DISTURBED));
+        OnBugDeniedEvent.AddListener((bugID) => transmitter.WriteToClient(MessageUtility.BUG_DENIED));
+        OnPosUpdateEvent.AddListener((posUpdate) => transmitter.WriteToClient(MessageUtility.CreatePosUpdateMessage(posUpdate)));
     }
 
     public override void HandleMessage(string message)

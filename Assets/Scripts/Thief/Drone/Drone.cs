@@ -17,6 +17,10 @@ public class Drone : PositionSensor
     private GameEvent OnDrownFlareMessage;
     [SerializeField]
     private GameEvent OnGameReady;
+    [SerializeField]
+    private FloatEvent OnScanOnCooldown;
+    [SerializeField]
+    private BoolEvent OnDroneConnectionStateChanged;
 
     private bool moving;
     private Vector3 targetPos;
@@ -52,19 +56,21 @@ public class Drone : PositionSensor
     [SerializeField]
     private Flare flairePrefab;
 
+    public const char IDENTIFIER = 'D';
+
     private void Awake()
     {
-        OnDroneMoveMessage.AddListener(MoveCommand);
+        OnDroneMoveMessage.AddListener(MoveToMapCoordinateCommand);
         OnDrownScanMessage.AddListener(ScanCommand);
         OnDrownFlareMessage.AddListener(FlareCommand);
         OnGameReady.AddListener(() => SendPosUpdate());
 
-        UpdateCreateFunc = MessageUtility.CreateDronePosMessage;
+        identifier = IDENTIFIER;
     }
 
     protected override void AfterDisturbedChange()
     {
-        NetworkManager.Instance.Transmitter.WriteToClient(MessageUtility.CreateDroneStateChangedMessage(Disturbed));
+        OnDroneConnectionStateChanged.RaiseEvent(Disturbed);
         if (Disturbed)
             moving = false;
     }
@@ -102,14 +108,21 @@ public class Drone : PositionSensor
         Instantiate(flairePrefab, transform.position, Quaternion.identity);
     }
 
-    public void MoveCommand(Vector2 mapCoordinateTargetPos)
+    public void MoveToMapCoordinateCommand(Vector2 mapCoordinateTargetPos)
     {
         if (Disturbed) return;
 
-        MoveCommand(mapData.MapCoordinateToWorldPos(mapCoordinateTargetPos));
+        MoveToWorldPosCommand(mapData.MapCoordinateToWorldPos(mapCoordinateTargetPos));
     }
 
-    public void MoveCommand(Vector3 worldTargetPos)
+    public void MoveToWorldPosCommand(Vector2 worldTargetPos)
+    {
+        if (Disturbed) return;
+
+        MoveToWorldPosCommand(worldTargetPos.ToVector3(transform.position.y));
+    }
+
+    public void MoveToWorldPosCommand(Vector3 worldTargetPos)
     {
         if (Disturbed) return;
 
@@ -125,7 +138,7 @@ public class Drone : PositionSensor
         if(cooldownTimer > 0)
         {
             Debug.Log("Scan in cooldown");
-            NetworkManager.Instance.Transmitter.WriteToClient(MessageUtility.CreateScanCooldownMessage(cooldownTimer));
+            OnScanOnCooldown.RaiseEvent(cooldownTimer);
         }
         else
         {
@@ -139,11 +152,10 @@ public class Drone : PositionSensor
         cooldownTimer = scanCooldown;
         for (int i = 0; i < scanAmount; ++i)
         {
-            Collider[] overlaps = Physics.OverlapSphere(new Vector3(this.transform.position.x, 0, this.transform.position.z), scanRadius, scanLayerMask);
+            Collider[] overlaps = Physics.OverlapSphere(transform.position.ToVector2(), scanRadius, scanLayerMask);
             foreach(Collider collider in overlaps)
             {
-                NetworkManager.Instance.Transmitter.WriteToClient(MessageUtility.CreateScanResultMessage(collider.transform.position));
-                OnGuardScanned.RaiseEvent(collider.transform.position);
+                OnGuardScanned.RaiseEvent(collider.transform.position.ToVector2());
                 Debug.Log("OnGuardscanned: " + collider.transform.position);
             }
             yield return new WaitForSeconds(scanInterval);

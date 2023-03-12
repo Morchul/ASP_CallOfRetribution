@@ -12,7 +12,7 @@ public class NextTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag(Thief.TAG))
             tutorial.EnterTrigger(id);
     }
 }

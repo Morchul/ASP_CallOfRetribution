@@ -5,7 +5,7 @@ public class ClientMessageHandler : MessageHandler
     public GameEvent OnConnectionRefused;
 
     public BoolEvent OnDroneConnectionStateChange;
-    public StringEvent OnScanOnCooldown;
+    public FloatEvent OnScanOnCooldown;
 
     public Vector2Event OnDronePosUpdate;
     public Vector2Event OnThiefPosUpdate;
@@ -31,19 +31,19 @@ public class ClientMessageHandler : MessageHandler
         }
         else if (message.StartsWith(MessageUtility.SCAN_COOLDOWN_PREFIX))
         {
-            OnScanOnCooldown.RaiseEvent(message.Substring(MessageUtility.SCAN_COOLDOWN_PREFIX.Length));
+            OnScanOnCooldown.RaiseEvent(MessageUtility.GetCooldownTime(message));
         }
         else if (message.StartsWith(MessageUtility.DRONE_STATE_CHANGE_PREFIX))
         {
             OnDroneConnectionStateChange.RaiseEvent(MessageUtility.GetDroneState(message));
         }
-        else if (message.StartsWith(MessageUtility.DRONE_POS_PREFIX))
+        else if (message.StartsWith(MessageUtility.POS_UPDATE_PREFIX))
         {
-            OnDronePosUpdate.RaiseEvent(MessageUtility.GetDronePosFromMessage(message));
-        }
-        else if (message.StartsWith(MessageUtility.THIEF_POS_PREFIX))
-        {
-            OnThiefPosUpdate.RaiseEvent(MessageUtility.GetThiefPosFromMessage(message));
+            PosUpdateEvent.PosUpdate posUpdate = MessageUtility.GetPosUpdateInfoFromMessage(message);
+            if (posUpdate.Identifier == Thief.IDENTIFIER)
+                OnThiefPosUpdate.RaiseEvent(posUpdate.Pos.ToVector2());
+            else if (posUpdate.Identifier == Drone.IDENTIFIER)
+                OnDronePosUpdate.RaiseEvent(posUpdate.Pos.ToVector2());
         }
         else if(message.StartsWith(MessageUtility.SCAN_RESULT_PREFIX))
         {

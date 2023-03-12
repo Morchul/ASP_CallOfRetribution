@@ -6,7 +6,7 @@ using UnityEngine;
 public class ThiefInteraction : MonoBehaviour
 {
     [SerializeField]
-    private ThiefTest thief;
+    private Thief thief;
 
     [SerializeField]
     private GameEvent OnSuspiciousActionExecuted;

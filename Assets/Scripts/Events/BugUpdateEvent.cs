@@ -3,28 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "BugPlacedEvent", menuName = "Events/BugPlacedEvent")]
-public class BugUpdateEvent : ScriptableObject
+public class BugUpdateEvent : NetworkGameEvent<BugUpdateEvent.BugUpdate>
 {
-	private event BugUpdateEventMethod _event;
-
-	public delegate void BugUpdateEventMethod(int ID, IBugable.Type type, int status);
-
-	public void AddListener(BugUpdateEventMethod listener)
-	{
-		_event += listener;
-	}
-	public void RemoveListener(BugUpdateEventMethod listener)
-	{
-		_event -= listener;
-	}
-
 	public void RaiseEvent(int ID, IBugable.Type type, int status)
 	{
-		_event?.Invoke(ID, type, status);
+		RaiseEvent(new BugUpdate(ID, type, status));
 	}
 
-	public void Reset()
+	protected override string CreateEventMessage(BugUpdate value)
 	{
-		_event = null;
+		return value.ID + "/" + (int)value.Type + "/" + value.Status;
+	}
+
+	protected override BugUpdate GetEventValue(string messageWithoutPrefix)
+	{
+		string[] values = messageWithoutPrefix.Split('/');
+		return new BugUpdate
+		(
+			int.Parse(values[0]),
+			(IBugable.Type)int.Parse(values[1]),
+			int.Parse(values[2])
+		);
+	}
+
+	public struct BugUpdate
+	{
+		public int ID;
+		public IBugable.Type Type;
+		public int Status;
+
+		public BugUpdate(int id, IBugable.Type type, int status)
+		{
+			ID = id;
+			Type = type;
+			Status = status;
+		}
 	}
 }

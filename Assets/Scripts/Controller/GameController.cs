@@ -22,6 +22,15 @@ public class GameController : ScriptableObject
     private GameEvent OnMissionFinishedSuccessfully;
     [SerializeField]
     private GameEvent OnMissionFailed;
+    [SerializeField]
+    private IntEvent OnMissionSelected;
+
+    [SerializeField]
+    private GameEvent OnMissionLoaded;
+    [SerializeField]
+    private GameEvent OnGameReady;
+
+    private int clientsReady;
 
     public void Init()
     {
@@ -29,6 +38,8 @@ public class GameController : ScriptableObject
         OnConnectionShutdown.AddListener(ReturnToLobby);
         OnMissionFinishedSuccessfully.AddListener(StopGame);
         OnMissionFailed.AddListener(StopGame);
+        OnMissionLoaded.AddListener(MissionLoaded);
+        clientsReady = 0;
     }
 
     public void StopGame()
@@ -39,6 +50,12 @@ public class GameController : ScriptableObject
     public void ResumeGame()
     {
         Time.timeScale = 1;
+    }
+
+    private void MissionLoaded()
+    {
+        if (++clientsReady == 2)
+            OnGameReady.RaiseEvent();
     }
 
     public void StartMission()
@@ -54,11 +71,6 @@ public class GameController : ScriptableObject
         {
             Debug.LogError("Can't start game, no mission is selected!");
         }
-    }
-
-    public void SelectMission(Mission mission)
-    {
-        NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.CreateSelectMissionMessage(mission.ID));
     }
 
     public void ReturnToLobby()

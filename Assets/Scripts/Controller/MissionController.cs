@@ -73,9 +73,9 @@ public class MissionController : ScriptableObject
         progressController.SetCurrentProgress(CurrentMission.ID);
     }
 
-    private void BugUpdate(int bugID, IBugable.Type type, int status)
+    private void BugUpdate(BugUpdateEvent.BugUpdate bugUpdate)
     {
-        Bugs[bugID].Update(type, status);
+        Bugs[bugUpdate.ID].Update(bugUpdate.Type, bugUpdate.Status);
     }
 
     private void NewInformation(int infoID)

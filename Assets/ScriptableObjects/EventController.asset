@@ -12,40 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5db2ea641a19c4da6b78db108542e2, type: 3}
   m_Name: EventController
   m_EditorClassIdentifier: 
-  OnResetGame: {fileID: 11400000, guid: 1a60a4871b9a1ac4fa4a778541729734, type: 2}
+  OnResetGame: {fileID: 11400000, guid: 4e276141865da0e499e7959229aab82b, type: 2}
   gameEventsToResetAfterGame:
-  - {fileID: 11400000, guid: a8f2603f5610e394083df05b4d9225ed, type: 2}
-  - {fileID: 11400000, guid: 22bcbdec74a922e4aa03d2220b17d9c9, type: 2}
   - {fileID: 11400000, guid: 882cbd19f10e86b4886272b99d52727c, type: 2}
   - {fileID: 11400000, guid: 4754bcd8f519a4248a30349ade22ec28, type: 2}
   - {fileID: 11400000, guid: 20ae5e08772fd354f97cfbb0e6831bf3, type: 2}
   - {fileID: 11400000, guid: 29eac446f27846642929b3d14f6a8bcd, type: 2}
-  - {fileID: 11400000, guid: 2dac19d47796ce84884b8c78ad9c1ad7, type: 2}
-  - {fileID: 11400000, guid: 83acf8aaf8da3c145adcdc543a1fb600, type: 2}
-  - {fileID: 11400000, guid: 8a7b863b976692d4ca433b923f48ce22, type: 2}
-  - {fileID: 11400000, guid: 6cf8f5c234a9cdd42b4a2543a5548fa8, type: 2}
-  - {fileID: 11400000, guid: b3c06fe560113cd4480f9db776d9a178, type: 2}
-  - {fileID: 11400000, guid: 334470a4e5b191b43b31b0a1c603ae26, type: 2}
-  - {fileID: 11400000, guid: 590e9cac908f6f44db2d5e61f4fa18f0, type: 2}
-  - {fileID: 11400000, guid: 18ca4a8f77d5ee149aca6106844ca4d0, type: 2}
-  - {fileID: 11400000, guid: 1a60a4871b9a1ac4fa4a778541729734, type: 2}
+  - {fileID: 11400000, guid: 36531e5c55701dc4296fd1662153d129, type: 2}
+  - {fileID: 11400000, guid: 7b11b014d2b90f84288abb6ba385ea2b, type: 2}
+  - {fileID: 11400000, guid: e42863ee6aab7b245a624f367f4e24b2, type: 2}
+  - {fileID: 11400000, guid: dcd32fa1affe8a649a879737f70b7b51, type: 2}
+  - {fileID: 11400000, guid: baa070a6ece754e48bd62778b6bd42a1, type: 2}
+  - {fileID: 11400000, guid: 58be087a887627142964a34886472963, type: 2}
+  - {fileID: 11400000, guid: 26bfd7e7fecd599418fcd665a5b260c2, type: 2}
+  - {fileID: 11400000, guid: cc3f24bdc65c5864d84255c0d12f91e6, type: 2}
+  - {fileID: 11400000, guid: 4e276141865da0e499e7959229aab82b, type: 2}
   - {fileID: 11400000, guid: 2c2b94ce3b2e7b145b2b0f4ef018cc71, type: 2}
   boolEventsToResetAfterGame:
   - {fileID: 11400000, guid: 2ded24303165cf74ea46b25e1edc906e, type: 2}
-  floatEventsToResetAfterGame: []
+  floatEventsToResetAfterGame:
+  - {fileID: 11400000, guid: 0fb1fedecae493d439f696d307c12d89, type: 2}
   intEventsToResetAfterGame:
+  - {fileID: 11400000, guid: cc6701d217e47c4499fbb51a9707af11, type: 2}
+  - {fileID: 11400000, guid: 74ad9433e948bbf4482f2984a0db5301, type: 2}
   - {fileID: 11400000, guid: b814887e908ba654ab84db5d34cf4606, type: 2}
   - {fileID: 11400000, guid: 97bb02a1aacb8be44b4873997f735aaf, type: 2}
   - {fileID: 11400000, guid: 48c87b46d59e39e49aa0d6494046e02d, type: 2}
   stringEventsToResetAfterGame:
   - {fileID: 11400000, guid: c8692811bef704a4ea50805f44773594, type: 2}
-  - {fileID: 11400000, guid: 626f53595df92cb42bd8e46fc3edf7c9, type: 2}
+  - {fileID: 11400000, guid: 7902d2c899aaf48498d662a9110db5d5, type: 2}
   vector2EventsToResetAfterGame:
   - {fileID: 11400000, guid: b85cf2e3df46b6247bc84cab16c1601d, type: 2}
-  - {fileID: 11400000, guid: a9eb02a4947d64d418b8376b93a99dde, type: 2}
   - {fileID: 11400000, guid: 918ed3ca555bf32478c8c38173d90ffa, type: 2}
   - {fileID: 11400000, guid: 491ca8868fa7a4945876d1cf550bf831, type: 2}
-  - {fileID: 11400000, guid: 7439af8c6ce48b64e818f1e410eec391, type: 2}
   bugUpdateEventsToResetAfterGame:
   - {fileID: 11400000, guid: 8ae02f8a2a98e7045a28bac4ae8553a2, type: 2}
   - {fileID: 11400000, guid: cc5b3cc79e2a87b4a8b1efc6172af7a5, type: 2}

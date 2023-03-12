@@ -3,7 +3,10 @@ using UnityEngine;
 public class WorldObjectRefPos : MonoBehaviour
 {
     [SerializeField]
-    private Vector2Event OnPosUpdateEvent;
+    private PosUpdateEvent OnPosUpdateEvent;
+
+    [SerializeField]
+    private char identifier;
 
     [SerializeField]
     private MapData mapData;
@@ -14,10 +17,12 @@ public class WorldObjectRefPos : MonoBehaviour
         OnPosUpdateEvent.AddListener(UpdatePos);
     }
 
-    private void UpdatePos(Vector2 xzWorldPos)
+    private void UpdatePos(PosUpdateEvent.PosUpdate posUpdate)
     {
-        Vector2 mapPos = mapData.XZWorldPosToMapPos(xzWorldPos);
-        Debug.Log("Update pos to: " + mapPos);
-        transform.localPosition = new Vector3(mapPos.x, 0, mapPos.y);
+        if(posUpdate.Identifier == identifier)
+        {
+            Vector2 mapPos = mapData.XZWorldPosToMapPos(posUpdate.Pos);
+            transform.localPosition = mapPos.ToVector3();
+        }
     }
 }

@@ -29,22 +29,22 @@ public class Bug : ElectronicDevice
         defaultScale = transform.localScale;
     }
 
-    private void StateUpdate(int bugID, IBugable.Type type, int state)
+    private void StateUpdate(BugUpdateEvent.BugUpdate bugUpdate)
     {
-        if (this.BugID != bugID || placedOnItem == null) return;
+        if (this.BugID != bugUpdate.ID || placedOnItem == null) return;
 
         if (Disturbed)
         {
-            onBugDisturbedEvent.RaiseEvent(bugID);
+            onBugDisturbedEvent.RaiseEvent(bugUpdate.ID);
             return;
         }
-        if (placedOnItem.TryChangeState(state))
+        if (placedOnItem.TryChangeState(bugUpdate.Status))
         {
             onBugUpdateEvent.RaiseEvent(BugID, placedOnItem.ObjectType, placedOnItem.State);
         }
         else
         {
-            onBugDeniedEvent.RaiseEvent(bugID);
+            onBugDeniedEvent.RaiseEvent(bugUpdate.ID);
         }
     }
 

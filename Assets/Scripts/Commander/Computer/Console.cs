@@ -25,9 +25,15 @@ public class Console : MonoBehaviour
     [SerializeField]
     private FloatEvent OnScanOnCooldown;
     [SerializeField]
-    private GameEvent OnBugDisturbed;
+    private IntEvent OnBugDisturbed;
     [SerializeField]
-    private GameEvent OnBugDenied;
+    private IntEvent OnBugDenied;
+    [SerializeField]
+    private Vector2Event OnDroneMoveEvent;
+    [SerializeField]
+    private GameEvent OnDrownScanEvent;
+    [SerializeField]
+    private GameEvent OnDrownFlareEvent;
 
     [Header("Hacker")]
     [SerializeField]
@@ -50,8 +56,8 @@ public class Console : MonoBehaviour
     {
         OnDroneConnectionStateChange.AddListener(DroneStateChanged);
         OnScanOnCooldown.AddListener(ScanOnCooldown);
-        OnBugDisturbed.AddListener(() => AddLog("Bug did not respond"));
-        OnBugDenied.AddListener(() => AddLog("Access denied!"));
+        OnBugDisturbed.AddListener((id) => AddLog("Bug " + id + " did not respond"));
+        OnBugDenied.AddListener((id) => AddLog("Bug " + id + ": Access denied!"));
         droneConnected = true;
 
         commandHandler = new List<HandleCommand>() { CheckForPortDefense,  ExecuteDroneCommand};
@@ -102,20 +108,20 @@ public class Console : MonoBehaviour
             if (MessageUtility.TryConvertToCoordinates(coordinates, out Vector2 coord))
             {
                 AddLog("Move drone to position: " + coord);
-                NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.CreateMoveDroneMessage(coord));
+                OnDroneMoveEvent.RaiseEvent(coord);
             }
         }
 
         else if (command.ToLower() == SCAN_COMMAND)
         {
             AddLog("Start scanning");
-            NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.SCAN_DRONE);
+            OnDrownScanEvent.RaiseEvent();
         }
 
         else if(command.ToLower() == FLARE_COMMAND)
         {
             AddLog("Fire flare");
-            NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.FLARE_DRONE);
+            OnDrownFlareEvent.RaiseEvent();
         }
         else
         {

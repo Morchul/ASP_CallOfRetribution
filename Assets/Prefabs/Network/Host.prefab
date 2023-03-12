@@ -45,18 +45,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transmitter: {fileID: 6407646496907217850}
   gameController: {fileID: 11400000, guid: 8d56789aec344864aa4812991fa68b34, type: 2}
-  OnConnectionShutdown: {fileID: 11400000, guid: 2dac19d47796ce84884b8c78ad9c1ad7, type: 2}
+  OnChatMessageSend: {fileID: 11400000, guid: 7902d2c899aaf48498d662a9110db5d5, type: 2}
+  OnMissionLoaded: {fileID: 11400000, guid: cc3f24bdc65c5864d84255c0d12f91e6, type: 2}
   OnChatMessageReceived: {fileID: 11400000, guid: c8692811bef704a4ea50805f44773594, type: 2}
+  OnGameReady: {fileID: 11400000, guid: dcd32fa1affe8a649a879737f70b7b51, type: 2}
+  OnConnectionShutdown: {fileID: 11400000, guid: 36531e5c55701dc4296fd1662153d129, type: 2}
+  OnDroneConnectionStateChange: {fileID: 11400000, guid: 2ded24303165cf74ea46b25e1edc906e, type: 2}
+  OnScanOnCooldown: {fileID: 11400000, guid: 0fb1fedecae493d439f696d307c12d89, type: 2}
+  OnExtractionPointActivate: {fileID: 11400000, guid: 918ed3ca555bf32478c8c38173d90ffa, type: 2}
+  OnGuardScanned: {fileID: 11400000, guid: 491ca8868fa7a4945876d1cf550bf831, type: 2}
+  OnBugUpdate: {fileID: 11400000, guid: 8ae02f8a2a98e7045a28bac4ae8553a2, type: 2}
+  OnBugDenied: {fileID: 11400000, guid: cc6701d217e47c4499fbb51a9707af11, type: 2}
+  OnBugDisturbed: {fileID: 11400000, guid: 74ad9433e948bbf4482f2984a0db5301, type: 2}
+  OnMissionFinishedSuccessfully: {fileID: 11400000, guid: 26bfd7e7fecd599418fcd665a5b260c2, type: 2}
+  OnMissionFailed: {fileID: 11400000, guid: 58be087a887627142964a34886472963, type: 2}
   OnMissionSelect: {fileID: 11400000, guid: b814887e908ba654ab84db5d34cf4606, type: 2}
-  OnMissionLoaded: {fileID: 11400000, guid: 18ca4a8f77d5ee149aca6106844ca4d0, type: 2}
-  OnGameReady: {fileID: 11400000, guid: 6cf8f5c234a9cdd42b4a2543a5548fa8, type: 2}
-  OnDroneMoveMessage: {fileID: 11400000, guid: b85cf2e3df46b6247bc84cab16c1601d, type: 2}
-  OnDrownScanMessage: {fileID: 11400000, guid: 8a7b863b976692d4ca433b923f48ce22, type: 2}
-  OnDrownFlareMessage: {fileID: 11400000, guid: 83acf8aaf8da3c145adcdc543a1fb600, type: 2}
-  OnBugUpdateRequestEvent: {fileID: 11400000, guid: cc5b3cc79e2a87b4a8b1efc6172af7a5, type: 2}
-  OnBugUpdateEvent: {fileID: 11400000, guid: 8ae02f8a2a98e7045a28bac4ae8553a2, type: 2}
-  OnMissionFinishedSuccessfully: {fileID: 11400000, guid: 590e9cac908f6f44db2d5e61f4fa18f0, type: 2}
-  OnMissionFailed: {fileID: 11400000, guid: 334470a4e5b191b43b31b0a1c603ae26, type: 2}
+  OnPosUpdate: {fileID: 11400000, guid: 12cf0b4ab4b4c10438df33e29ad72411, type: 2}
+  OnBugUpdateRequest: {fileID: 11400000, guid: cc5b3cc79e2a87b4a8b1efc6172af7a5, type: 2}
+  OnDroneMove: {fileID: 11400000, guid: b85cf2e3df46b6247bc84cab16c1601d, type: 2}
+  OnDroneScan: {fileID: 11400000, guid: e42863ee6aab7b245a624f367f4e24b2, type: 2}
+  OnDrownFlare: {fileID: 11400000, guid: 7b11b014d2b90f84288abb6ba385ea2b, type: 2}
 --- !u!1 &6278398998381815395
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageHandler: {fileID: 9220014768346772109}
   OnConnectionLost: {fileID: 11400000, guid: 20ae5e08772fd354f97cfbb0e6831bf3, type: 2}
-  OnConnectionShutdown: {fileID: 11400000, guid: 2dac19d47796ce84884b8c78ad9c1ad7, type: 2}
+  OnConnectionShutdown: {fileID: 11400000, guid: 36531e5c55701dc4296fd1662153d129, type: 2}
 --- !u!1 &7163392524228018819
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,4 +159,4 @@ MonoBehaviour:
   messageTransmitter: {fileID: 6407646496907217850}
   OnConnectionLost: {fileID: 11400000, guid: 20ae5e08772fd354f97cfbb0e6831bf3, type: 2}
   OnConnectionEstablished: {fileID: 11400000, guid: 882cbd19f10e86b4886272b99d52727c, type: 2}
-  OnConnectionShutdown: {fileID: 11400000, guid: 2dac19d47796ce84884b8c78ad9c1ad7, type: 2}
+  OnConnectionShutdown: {fileID: 11400000, guid: 36531e5c55701dc4296fd1662153d129, type: 2}

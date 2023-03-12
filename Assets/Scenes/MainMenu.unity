@@ -2049,6 +2049,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 1b395dc88c3bf4645aee84306dcaffa4, type: 2}
     - target: {fileID: 6209897032799802490, guid: 9d5df0a73490d0f41aa7b95fe1809ad7, type: 3}
+      propertyPath: lobby
+      value: 
+      objectReference: {fileID: 1815036095}
+    - target: {fileID: 6209897032799802490, guid: 9d5df0a73490d0f41aa7b95fe1809ad7, type: 3}
       propertyPath: mission
       value: 
       objectReference: {fileID: 11400000, guid: 1b395dc88c3bf4645aee84306dcaffa4, type: 2}
@@ -3923,6 +3927,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 1b395dc88c3bf4645aee84306dcaffa4, type: 2}
     - target: {fileID: 6209897032799802490, guid: 9d5df0a73490d0f41aa7b95fe1809ad7, type: 3}
+      propertyPath: lobby
+      value: 
+      objectReference: {fileID: 1815036095}
+    - target: {fileID: 6209897032799802490, guid: 9d5df0a73490d0f41aa7b95fe1809ad7, type: 3}
       propertyPath: mission
       value: 
       objectReference: {fileID: 0}
@@ -4910,8 +4918,9 @@ MonoBehaviour:
   ipAddress: {fileID: 749171456}
   mainMenu: {fileID: 678244047}
   OnConnectionLost: {fileID: 11400000, guid: 20ae5e08772fd354f97cfbb0e6831bf3, type: 2}
-  OnConnectionShutdown: {fileID: 11400000, guid: 2dac19d47796ce84884b8c78ad9c1ad7, type: 2}
+  OnConnectionShutdown: {fileID: 11400000, guid: 36531e5c55701dc4296fd1662153d129, type: 2}
   OnMissionSelect: {fileID: 11400000, guid: b814887e908ba654ab84db5d34cf4606, type: 2}
+  gameController: {fileID: 11400000, guid: 8d56789aec344864aa4812991fa68b34, type: 2}
 --- !u!1 &1941815866
 GameObject:
   m_ObjectHideFlags: 0

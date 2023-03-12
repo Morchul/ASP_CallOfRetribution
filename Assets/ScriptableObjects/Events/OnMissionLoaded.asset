@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc6d6636e6aab704084c2d86a6c250e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 18807992d5083d546976a8b51f87cfdf, type: 3}
   m_Name: OnMissionLoaded
   m_EditorClassIdentifier: 
+  prefix: MIS_LOADED

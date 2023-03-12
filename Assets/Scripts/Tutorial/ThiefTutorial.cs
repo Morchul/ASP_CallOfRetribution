@@ -208,12 +208,12 @@ public class ThiefTutorial : MonoBehaviour
         }
     }
 
-    private void OnBugUpdateEvent(int bugID, IBugable.Type type, int status)
+    private void OnBugUpdateEvent(BugUpdateEvent.BugUpdate bugUpdate)
     {
-        if ((stepCounter == TutorialSteps.PlaceBug && type == IBugable.Type.Lock) ||
-            (stepCounter == TutorialSteps.Alarm && type == IBugable.Type.Alarm))
+        if ((stepCounter == TutorialSteps.PlaceBug && bugUpdate.Type == IBugable.Type.Lock) ||
+            (stepCounter == TutorialSteps.Alarm && bugUpdate.Type == IBugable.Type.Alarm))
         {
-            stateHelper = bugID;
+            stateHelper = bugUpdate.ID;
             NextStep();
         }
     }

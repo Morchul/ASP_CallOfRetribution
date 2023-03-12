@@ -16,7 +16,9 @@ public class AlarmProgram : Program
     private TMP_Text alarmState;
 
     private Console console;
-    private MessageTransmitter transmitter;
+
+    [SerializeField]
+    private BugUpdateEvent OnBugUpdateRequestEvent;
 
     protected override void Awake()
     {
@@ -25,11 +27,6 @@ public class AlarmProgram : Program
         console = computer.Console;
 
         gameObject.SetActive(false);
-    }
-
-    private void Start()
-    {
-        transmitter = NetworkManager.Instance.Transmitter;
     }
 
     public void SetBugReferenc(BugReferenc bug)
@@ -70,7 +67,7 @@ public class AlarmProgram : Program
     public void Hack()
     {
         console.AddLog("Getting access to lock...");
-        transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | Alarm.AlarmState.Hacked)));
+        OnBugUpdateRequestEvent.RaiseEvent(bug.ID, bug.Type, (int)(state | Alarm.AlarmState.Hacked));
         StartCoroutine(HackAlarm());
     }
 
@@ -90,7 +87,7 @@ public class AlarmProgram : Program
     {
         if (computer.Busy) return;
         console.AddLog("Set of alarm");
-        transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | Alarm.AlarmState.On)));
+        OnBugUpdateRequestEvent.RaiseEvent(bug.ID, bug.Type, (int)(state | Alarm.AlarmState.On));
     }
 
     private IEnumerator HackAlarm()
@@ -111,14 +108,14 @@ public class AlarmProgram : Program
         console.AddLog("Enable alarm...");
 
         yield return new WaitForSeconds(1);
-        transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state & ~Alarm.AlarmState.Disabled)));
+        OnBugUpdateRequestEvent.RaiseEvent(bug.ID, bug.Type, (int)(state & ~Alarm.AlarmState.Disabled));
     }
 
     private IEnumerator DisableAlarm()
     {
         console.AddLog("Disable alarm...");
         yield return new WaitForSeconds(1);
-        transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | Alarm.AlarmState.Disabled)));
+        OnBugUpdateRequestEvent.RaiseEvent(bug.ID, bug.Type, (int)(state | Alarm.AlarmState.Disabled));
     }
 
     public override void CloseProgram()

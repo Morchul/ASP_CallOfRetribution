@@ -45,7 +45,7 @@ public abstract class MessageTransmitter : MonoBehaviour
         if (NetworkManager.Instance.DEBUG_MODE) return;
 
         OnConnectionShutdown.AddListener(ConnectionShutdown);
-        messageHandler.Refresh();
+        messageHandler.ForwardEvents();
     }
 
     public void SetConnectedSocket(Socket socket)
@@ -123,7 +123,7 @@ public abstract class MessageTransmitter : MonoBehaviour
                 {
                     Monitor.Exit(receivedMessages);
                     if (message != null)
-                        messageHandler.HandleMessage(message);
+                        messageHandler.HandleReceivedMessage(message);
                 }
             }
         }
@@ -151,6 +151,10 @@ public abstract class MessageTransmitter : MonoBehaviour
 
     public abstract void WriteToClient(string message);
     public abstract void WriteToHost(string message);
+    public virtual void WriteToOther(string message)
+    {
+        WriteOverSocket(message);
+    }
 
     private void ConnectionShutdown()
     {

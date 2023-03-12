@@ -18,12 +18,12 @@ public class GameEvent : ScriptableObject
 		_event -= listener;
 	}
 
-	public void RaiseEvent()
+	public virtual void RaiseEvent()
 	{
 		_event?.Invoke();
 	}
 
-	public void Reset()
+	public virtual void Reset()
 	{
 		_event = null;
 	}
@@ -44,12 +44,12 @@ public class GameEvent<T> : ScriptableObject
 		_event -= listener;
 	}
 
-	public void RaiseEvent(T value)
+	public virtual void RaiseEvent(T value)
 	{
 		_event?.Invoke(value);
 	}
 
-	public void Reset()
+	public virtual void Reset()
 	{
 		_event = null;
 	}

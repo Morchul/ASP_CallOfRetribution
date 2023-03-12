@@ -9,7 +9,7 @@ public class MissionButton : MonoBehaviour
     private Mission mission;
 
     [SerializeField]
-    private GameController gameController;
+    private Lobby lobby;
     [SerializeField]
     private ProgressController progressController;
 
@@ -19,7 +19,7 @@ public class MissionButton : MonoBehaviour
         Button button = GetComponent<Button>();
         if (mission != null && progressController.GetCurrentProgress() >= mission.ID - 1)
         {
-            button.onClick.AddListener(() => gameController.SelectMission(mission));
+            button.onClick.AddListener(() => lobby.SelectMission(mission));
             button.interactable = true;
         }
         else

@@ -25,6 +25,10 @@ public class Lobby : MonoBehaviour
     [SerializeField]
     private IntEvent OnMissionSelect;
 
+    [Header("Controller")]
+    [SerializeField]
+    private GameController gameController;
+
     private bool host;
 
     public void ShowLobby(bool host)
@@ -62,6 +66,12 @@ public class Lobby : MonoBehaviour
         {
             CloseLobby();
         }
+    }
+
+    public void SelectMission(Mission mission)
+    {
+        OnMissionSelect.RaiseEvent(mission.ID);
+        gameController.StartMission();
     }
 
     private void MissionSelectEvent(int _)

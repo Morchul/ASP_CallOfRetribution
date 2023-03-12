@@ -157,6 +157,15 @@ public static class MessageUtility
         return true;
     }
 
+    public static int GetIntAfterPrefix(string prefix, string message)
+    {
+        if(int.TryParse(message.Substring(prefix.Length), out int res))
+        {
+            return res;
+        }
+        return 0;
+    }
+
     //This methods are used because default z would be 0 and y would be used by conversion
     public static Vector2 ToVector2(this Vector3 vec3) => new Vector2(vec3.x, vec3.z);
     public static Vector3 ToVector3(this Vector2 vec2, float yPos = 0) => new Vector3(vec2.x, yPos, vec2.y);

@@ -740,6 +740,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aad2a295c58468438f927f0ba580b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnChatMessageReceived: {fileID: 11400000, guid: c8692811bef704a4ea50805f44773594, type: 2}
   chatEntries: {fileID: 7195055189220366448}
   chatInputField: {fileID: 7195055189119488765}
+  OnChatMessage: {fileID: 11400000, guid: 2e5c92fea10682b478e1aa2c99867a0d, type: 2}

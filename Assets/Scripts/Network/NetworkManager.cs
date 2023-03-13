@@ -19,7 +19,8 @@ public class NetworkManager : MonoBehaviour
     public bool DEBUG_MODE = false;
     public bool DEBUG_HOST = false;
 
-    public MessageTransmitter Transmitter { get; private set; }
+    //public MessageTransmitter Transmitter { get; private set; }
+    private MessageTransmitter Transmitter { get; set; }
     public IConnectionHandler ConnectionHandler { get; private set; }
 
     public bool IsConnected => ConnectionHandler != null && ConnectionHandler.Running && Transmitter.Running;

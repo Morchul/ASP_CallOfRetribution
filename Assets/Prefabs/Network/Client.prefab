@@ -45,9 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transmitter: {fileID: 6099518835256828096}
   gameController: {fileID: 11400000, guid: 8d56789aec344864aa4812991fa68b34, type: 2}
-  OnChatMessageSend: {fileID: 11400000, guid: 7902d2c899aaf48498d662a9110db5d5, type: 2}
+  OnChatMessage: {fileID: 11400000, guid: 2e5c92fea10682b478e1aa2c99867a0d, type: 2}
   OnMissionLoaded: {fileID: 11400000, guid: cc3f24bdc65c5864d84255c0d12f91e6, type: 2}
-  OnChatMessageReceived: {fileID: 11400000, guid: c8692811bef704a4ea50805f44773594, type: 2}
   OnGameReady: {fileID: 11400000, guid: dcd32fa1affe8a649a879737f70b7b51, type: 2}
   OnConnectionShutdown: {fileID: 11400000, guid: 36531e5c55701dc4296fd1662153d129, type: 2}
   OnDroneConnectionStateChange: {fileID: 11400000, guid: 2ded24303165cf74ea46b25e1edc906e, type: 2}

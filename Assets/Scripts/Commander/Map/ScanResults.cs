@@ -4,20 +4,29 @@ using UnityEngine;
 
 public class ScanResults : MonoBehaviour
 {
+    [Header("Events")]
     [SerializeField]
     private Vector2Event OnGuardScanned;
+    [SerializeField]
+    private Vector2Event OnExtractionPointActivated;
 
+    [Header("Data")]
     [SerializeField]
     private MapData mapData;
 
+    [Header("Objects")]
     [SerializeField]
     private ScanResultObject ScanObjectPrefab;
+    [SerializeField]
+    private GameObject extractionPointRefObject;
+    
 
     private List<ScanResultObject> scanObjectPool;
 
     private void Awake()
     {
         OnGuardScanned.AddListener(NewScan);
+        OnExtractionPointActivated.AddListener((worldPos) => extractionPointRefObject.transform.position = mapData.XZWorldPosToMapPos(worldPos));
         scanObjectPool = new List<ScanResultObject>();
     }
 

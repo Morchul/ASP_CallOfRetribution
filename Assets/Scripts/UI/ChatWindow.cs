@@ -14,21 +14,21 @@ public class ChatWindow : MonoBehaviour
 
     [Header("Events")]
     [SerializeField]
-    private StringEvent OnChatMessageReceived;
-    [SerializeField]
-    private StringEvent OnChatMessageSend;
+    private StringEvent OnChatMessage;
+    //[SerializeField]
+    //private StringEvent OnChatMessageSend;
 
 
     private void Start()
     {
-        OnChatMessageReceived.AddListener(NewChatMessage);
+        OnChatMessage.AddListener(NewChatMessage);
         chatInputField.onEndEdit.AddListener(SendNewMessage);
 
     }
 
     private void SendNewMessage(string message)
     {
-        OnChatMessageSend.RaiseEvent(message);
+        OnChatMessage.RaiseEvent(message);
     }
 
     private void NewChatMessage(string message)

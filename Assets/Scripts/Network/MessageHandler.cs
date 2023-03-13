@@ -10,17 +10,15 @@ public abstract class MessageHandler : MonoBehaviour
     protected GameController gameController;
 
     [Header("Events")]
+    [SerializeField]
+    protected StringEvent OnChatMessage;
     //Do not receive any of this events with a handler
     [Header("Only outgoing")]
-    [SerializeField]
-    protected StringEvent OnChatMessageSend;
     [SerializeField]
     protected NetworkGameEvent OnMissionLoaded;
 
     [Header("Only incoming")]
     //Do not send any of this events to the other client
-    [SerializeField]
-    protected StringEvent OnChatMessageReceived;
     [SerializeField]
     protected NetworkGameEvent OnGameReady;
     [SerializeField]
@@ -67,7 +65,7 @@ public abstract class MessageHandler : MonoBehaviour
         //OnMissionLoaded.AddListener(() => transmitter.WriteToHost(MessageUtility.MISSION_LOADED));
         //OnChatMessageSend.AddListener((message) => transmitter.WriteToHost(MessageUtility.CreateChatMessage(message)));
         OnMissionLoaded.ForwardEvent(transmitter);
-        OnChatMessageSend.ForwardEvent(transmitter);
+        OnChatMessage.ForwardEvent(transmitter);
     }
 
     public virtual void HandleReceivedMessage(string message)
@@ -75,7 +73,7 @@ public abstract class MessageHandler : MonoBehaviour
         Debug.Log("Received Message: " + message);
 
         if (OnConnectionShutdown.Listen(message)) return;
-        if (OnChatMessageReceived.Listen(message)) return;
+        if (OnChatMessage.Listen(message)) return;
         if (OnGameReady.Listen(message)) return;
 
         /*if (message == MessageTransmitterCommands.SHUTDOWN)

@@ -46,7 +46,6 @@ public class Map : MovableFocusObject
         if (InFocus)
         {
             startPos = transform.position;
-            Debug.Log("Map start pos: " + startPos);
             currentPos = normalizedStartPos;
             //mapOverlay.SetActive(true);
 

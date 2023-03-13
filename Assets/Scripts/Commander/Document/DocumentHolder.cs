@@ -18,11 +18,11 @@ public class DocumentHolder : MonoBehaviour
     [SerializeField]
     private FocusHandler focusHandler;
 
-    private List<Document> documents;
+    public List<Document> Documents { get; private set; }
 
     private void Awake()
     {
-        documents = new List<Document>();
+        Documents = new List<Document>();
         OnNewInformationEvent.AddListener(NewDocument);
     }
 
@@ -38,19 +38,19 @@ public class DocumentHolder : MonoBehaviour
     {
         Document doc = Instantiate(missionController.CurrentMission.GetInformation(infoID), this.transform);
         doc.FocusHandler = focusHandler;
-        documents.Add(doc);
+        Documents.Add(doc);
 
         LayOutDocuments();
     }
 
     private void LayOutDocuments()
     {
-        for(int i = 0; i < documents.Count; ++i)
+        for(int i = 0; i < Documents.Count; ++i)
         {
-            documents[i].SetOriginPosition(GetRotationEulerAngles(i), GetYPosition(i));
+            Documents[i].SetOriginPosition(GetRotationEulerAngles(i), GetYPosition(i));
         }
     }
 
-    public Vector3 GetRotationEulerAngles(int i) => new Vector3(0, -((documents.Count - 1) * degreeTurnPerDocument / 2) + degreeTurnPerDocument * i, 0);
+    public Vector3 GetRotationEulerAngles(int i) => new Vector3(0, -((Documents.Count - 1) * degreeTurnPerDocument / 2) + degreeTurnPerDocument * i, 0);
     public float GetYPosition(int i) => 0.02f * i;
 }

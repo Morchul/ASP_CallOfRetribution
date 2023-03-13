@@ -7,19 +7,19 @@ public class CommanderTutorial : MonoBehaviour
 {
     [Header("Tutorial texts")]
     [SerializeField]
-    private CommanderTutorialStep introduction;
+    private CommanderTutorialStep introductionTutorial;
     [SerializeField]
-    private CommanderTutorialStep overview;
+    private CommanderTutorialStep overviewTutorial;
     [SerializeField]
-    private CommanderTutorialStep documents;
+    private CommanderTutorialStep documentsTutorial;
     [SerializeField]
-    private CommanderTutorialStep map;
+    private CommanderTutorialStep mapTutorial;
     [SerializeField]
-    private CommanderTutorialStep radio;
+    private CommanderTutorialStep radioTutorial;
     [SerializeField]
-    private CommanderTutorialStep gameGoal;
+    private CommanderTutorialStep gameGoalTutorial;
     [SerializeField]
-    private CommanderTutorialStep informationGather;
+    private CommanderTutorialStep informationGatherTutorial;
 
     [Header("UI")]
     private TutorialTextBox currentTextBox;
@@ -32,7 +32,10 @@ public class CommanderTutorial : MonoBehaviour
 
 
     [Header("Objects")]
-
+    [SerializeField]
+    private DocumentHolder documentHolder;
+    [SerializeField]
+    private Map map;
 
     [Header("Controller")]
 
@@ -77,21 +80,12 @@ public class CommanderTutorial : MonoBehaviour
         }
     }
 
-    /*private void Start()
-    {
-        if (NetworkManager.Instance.DEBUG_MODE)
-        {
-           
-        }
-    }*/
-
     private void Update()
     {
         if (stepCounter == TutorialSteps.Introduction ||
-            stepCounter == TutorialSteps.Overview ||
-            stepCounter == TutorialSteps.Documents ||
-            stepCounter == TutorialSteps.Map ||
-            stepCounter == TutorialSteps.Radio
+            stepCounter == TutorialSteps.Radio ||
+            stepCounter == TutorialSteps.GameGoal ||
+            stepCounter == TutorialSteps.InformationGather
             )
         {
             if (Input.GetKeyDown(KeyCode.F))
@@ -102,6 +96,26 @@ public class CommanderTutorial : MonoBehaviour
         {
             currentTextBox.Hide();
         }
+
+        if(stepCounter == TutorialSteps.Overview)
+        {
+            foreach(Document doc in documentHolder.Documents)
+            {
+                if (doc.InFocus)
+                {
+                    NextStep();
+                    break;
+                }
+            }
+        }
+
+        if (stepCounter == TutorialSteps.Documents)
+            if (map.InFocus)
+                NextStep();
+        if (stepCounter == TutorialSteps.Map)
+            if (!map.InFocus)
+                NextStep();
+
     }
 
     private void FinishTutorial(bool successful)
@@ -119,11 +133,11 @@ public class CommanderTutorial : MonoBehaviour
 
         switch (stepCounter)
         {
-            case TutorialSteps.Introduction: SetText(introduction); break;
-            case TutorialSteps.Overview: SetText(overview); break;
-            case TutorialSteps.Documents: SetText(documents); break;
-            case TutorialSteps.Map: SetText(map); break;
-            case TutorialSteps.Radio: SetText(radio); break;
+            case TutorialSteps.Introduction: SetText(introductionTutorial); break;
+            case TutorialSteps.Overview: SetText(overviewTutorial); break;
+            case TutorialSteps.Documents: SetText(documentsTutorial); break;
+            case TutorialSteps.Map: SetText(mapTutorial); break;
+            case TutorialSteps.Radio: SetText(radioTutorial); break;
             
             default:
                 break;

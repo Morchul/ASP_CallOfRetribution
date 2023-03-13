@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CommanderDebug : MonoBehaviour
@@ -8,30 +6,9 @@ public class CommanderDebug : MonoBehaviour
     [SerializeField]
     private Mission testMission;
 
-    [SerializeField]
-    private Document doc;
-
-    [SerializeField]
-    private int bugID;
-
-    [SerializeField]
-    private IBugable.Type buggedType;
-
-    [SerializeField]
-    private int bugStatus;
-
-    [SerializeField]
-    private int radioMessageID;
-
     [Header("Events")]
     [SerializeField]
-    private IntEvent OnNewInformation;
-    [SerializeField]
     private IntEvent OnMissionSelect;
-    [SerializeField]
-    private BugUpdateEvent OnBugPlaced;
-    [SerializeField]
-    private IntEvent OnNewRadioMessage;
     [SerializeField]
     private GameEvent OnMissionLoaded;
 
@@ -48,20 +25,5 @@ public class CommanderDebug : MonoBehaviour
     private void Start()
     {
         OnMissionLoaded.RaiseEvent();
-    }
-
-    public void ReleaseDocument()
-    {
-        OnNewInformation.RaiseEvent(doc.ID);
-    }
-
-    public void PlaceBug()
-    {
-        OnBugPlaced.RaiseEvent(bugID, buggedType, bugStatus);
-    }
-
-    public void SendImportantRadioMessage()
-    {
-        OnNewRadioMessage.RaiseEvent(radioMessageID);
     }
 }

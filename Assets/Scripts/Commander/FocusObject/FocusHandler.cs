@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FocusHandler : MonoBehaviour
 {
-    private IFocusable currentFocusObject;
+    public IFocusable CurrentFocusObject { get; private set; }
 
     public bool BlockFocus { get; set; } = false;
 
@@ -12,20 +12,20 @@ public class FocusHandler : MonoBehaviour
     {
         if (BlockFocus) return;
 
-        if(currentFocusObject != null)
+        if(CurrentFocusObject != null)
         {
-            currentFocusObject.DisableFocus();
+            CurrentFocusObject.DisableFocus();
         }
-        currentFocusObject = focusable;
-        currentFocusObject.EnableFocus(new FocusObject.FocusAnimationParam(transform.position, transform.localEulerAngles));
+        CurrentFocusObject = focusable;
+        CurrentFocusObject.EnableFocus(new FocusObject.FocusAnimationParam(transform.position, transform.localEulerAngles));
     }
 
     public void StopFocus()
     {
-        if (currentFocusObject != null)
+        if (CurrentFocusObject != null)
         {
-            currentFocusObject.DisableFocus();
+            CurrentFocusObject.DisableFocus();
         }
-        currentFocusObject = null;
+        CurrentFocusObject = null;
     }
 }

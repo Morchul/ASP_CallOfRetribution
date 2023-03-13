@@ -8,7 +8,7 @@ public class GuardNPC : MonoBehaviour
 {
     // Declare variables
     public float suspicionLevel;
-    public int suspicionTime;
+    public float suspicionTime;
     public float fieldOfView;
     public Transform target;
     public NavMeshAgent navMeshAgent;
@@ -20,12 +20,13 @@ public class GuardNPC : MonoBehaviour
     public float followSpeed = 5f;
     public bool isFollowing = false;
     private bool hasStolen = false;
-
+    [SerializeField] private LayerMask RayMask;
     [Header("Events")]
     [SerializeField]
     private GameEvent OnSuspiciousActionExecuted;
     [SerializeField]
     private GameEvent OnItemStolden;
+
 
     private void Awake()
     {
@@ -37,7 +38,7 @@ public class GuardNPC : MonoBehaviour
     void Start()
     {
         suspicionLevel = 0f;
-        suspicionTime = 10;
+        suspicionTime = 2.5f;
         fieldOfView = 180f;
         navMeshAgent = GetComponent<NavMeshAgent>();
         patrolling = true;
@@ -59,8 +60,9 @@ public class GuardNPC : MonoBehaviour
         }
         else
         {
-            suspicionLevel = 0f;
-            patrolling = true;
+                suspicionLevel = 0f;
+                patrolling = true;
+            
         }
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {                currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
@@ -114,7 +116,7 @@ public class GuardNPC : MonoBehaviour
                 if (angle < fieldOfView * 0.5f && angleUp < fieldOfView * 0.5f && angleDown < fieldOfView * 0.5f)
                 {
                     RaycastHit hit;
-                    if (Physics.Raycast(transform.position, direction.normalized, out hit, fieldOfView))
+                    if (Physics.Raycast(transform.position, direction.normalized, out hit, fieldOfView, RayMask))
                     {
                         if (hit.transform == target)
                         {

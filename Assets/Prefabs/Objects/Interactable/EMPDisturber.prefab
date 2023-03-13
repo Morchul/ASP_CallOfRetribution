@@ -110,6 +110,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   isSuspicious: 1
+  oneTimeUse: 0
+  actionName: Disable Disturber
 --- !u!1001 &4234131381046446486
 PrefabInstance:
   m_ObjectHideFlags: 0

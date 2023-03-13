@@ -6,7 +6,7 @@ public class ClientMessageTransmitter : MessageTransmitter
 {
     public override void WriteToClient(string message)
     {
-        messageHandler.HandleMessage(message);
+        messageHandler.HandleReceivedMessage(message);
     }
 
     public override void WriteToHost(string message)

@@ -21,6 +21,10 @@ public class SceneController : ScriptableObject
     [Scene]
     private string mainMenu;
 
+    [SerializeField]
+    [Scene]
+    private string thiefTutorial;
+
     //[SerializeField]
     //[Scene]
     //private string lobby;
@@ -36,6 +40,11 @@ public class SceneController : ScriptableObject
     public void GoToMainMenu()
     {
         SceneManager.LoadScene(mainMenu, LoadSceneMode.Single);
+    }
+
+    public void LoadThiefTutorial()
+    {
+        SceneManager.LoadScene(thiefTutorial, LoadSceneMode.Single);
     }
 
     public void LoadMissionForThief(Mission mission)

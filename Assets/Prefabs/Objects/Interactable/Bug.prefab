@@ -109,8 +109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c42b11faf6be5fe4096229e227593f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugUpdateEvent: {fileID: 11400000, guid: 8ae02f8a2a98e7045a28bac4ae8553a2, type: 2}
-  bugUpdateRequestEvent: {fileID: 11400000, guid: cc5b3cc79e2a87b4a8b1efc6172af7a5, type: 2}
+  onBugUpdateEvent: {fileID: 11400000, guid: 8ae02f8a2a98e7045a28bac4ae8553a2, type: 2}
+  onBugUpdateRequestEvent: {fileID: 11400000, guid: cc5b3cc79e2a87b4a8b1efc6172af7a5, type: 2}
+  onBugDisturbedEvent: {fileID: 11400000, guid: 74ad9433e948bbf4482f2984a0db5301, type: 2}
+  onBugDeniedEvent: {fileID: 11400000, guid: cc6701d217e47c4499fbb51a9707af11, type: 2}
 --- !u!54 &-4911355909360625185
 Rigidbody:
   m_ObjectHideFlags: 0

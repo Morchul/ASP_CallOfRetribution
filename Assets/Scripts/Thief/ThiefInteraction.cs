@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ThiefInteraction : MonoBehaviour
 {
     [SerializeField]
-    private ThiefTest thief;
+    private Thief thief;
 
     [SerializeField]
     private GameEvent OnSuspiciousActionExecuted;
+
+    [SerializeField]
+    private TMP_Text interactionText;
 
     private Interactable currentInteractable;
     private Bugable currentBugable;
@@ -18,14 +22,20 @@ public class ThiefInteraction : MonoBehaviour
     {
         if (other.CompareTag("Interactable"))
         {
-            currentInteractable = other.GetComponent<Interactable>();
-            currentBugable = other.GetComponent<Bugable>();
-            Debug.Log("Entered interactable: " + currentInteractable.name);
+            Interactable tmp = other.GetComponent<Interactable>();
+            if (tmp != null)
+                currentInteractable = tmp;
+
+            Bugable bTmp = other.GetComponent<Bugable>();
+            if(bTmp != null)
+                currentBugable = bTmp;
+
+            UpdateInteractText();
         }
         if (other.CompareTag("Bug"))
         {
             currentBug = other.GetComponent<Bug>();
-            Debug.Log("Found bug");
+            UpdateInteractText();
         }
     }
 
@@ -33,15 +43,40 @@ public class ThiefInteraction : MonoBehaviour
     {
         if (other.CompareTag("Interactable"))
         {
-            currentInteractable = null;
-            currentBugable = null;
-            Debug.Log("Left interactable");
+            Interactable tmp = other.GetComponent<Interactable>();
+            if (tmp != null)
+                currentInteractable = null;
+
+            Bugable bTmp = other.GetComponent<Bugable>();
+            if (bTmp != null)
+                currentBugable = null;
+
+            UpdateInteractText();
         }
         if (other.CompareTag("Bug"))
         {
             currentBug = null;
-            Debug.Log("Left bug");
+            UpdateInteractText();
         }
+    }
+
+    private void UpdateInteractText()
+    {
+        string text = "";
+        if (currentInteractable != null)
+        {
+            text += currentInteractable.ActionName + " (E)\n";
+        }
+        if (currentBug != null)
+        {
+            text += "Retrieve Bug (Q)";
+        }
+        if(currentBugable != null && !currentBugable.GetBugable().Bugged)
+        {
+            text += "Place Bug on " + currentBugable.name + " (Q)\n";
+        }
+
+        interactionText.text = text;
     }
 
     private void Update()
@@ -53,6 +88,9 @@ public class ThiefInteraction : MonoBehaviour
                 currentInteractable.Interact();
                 if(currentInteractable.IsSuspicious)
                     OnSuspiciousActionExecuted.RaiseEvent();
+                if (currentInteractable.OneTime)
+                    currentInteractable = null;
+                UpdateInteractText();
             }
         }
 
@@ -73,6 +111,7 @@ public class ThiefInteraction : MonoBehaviour
                     {
                         //no bugs left
                     }
+                    UpdateInteractText();
                 }
             }
         }

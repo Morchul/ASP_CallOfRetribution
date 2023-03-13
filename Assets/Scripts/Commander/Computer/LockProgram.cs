@@ -16,7 +16,9 @@ public class LockProgram : Program
     private TMP_Text lockState;
 
     private Console console;
-    private MessageTransmitter transmitter;
+
+    [SerializeField]
+    private BugUpdateEvent OnBugUpdateRequestEvent;
 
     protected override void Awake()
     {
@@ -25,11 +27,6 @@ public class LockProgram : Program
         console = computer.Console;
 
         gameObject.SetActive(false);
-    }
-
-    private void Start()
-    {
-        transmitter = NetworkManager.Instance.Transmitter;
     }
 
     public void SetBugReferenc(BugReferenc bug)
@@ -70,7 +67,7 @@ public class LockProgram : Program
     public void Hack()
     {
         console.AddLog("Getting access to lock...");
-        transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | ElectricalLock.LockState.Hacked)));
+        OnBugUpdateRequestEvent.RaiseEvent(bug.ID, bug.Type, (int)(state | ElectricalLock.LockState.Hacked));
     }
 
     public void LockAction()
@@ -103,14 +100,14 @@ public class LockProgram : Program
         console.AddLog("Closing lock...");
 
         yield return new WaitForSeconds(1);
-        transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state & ~ElectricalLock.LockState.Open)));  
+        OnBugUpdateRequestEvent.RaiseEvent(bug.ID, bug.Type, (int)(state & ~ElectricalLock.LockState.Open));
     }
 
     private IEnumerator OpenLock()
     {
         console.AddLog("Opening lock...");
         yield return new WaitForSeconds(1);
-        transmitter.WriteToHost(MessageUtility.CreateBugUpdateMessage(bug.ID, bug.Type, (int)(state | ElectricalLock.LockState.Open)));
+        OnBugUpdateRequestEvent.RaiseEvent(bug.ID, bug.Type, (int)(state | ElectricalLock.LockState.Open));
     }
 
     public override void CloseProgram()

@@ -4818,8 +4818,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6deb010065be44fa067ed0ada83634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnItemStolen: {fileID: 11400000, guid: b3c06fe560113cd4480f9db776d9a178, type: 2}
-  OnMissionFinishedSuccessful: {fileID: 11400000, guid: 590e9cac908f6f44db2d5e61f4fa18f0, type: 2}
+  OnItemStolen: {fileID: 11400000, guid: baa070a6ece754e48bd62778b6bd42a1, type: 2}
+  OnMissionFinishedSuccessful: {fileID: 11400000, guid: 26bfd7e7fecd599418fcd665a5b260c2, type: 2}
+  OnExtractionPointActivate: {fileID: 11400000, guid: 918ed3ca555bf32478c8c38173d90ffa, type: 2}
 --- !u!65 &6608560953495284036
 BoxCollider:
   m_ObjectHideFlags: 0

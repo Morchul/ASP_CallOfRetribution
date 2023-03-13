@@ -5,8 +5,7 @@ public static class MessageUtility
     //Synchronization
     public const string CHAT_PREFIX = "CHAT:"; //Sends a chat message
     public const string SELECT_MISSION_PREFIX = "MISSION:"; //Sends the selected mission
-    public const string DRONE_POS_PREFIX = "DRONE_POS:"; //Send to update drone pos
-    public const string THIEF_POS_PREFIX = "THIEF_POS:"; //Send to update thief pos
+    public const string POS_UPDATE_PREFIX = "POS:"; //Send to update pos
     public const string EXTRACTION_POS_PREFIX = "EXT_POS:"; //Send to give the position of the extraction point
     public const string MISSION_LOADED = "MISSION_LOADED"; //Send by client and host when the mission is loaded like a ready flag
     public const string GAME_READY = "GAME_READY"; //Is send to both if both have send a mission loaded to inform that all members are now ready
@@ -38,31 +37,21 @@ public static class MessageUtility
     public const string BUG_DENIED = "BUG_DENIED";
 
     #region Message Helper methods
-    public static string CreateExtractionPointPosMessage(Vector3 extractionPointPos)
+    public static string CreateExtractionPointPosMessage(Vector2 extractionPointPos)
     {
-        return EXTRACTION_POS_PREFIX + extractionPointPos.x + "/" + extractionPointPos.z;
+        return EXTRACTION_POS_PREFIX + extractionPointPos.x + "/" + extractionPointPos.y;
     }
 
-    public static string CreateDronePosMessage(Vector3 dronePos)
+    public static string CreatePosUpdateMessage(PosUpdateEvent.PosUpdate posUpdate)
     {
-        return DRONE_POS_PREFIX + dronePos.x + "/" + dronePos.z;
+        return POS_UPDATE_PREFIX + posUpdate.Identifier + posUpdate.Pos.ToMessageString();
     }
 
-    public static string CreateThiefPosMessage(Vector3 thiefPos)
+    public static PosUpdateEvent.PosUpdate GetPosUpdateInfoFromMessage(string message)
     {
-        return THIEF_POS_PREFIX + thiefPos.x + "/" + thiefPos.z;
-    }
-
-    public static Vector2 GetDronePosFromMessage(string message)
-    {
-        TryConvertToCoordinates(message.Substring(DRONE_POS_PREFIX.Length), out Vector2 pos);
-        return pos;
-    }
-
-    public static Vector2 GetThiefPosFromMessage(string message)
-    {
-        TryConvertToCoordinates(message.Substring(THIEF_POS_PREFIX.Length), out Vector2 pos);
-        return pos;
+        string tmpMessage = message.Substring(POS_UPDATE_PREFIX.Length);
+        TryConvertToCoordinates(tmpMessage.Substring(1), out Vector2 pos);
+        return new PosUpdateEvent.PosUpdate(tmpMessage[0], pos.ToVector3());
     }
 
     public static Vector2 GetExtractionPointPosFromMessage(string message)
@@ -109,7 +98,7 @@ public static class MessageUtility
 
     public static string CreateMoveDroneMessage(Vector2 coordinates)
     {
-        return MOVE_DRONE_PREFIX + coordinates.x + "/" + coordinates.y;
+        return MOVE_DRONE_PREFIX + coordinates.ToMessageString();
     }
 
     public static Vector2 GetCoordinates(string message)
@@ -118,9 +107,9 @@ public static class MessageUtility
         return coord;
     }
 
-    public static string CreateScanResultMessage(Vector3 pos)
+    public static string CreateScanResultMessage(Vector2 pos)
     {
-        return SCAN_RESULT_PREFIX + pos.x + "/" + pos.z;
+        return SCAN_RESULT_PREFIX + pos.ToMessageString();
     }
 
     public static Vector2 GetScanResultPos(string message)
@@ -134,14 +123,19 @@ public static class MessageUtility
         return SCAN_COOLDOWN_PREFIX + cooldown.ToString("0.0");
     }
 
-    public static string CreateDroneStateChangedMessage(bool connected)
+    public static string CreateDroneStateChangedMessage(bool disturbed)
     {
-        return DRONE_STATE_CHANGE_PREFIX + ((connected) ? "1" : "0");
+        return DRONE_STATE_CHANGE_PREFIX + ((disturbed) ? "1" : "0");
     }
 
     public static bool GetDroneState(string message)
     {
         return message.Substring(DRONE_STATE_CHANGE_PREFIX.Length) == "1";
+    }
+
+    public static float GetCooldownTime(string message)
+    {
+        return float.Parse(message.Substring(SCAN_COOLDOWN_PREFIX.Length));
     }
     #endregion
 
@@ -162,4 +156,19 @@ public static class MessageUtility
         coord = new Vector2(x, y);
         return true;
     }
+
+    public static int GetIntAfterPrefix(string prefix, string message)
+    {
+        if(int.TryParse(message.Substring(prefix.Length), out int res))
+        {
+            return res;
+        }
+        return 0;
+    }
+
+    //This methods are used because default z would be 0 and y would be used by conversion
+    public static Vector2 ToVector2(this Vector3 vec3) => new Vector2(vec3.x, vec3.z);
+    public static Vector3 ToVector3(this Vector2 vec2, float yPos = 0) => new Vector3(vec2.x, yPos, vec2.y);
+    public static string ToMessageString(this Vector2 vec2) => vec2.x + "/" + vec2.y;
+    public static string ToMessageString(this Vector3 vec3) => vec3.x + "/" + vec3.z;
 }

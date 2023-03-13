@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35c537afd09f87c4b91184b670c2e264, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d4d414919624eb4f92931d14deae968, type: 3}
   m_Name: OnScanOnCooldown
   m_EditorClassIdentifier: 
+  prefix: 

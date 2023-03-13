@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThiefTest : PositionSensor
+public class Thief : PositionSensor
 {
     [SerializeField]
     private MissionController missionController;
@@ -17,9 +17,12 @@ public class ThiefTest : PositionSensor
 
     private Queue<Bug> bugs;
 
+    public const string TAG = "Player";
+    public const char IDENTIFIER = 'T';
+
     private void Awake()
     {
-        UpdateCreateFunc = MessageUtility.CreateThiefPosMessage;
+        identifier = IDENTIFIER;
     }
 
     private void Start()

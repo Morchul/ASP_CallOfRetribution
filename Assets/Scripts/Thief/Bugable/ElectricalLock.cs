@@ -12,7 +12,7 @@ public class ElectricalLock : Lock, IBugable
     [System.Flags]
     public enum LockState
     {
-        Hacked = 1,
+        Hacked = Hacker.HACKED_STATE,
         Open = 2
     }
 

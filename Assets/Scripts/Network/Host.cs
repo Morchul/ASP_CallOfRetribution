@@ -127,13 +127,6 @@ public class Host : MonoBehaviour, IConnectionHandler
                 else
                 {
                     Debug.Log("Connection refused, disconnect");
-                    //using (NetworkStream ns = new NetworkStream(socket))
-                    //{
-                    //    using (StreamWriter writer = new StreamWriter(ns))
-                    //    {
-                    //        writer.WriteLine(MessageTransmitterCommands.REFUSE);
-                    //    }
-                    //}
                     socket.Send(Encoding.ASCII.GetBytes(MessageTransmitterCommands.REFUSE + "\n"));
                     socket.Shutdown(SocketShutdown.Both);
                     socket.Disconnect(false);

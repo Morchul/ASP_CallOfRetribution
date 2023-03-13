@@ -1,14 +1,14 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(GameEvent))]
+[CustomEditor(typeof(NetworkGameEvent))]
 public class GameEventInspector : Editor
 {
-    private GameEvent _target;
+    private NetworkGameEvent _target;
 
     private void OnEnable()
     {
-        _target = (GameEvent)target;
+        _target = (NetworkGameEvent)target;
     }
 
     public override void OnInspectorGUI()

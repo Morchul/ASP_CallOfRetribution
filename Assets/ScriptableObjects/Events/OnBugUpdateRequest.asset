@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384ca8bacd1c6c541bd30cd02915f624, type: 3}
   m_Name: OnBugUpdateRequest
   m_EditorClassIdentifier: 
+  prefix: BUG_UPD_REQ

@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc6d6636e6aab704084c2d86a6c250e6, type: 3}
-  m_Name: OnBugDisturbed
+  m_Script: {fileID: 11500000, guid: 7cdc9a9539592024b9e6fa558840b1e1, type: 3}
+  m_Name: OnBugDenied
   m_EditorClassIdentifier: 
+  prefix: BUG_DENIED

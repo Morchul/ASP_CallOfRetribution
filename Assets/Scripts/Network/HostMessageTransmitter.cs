@@ -11,6 +11,6 @@ public class HostMessageTransmitter : MessageTransmitter
 
     public override void WriteToHost(string message)
     {
-        messageHandler.HandleMessage(message);
+        messageHandler.HandleReceivedMessage(message);
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,37 +23,59 @@ public class Console : MonoBehaviour
     [SerializeField]
     private BoolEvent OnDroneConnectionStateChange;
     [SerializeField]
-    private StringEvent OnScanOnCooldown;
+    private FloatEvent OnScanOnCooldown;
     [SerializeField]
-    private GameEvent OnBugDisturbed;
+    private IntEvent OnBugDisturbed;
     [SerializeField]
-    private GameEvent OnBugDenied;
+    private IntEvent OnBugDenied;
+    [SerializeField]
+    private Vector2Event OnDroneMoveEvent;
+    [SerializeField]
+    private GameEvent OnDrownScanEvent;
+    [SerializeField]
+    private GameEvent OnDrownFlareEvent;
+
+    [Header("Hacker")]
+    [SerializeField]
+    private Hacker hacker;
 
     private bool droneConnected;
+
+    private delegate bool HandleCommand(string command);
+
+    private List<HandleCommand> commandHandler;
 
     //All lower case
     public const string MOVE_COMMAND = "move";
     public const string SCAN_COMMAND = "scan";
     public const string FLARE_COMMAND = "fire flare";
 
+    public const string CLOSE_PORT_COMMAND = "close port";
+
     private void Awake()
     {
         OnDroneConnectionStateChange.AddListener(DroneStateChanged);
         OnScanOnCooldown.AddListener(ScanOnCooldown);
-        OnBugDisturbed.AddListener(() => AddLog("Bug did not respond"));
-        OnBugDenied.AddListener(() => AddLog("Access denied!"));
+        OnBugDisturbed.AddListener((id) => AddLog("Bug " + id + " did not respond"));
+        OnBugDenied.AddListener((id) => AddLog("Bug " + id + ": Access denied!"));
         droneConnected = true;
-    }
 
-    #region Drone
+        commandHandler = new List<HandleCommand>() { CheckForPortDefense,  ExecuteDroneCommand};
+    }
     public void SubmitCommand()
     {
         if (selected == navigation.Length)
         {
-            ExecuteCommand(commandInput.text);
+            foreach (HandleCommand handler in commandHandler)
+                if (handler(commandInput.text))
+                    break;
+
+            commandInput.text = "";
+            commandInput.ActivateInputField();
         }
     }
 
+    #region Drone
     private void DroneStateChanged(bool disturbed)
     {
         droneConnected = !disturbed;
@@ -66,20 +89,17 @@ public class Console : MonoBehaviour
         }
     }
 
-    private void ScanOnCooldown(string cooldown)
+    private void ScanOnCooldown(float cooldown)
     {
         AddLog("Scan on cooldown: " + cooldown + " seconds");
     }
 
-    private void ExecuteCommand(string command)
+    private bool ExecuteDroneCommand(string command)
     {
-        commandInput.text = "";
-        commandInput.ActivateInputField();
-
         if (!droneConnected)
         {
             AddLog("No connection to drone");
-            return;
+            return false;
         }
 
         if (command.ToLower().StartsWith(MOVE_COMMAND))
@@ -88,25 +108,53 @@ public class Console : MonoBehaviour
             if (MessageUtility.TryConvertToCoordinates(coordinates, out Vector2 coord))
             {
                 AddLog("Move drone to position: " + coord);
-                NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.CreateMoveDroneMessage(coord));
+                OnDroneMoveEvent.RaiseEvent(coord);
             }
         }
 
         else if (command.ToLower() == SCAN_COMMAND)
         {
             AddLog("Start scanning");
-            NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.SCAN_DRONE);
+            OnDrownScanEvent.RaiseEvent();
         }
 
         else if(command.ToLower() == FLARE_COMMAND)
         {
             AddLog("Fire flare");
-            NetworkManager.Instance.Transmitter.WriteToHost(MessageUtility.FLARE_DRONE);
+            OnDrownFlareEvent.RaiseEvent();
         }
         else
         {
             AddLog("Unknown command: " + command + " read the computer manual for commands");
+            return false;
         }
+        return true;
+    }
+    #endregion
+
+    #region Hacker attack
+    private int attackedPort;
+    private bool CheckForPortDefense(string command)
+    {
+        if (command.ToLower().StartsWith(CLOSE_PORT_COMMAND))
+        {
+            string portString = command.Substring(CLOSE_PORT_COMMAND.Length);
+            if (int.TryParse(portString, out int port))
+            {
+                AddLog("Closing port " + port);
+                if(attackedPort > 0 && attackedPort == port)
+                {
+                    hacker.HackDefused();
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+    public void HackAttack(Hacker.AttackParameter param)
+    {
+        attackedPort = param.Port;
+        AddLog(param.Message);
     }
     #endregion
 

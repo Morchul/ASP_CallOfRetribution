@@ -11,8 +11,7 @@ public class WorldObjectRefPos : MonoBehaviour
     [SerializeField]
     private MapData mapData;
 
-    // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         OnPosUpdateEvent.AddListener(UpdatePos);
     }

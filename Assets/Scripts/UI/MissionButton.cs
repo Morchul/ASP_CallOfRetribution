@@ -13,7 +13,6 @@ public class MissionButton : MonoBehaviour
     [SerializeField]
     private ProgressController progressController;
 
-    // Start is called before the first frame update
     void Awake()
     {
         Button button = GetComponent<Button>();

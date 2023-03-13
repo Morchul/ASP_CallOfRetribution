@@ -86,7 +86,6 @@ public class Map : MovableFocusObject
     {
         //base.Move(delta);
         delta *= Time.deltaTime * moveSpeed;
-        //transform.Translate(new Vector3(delta.x, 0, delta.y), Space.Self);
 
         float boundX = horizontalScale.GetPosBoundaries();
         float boundY = verticalScale.GetPosBoundaries();

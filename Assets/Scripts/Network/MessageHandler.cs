@@ -62,8 +62,6 @@ public abstract class MessageHandler : MonoBehaviour
     {
         if (NetworkManager.Instance.DEBUG_MODE) return;
 
-        //OnMissionLoaded.AddListener(() => transmitter.WriteToHost(MessageUtility.MISSION_LOADED));
-        //OnChatMessageSend.AddListener((message) => transmitter.WriteToHost(MessageUtility.CreateChatMessage(message)));
         OnMissionLoaded.ForwardEvent(transmitter);
         OnChatMessage.ForwardEvent(transmitter);
     }
@@ -75,25 +73,5 @@ public abstract class MessageHandler : MonoBehaviour
         if (OnConnectionShutdown.Listen(message)) return;
         if (OnChatMessage.Listen(message)) return;
         if (OnGameReady.Listen(message)) return;
-
-        /*if (message == MessageTransmitterCommands.SHUTDOWN)
-        {
-            OnConnectionShutdown.RaiseEvent();
-        }
-        else if (message.StartsWith(MessageUtility.CHAT_PREFIX))
-        {
-            ChatMessageReceived(message);
-        }
-        else if (message.StartsWith(MessageUtility.BUG_UPDATE_PREFIX))
-        {
-            BugUpdateMessageReceived(message);
-        }
-        else if (message.StartsWith(MessageUtility.GAME_READY))
-        {
-            OnGameReady.RaiseEvent();
-        }*/
     }
-
-    //public abstract void ChatMessageReceived(string message);
-    //public abstract void BugUpdateMessageReceived(string message);
 }

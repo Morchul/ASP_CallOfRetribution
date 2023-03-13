@@ -15,9 +15,6 @@ public class ChatWindow : MonoBehaviour
     [Header("Events")]
     [SerializeField]
     private StringEvent OnChatMessage;
-    //[SerializeField]
-    //private StringEvent OnChatMessageSend;
-
 
     private void Start()
     {

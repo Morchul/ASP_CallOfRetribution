@@ -25,17 +25,8 @@ public class SceneController : ScriptableObject
     [Scene]
     private string thiefTutorial;
 
-    //[SerializeField]
-    //[Scene]
-    //private string lobby;
-
     [Header("Events")]
     public GameEvent OnMissionLoaded;
-
-    //public void JoinLobby()
-    //{
-    //    SceneManager.LoadScene(lobby, LoadSceneMode.Single);
-    //}
 
     public void GoToMainMenu()
     {

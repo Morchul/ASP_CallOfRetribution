@@ -19,9 +19,7 @@ public class GameController : ScriptableObject
     [SerializeField]
     private GameEvent OnConnectionShutdown;
     [SerializeField]
-    private GameEvent OnMissionFinishedSuccessfully;
-    [SerializeField]
-    private GameEvent OnMissionFailed;
+    private BoolEvent OnMissionFinished;
     [SerializeField]
     private IntEvent OnMissionSelected;
 
@@ -36,10 +34,14 @@ public class GameController : ScriptableObject
     {
         OnConnectionLost.AddListener(ReturnToLobby);
         OnConnectionShutdown.AddListener(ReturnToLobby);
-        OnMissionFinishedSuccessfully.AddListener(StopGame);
-        OnMissionFailed.AddListener(StopGame);
+        OnMissionFinished.AddListener(MissionFinished);
         OnMissionLoaded.AddListener(MissionLoaded);
         clientsReady = 0;
+    }
+
+    private void MissionFinished(bool successful)
+    {
+        StopGame();
     }
 
     public void StopGame()

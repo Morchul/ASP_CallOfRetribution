@@ -83,7 +83,7 @@ public class ThiefTutorial : MonoBehaviour
     [SerializeField]
     private GameEvent OnItemStolen;
     [SerializeField]
-    private GameEvent OnMissionCompletedSuccessfully;
+    private BoolEvent OnMissionFinished;
     [SerializeField]
     private Vector2Event OnExtractionPointActivate;
 
@@ -143,7 +143,7 @@ public class ThiefTutorial : MonoBehaviour
         stepCounter = TutorialSteps.None;
         OnBugUpdate.AddListener(OnBugUpdateEvent);
         OnItemStolen.AddListener(OnItemStolenEvent);
-        OnMissionCompletedSuccessfully.AddListener(FinishTutorial);
+        OnMissionFinished.AddListener(FinishTutorial);
         OnNewInformation.AddListener(InformationGathered);
         OnExtractionPointActivate.AddListener(ActivateExtractionPoint);
         NextStep();
@@ -228,12 +228,12 @@ public class ThiefTutorial : MonoBehaviour
         drone.MoveToWorldPosCommand(pos);
     }
 
-    private void FinishTutorial()
+    private void FinishTutorial(bool _)
     {
         NextStep();
         OnBugUpdate.RemoveListener(OnBugUpdateEvent);
         OnItemStolen.RemoveListener(OnItemStolenEvent);
-        OnMissionCompletedSuccessfully.RemoveListener(FinishTutorial);
+        OnMissionFinished.RemoveListener(FinishTutorial);
         OnNewInformation.RemoveListener(InformationGathered);
         OnExtractionPointActivate.RemoveListener(ActivateExtractionPoint);
     }

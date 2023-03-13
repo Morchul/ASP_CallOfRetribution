@@ -13,7 +13,7 @@ public class MissionController : ScriptableObject
     public IntEvent OnMissionSelect;
     public GameEvent OnMissionLoaded;
     public BugUpdateEvent OnBugUpdate;
-    public GameEvent OnMissionFinishedSuccessfully;
+    public BoolEvent OnMissionFinished;
     public GameEvent OnResetGame;
 
     public Mission CurrentMission { get; private set; }
@@ -36,7 +36,7 @@ public class MissionController : ScriptableObject
             CurrentMission = null;
             Bugs = null;
         });
-        OnMissionFinishedSuccessfully.AddListener(UpdateMissionProgress);
+        OnMissionFinished.AddListener((successful) => { if (successful) UpdateMissionProgress(); });
 
         if (currentAvailableInformation == null)
             currentAvailableInformation = new List<int>();

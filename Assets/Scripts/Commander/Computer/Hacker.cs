@@ -27,7 +27,7 @@ public class Hacker : MonoBehaviour
 
     [Header("Events")]
     [SerializeField]
-    private NetworkGameEvent OnMissionFailed;
+    private BoolEvent OnMissionFinished;
 
     public const int HACKED_STATE = 1;
     private bool hackInProgress;
@@ -71,7 +71,7 @@ public class Hacker : MonoBehaviour
             timer += Time.deltaTime;
             if(timer > hackingTime - ((level - 1) * hackingTime / maxLevel))
             {
-                OnMissionFailed.RaiseEvent();
+                OnMissionFinished.RaiseEvent(false);
             }
         }
         else

@@ -100,6 +100,13 @@ public class MainMenu : MonoBehaviour
         sceneController.LoadThiefTutorial();
     }
 
+    public void StartCommanderTutorial()
+    {
+        NetworkManager.Instance.DEBUG_MODE = true;
+        NetworkManager.Instance.CreateClient("");
+        sceneController.LoadCommanderTutorial();
+    }
+
     private void Lobby(bool host)
     {
         lobby.ShowLobby(host);

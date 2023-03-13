@@ -38,6 +38,11 @@ public class SceneController : ScriptableObject
         SceneManager.LoadScene(thiefTutorial, LoadSceneMode.Single);
     }
 
+    public void LoadCommanderTutorial()
+    {
+        LoadScene(commanderScene, OnMissionLoaded.RaiseEvent, LoadSceneMode.Single);
+    }
+
     public void LoadMissionForThief(Mission mission)
     {
         LoadScene(loadingScreen, LoadingScreenLoaded, LoadSceneMode.Single);

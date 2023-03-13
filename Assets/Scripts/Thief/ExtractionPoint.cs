@@ -7,7 +7,7 @@ public class ExtractionPoint : MonoBehaviour
     private GameEvent OnItemStolen;
 
     [SerializeField]
-    private GameEvent OnMissionFinishedSuccessful;
+    private BoolEvent OnMissionFinished;
 
     [SerializeField]
     private Vector2Event OnExtractionPointActivate;
@@ -27,7 +27,7 @@ public class ExtractionPoint : MonoBehaviour
     {
         if (other.CompareTag(Thief.TAG))
         {
-            OnMissionFinishedSuccessful.RaiseEvent();
+            OnMissionFinished.RaiseEvent(true); //Mission succesful
         }
     }
 }

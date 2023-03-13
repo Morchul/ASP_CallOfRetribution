@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571409, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3296,7 +3296,7 @@ MonoBehaviour:
   OnBugUpdate: {fileID: 11400000, guid: 8ae02f8a2a98e7045a28bac4ae8553a2, type: 2}
   OnBugUpdateRequest: {fileID: 11400000, guid: cc5b3cc79e2a87b4a8b1efc6172af7a5, type: 2}
   OnItemStolen: {fileID: 11400000, guid: baa070a6ece754e48bd62778b6bd42a1, type: 2}
-  OnMissionCompletedSuccessfully: {fileID: 11400000, guid: 26bfd7e7fecd599418fcd665a5b260c2, type: 2}
+  OnMissionFinished: {fileID: 11400000, guid: 9f78d00f245cde140973e24a8ab633f7, type: 2}
   OnExtractionPointActivate: {fileID: 11400000, guid: 918ed3ca555bf32478c8c38173d90ffa, type: 2}
   drone: {fileID: 97914359}
   playerCamera: {fileID: 2134572184}

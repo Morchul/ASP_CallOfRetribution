@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18807992d5083d546976a8b51f87cfdf, type: 3}
-  m_Name: OnMissionFinishedSuccessfully
+  m_Script: {fileID: 11500000, guid: 874b57c7ad9e3c141924ec9f5197ea1e, type: 3}
+  m_Name: OnMissionFinished
   m_EditorClassIdentifier: 
-  prefix: MIS_SUCC
+  prefix: 

@@ -127,8 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb017f84d85b6ad4c8c7a0006a5de230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnMissionFinishedSuccessfully: {fileID: 11400000, guid: 26bfd7e7fecd599418fcd665a5b260c2, type: 2}
-  OnMissionFailed: {fileID: 11400000, guid: 58be087a887627142964a34886472963, type: 2}
+  OnMissionFinished: {fileID: 11400000, guid: 9f78d00f245cde140973e24a8ab633f7, type: 2}
   successfulScreen: {fileID: 2923722858483255384}
   failedScreen: {fileID: 2923722860182738519}
 --- !u!1 &2923722858869696331

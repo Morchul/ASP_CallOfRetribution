@@ -30,6 +30,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2c2b94ce3b2e7b145b2b0f4ef018cc71, type: 2}
   boolEventsToResetAfterGame:
   - {fileID: 11400000, guid: 2ded24303165cf74ea46b25e1edc906e, type: 2}
+  - {fileID: 11400000, guid: 9f78d00f245cde140973e24a8ab633f7, type: 2}
   floatEventsToResetAfterGame:
   - {fileID: 11400000, guid: 0fb1fedecae493d439f696d307c12d89, type: 2}
   intEventsToResetAfterGame:

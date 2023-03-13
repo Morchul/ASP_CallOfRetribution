@@ -40,9 +40,7 @@ public abstract class MessageHandler : MonoBehaviour
     [SerializeField]
     protected IntEvent OnBugDisturbed;
     [SerializeField]
-    protected NetworkGameEvent OnMissionFinishedSuccessfully;
-    [SerializeField]
-    protected NetworkGameEvent OnMissionFailed;
+    protected BoolEvent OnMissionFinished;
     [SerializeField]
     protected IntEvent OnMissionSelect;
     [SerializeField]

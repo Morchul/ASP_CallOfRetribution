@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.30152148, g: 0.14530008, b: 0.1165811, a: 1}
+  m_IndirectSpecularColor: {r: 0.3015211, g: 0.14529996, b: 0.11658092, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suspicionLevel: 0
-  suspicionTime: 10
+  suspicionTime: 3
   fieldOfView: 0
   target: {fileID: 1418284973}
   navMeshAgent: {fileID: 20934340}
@@ -3110,7 +3110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suspicionLevel: 0
-  suspicionTime: 10
+  suspicionTime: 3
   fieldOfView: 0
   target: {fileID: 1418284973}
   navMeshAgent: {fileID: 293569554}
@@ -6871,7 +6871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suspicionLevel: 0
-  suspicionTime: 10
+  suspicionTime: 3
   fieldOfView: 0
   target: {fileID: 1418284973}
   navMeshAgent: {fileID: 619444277}
@@ -15154,7 +15154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suspicionLevel: 0
-  suspicionTime: 10
+  suspicionTime: 3
   fieldOfView: 0
   target: {fileID: 1418284973}
   navMeshAgent: {fileID: 1384787584}
@@ -17166,7 +17166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suspicionLevel: 0
-  suspicionTime: 10
+  suspicionTime: 3
   fieldOfView: 0
   target: {fileID: 1418284973}
   navMeshAgent: {fileID: 1589448850}
@@ -19555,7 +19555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suspicionLevel: 0
-  suspicionTime: 10
+  suspicionTime: 3
   fieldOfView: 0
   target: {fileID: 1418284973}
   navMeshAgent: {fileID: 1818374933}

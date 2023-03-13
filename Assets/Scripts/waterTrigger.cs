@@ -8,7 +8,8 @@ public class waterTrigger : MonoBehaviour
     [SerializeField] string sceneName;
     private void OnTriggerEnter(Collider other)
     {
-        LoadScene();
+        if(other.CompareTag(Thief.TAG))
+            LoadScene();
     }
     public void LoadScene()
     {

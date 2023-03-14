@@ -921,6 +921,87 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &859584618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 859584619}
+  - component: {fileID: 859584621}
+  - component: {fileID: 859584620}
+  m_Layer: 0
+  m_Name: TutorialTargetPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &859584619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859584618}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.73, y: 0.03, z: 5.04}
+  m_LocalScale: {x: 0.1, y: 0.2, z: 0.2}
+  m_Children: []
+  m_Father: {fileID: 1699816218}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &859584620
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859584618}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: d90fb6fae849e234b904877ec3603acf, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &859584621
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859584618}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1017185413
 GameObject:
   m_ObjectHideFlags: 0
@@ -1954,17 +2035,41 @@ MonoBehaviour:
     Box: {fileID: 83842925}
   gameGoalTutorial:
     Text: 'Your goal in the game is to help the thief steal a valuable item. You
-      can assist him with information, scannes
+      can assist him with information, by scanning the area or hacking electronic
+      devices.
 
       Press F to continue'
     Box: {fileID: 83842925}
-  informationGatherTutorial:
+  computerTutorial:
+    Text: 
+    Box: {fileID: 0}
+  droneMoveTutorial:
+    Text: 
+    Box: {fileID: 0}
+  droneScanTutorial:
+    Text: 
+    Box: {fileID: 0}
+  droneFireFlareTutorial:
+    Text: 
+    Box: {fileID: 0}
+  bugTutorial:
+    Text: 
+    Box: {fileID: 0}
+  hackerTutorial:
     Text: 
     Box: {fileID: 0}
   OnMissionFinished: {fileID: 11400000, guid: 9f78d00f245cde140973e24a8ab633f7, type: 2}
   OnMissionLoaded: {fileID: 11400000, guid: cc3f24bdc65c5864d84255c0d12f91e6, type: 2}
+  OnDroneMove: {fileID: 11400000, guid: b85cf2e3df46b6247bc84cab16c1601d, type: 2}
+  OnPosUpdate: {fileID: 11400000, guid: 12cf0b4ab4b4c10438df33e29ad72411, type: 2}
+  OnDroneScan: {fileID: 11400000, guid: e42863ee6aab7b245a624f367f4e24b2, type: 2}
+  OnGuardScanned: {fileID: 11400000, guid: 491ca8868fa7a4945876d1cf550bf831, type: 2}
+  OnDroneFlare: {fileID: 11400000, guid: 7b11b014d2b90f84288abb6ba385ea2b, type: 2}
   documentHolder: {fileID: 2079234397}
   map: {fileID: 369441241}
+  droneRefPosObj: {fileID: 1471749729}
+  droneTutorialTargetPos: {fileID: 859584619}
+  mapData: {fileID: 11400000, guid: ef44887147996f24fa48aae1399aabed, type: 2}
   testMission: {fileID: 11400000, guid: 1b395dc88c3bf4645aee84306dcaffa4, type: 2}
   OnMissionSelect: {fileID: 11400000, guid: b814887e908ba654ab84db5d34cf4606, type: 2}
 --- !u!1 &1598626081
@@ -2470,6 +2575,7 @@ Transform:
   - {fileID: 1897340811}
   - {fileID: 1471749728}
   - {fileID: 58872398}
+  - {fileID: 859584619}
   m_Father: {fileID: 369441240}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

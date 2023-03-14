@@ -19,7 +19,17 @@ public class CommanderTutorial : MonoBehaviour
     [SerializeField]
     private CommanderTutorialStep gameGoalTutorial;
     [SerializeField]
-    private CommanderTutorialStep informationGatherTutorial;
+    private CommanderTutorialStep computerTutorial;
+    [SerializeField]
+    private CommanderTutorialStep droneMoveTutorial;
+    [SerializeField]
+    private CommanderTutorialStep droneScanTutorial;
+    [SerializeField]
+    private CommanderTutorialStep droneFireFlareTutorial;
+    [SerializeField]
+    private CommanderTutorialStep bugTutorial;
+    [SerializeField]
+    private CommanderTutorialStep hackerTutorial;
 
     [Header("UI")]
     private TutorialTextBox currentTextBox;
@@ -29,6 +39,16 @@ public class CommanderTutorial : MonoBehaviour
     private BoolEvent OnMissionFinished;
     [SerializeField]
     private GameEvent OnMissionLoaded;
+    [SerializeField]
+    private Vector2Event OnDroneMove;
+    [SerializeField]
+    private PosUpdateEvent OnPosUpdate;
+    [SerializeField]
+    private GameEvent OnDroneScan;
+    [SerializeField]
+    private Vector2Event OnGuardScanned;
+    [SerializeField]
+    private GameEvent OnDroneFlare;
 
 
     [Header("Objects")]
@@ -36,8 +56,14 @@ public class CommanderTutorial : MonoBehaviour
     private DocumentHolder documentHolder;
     [SerializeField]
     private Map map;
+    [SerializeField]
+    private WorldObjectRefPos droneRefPosObj;
+    [SerializeField]
+    private Transform droneTutorialTargetPos;
 
     [Header("Controller")]
+    [SerializeField]
+    private MapData mapData;
 
     [Header("Test mission")]
     [SerializeField]
@@ -57,11 +83,13 @@ public class CommanderTutorial : MonoBehaviour
         Map,
         Radio,
         GameGoal,
-        InformationGather,
         Computer,
+        DroneMove,
+        DroneScan,
+        DroneFireFlare,
         Bug,
         Hacker,
-        Drone
+        
     }
 
     private void Start()
@@ -72,6 +100,9 @@ public class CommanderTutorial : MonoBehaviour
 
             stepCounter = TutorialSteps.None;
             OnMissionFinished.AddListener(FinishTutorial);
+            OnDroneMove.AddListener(DroneMoveCommand);
+            OnDroneScan.AddListener(DroneScanCommand);
+            OnDroneFlare.AddListener(FlareMoveCommand);
             NextStep();
         }
         else
@@ -85,7 +116,7 @@ public class CommanderTutorial : MonoBehaviour
         if (stepCounter == TutorialSteps.Introduction ||
             stepCounter == TutorialSteps.Radio ||
             stepCounter == TutorialSteps.GameGoal ||
-            stepCounter == TutorialSteps.InformationGather
+            stepCounter == TutorialSteps.Computer
             )
         {
             if (Input.GetKeyDown(KeyCode.F))
@@ -116,12 +147,65 @@ public class CommanderTutorial : MonoBehaviour
             if (!map.InFocus)
                 NextStep();
 
+        if(stepCounter == TutorialSteps.DroneMove)
+        {
+            MoveDrone();
+            if((droneTutorialTargetPos.position - droneRefPosObj.transform.position).sqrMagnitude < 0.25f)
+            {
+                NextStep();
+            }
+        }
+    }
+
+    #region MoveDrone
+    private Vector3 targetDir;
+    private Vector3 droneWorlPos;
+    private float timer;
+
+    private void MoveDrone()
+    {
+        if(targetDir != Vector3.zero)
+        {
+            if((timer += Time.deltaTime) >= 2) // 2 = Update time
+            {
+                droneWorlPos += (targetDir * 2 * Time.deltaTime); // 2 = move speed
+                OnPosUpdate.RaiseEvent('D', droneWorlPos);
+                timer = 0;
+            }
+        }
+    }
+    
+    private void DroneMoveCommand(Vector2 mapCoordinatePos)
+    {
+        timer = 0;
+        droneWorlPos = mapData.MapCoordinateToWorldPos(mapCoordinatePos);
+        targetDir = (mapData.MapCoordinateToMapPos(mapCoordinatePos) - droneRefPosObj.transform.position.ToVector2()).normalized.ToVector3();
+    }
+    #endregion
+
+    private void DroneScanCommand()
+    {
+        if(stepCounter == TutorialSteps.DroneScan)
+        {
+            OnGuardScanned.RaiseEvent(mapData.MapCoordinateToWorldPos(new Vector2(droneTutorialTargetPos.position.x + 1, droneTutorialTargetPos.position.y + 1.2f)).ToVector2());
+            OnGuardScanned.RaiseEvent(mapData.MapCoordinateToWorldPos(new Vector2(droneTutorialTargetPos.position.x - 0.2f, droneTutorialTargetPos.position.y + 1f)).ToVector2());
+            NextStep();
+        }
+    }
+
+    private void FlareMoveCommand()
+    {
+        if (stepCounter == TutorialSteps.DroneFireFlare)
+            NextStep();
     }
 
     private void FinishTutorial(bool successful)
     {
         NextStep();
         OnMissionFinished.RemoveListener(FinishTutorial);
+        OnDroneMove.RemoveListener(DroneMoveCommand);
+        OnDroneScan.RemoveListener(DroneScanCommand);
+        OnDroneFlare.RemoveListener(FlareMoveCommand);
     }
 
     public void NextStep()
@@ -138,6 +222,17 @@ public class CommanderTutorial : MonoBehaviour
             case TutorialSteps.Documents: SetText(documentsTutorial); break;
             case TutorialSteps.Map: SetText(mapTutorial); break;
             case TutorialSteps.Radio: SetText(radioTutorial); break;
+            case TutorialSteps.GameGoal: SetText(gameGoalTutorial); break;
+            case TutorialSteps.Computer: SetText(computerTutorial); break;
+            case TutorialSteps.DroneMove:
+                droneTutorialTargetPos.gameObject.SetActive(true);
+                SetText(droneMoveTutorial); 
+                break;
+            case TutorialSteps.DroneScan:
+                droneTutorialTargetPos.gameObject.SetActive(false);
+                SetText(droneScanTutorial);
+                break;
+            case TutorialSteps.DroneFireFlare: SetText(droneFireFlareTutorial); break;
             
             default:
                 break;

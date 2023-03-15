@@ -16,7 +16,7 @@ public class Computer : MonoBehaviour, IFocusable
     [SerializeField]
     private Transform cameraFocusPosition;
 
-    private bool inFocus;
+    public bool InFocus { get; private set; }
     #endregion
 
     [SerializeField]
@@ -65,7 +65,7 @@ public class Computer : MonoBehaviour, IFocusable
 
     private void Update()
     {
-        if(inFocus)
+        if(InFocus)
         {
             //Override the unity UI navigation
             if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -85,7 +85,7 @@ public class Computer : MonoBehaviour, IFocusable
 
     public void StartProgram(BugReferenc bugReferenc)
     {
-        if(inFocus)
+        if(InFocus)
         {
             Debug.Log("Start program: " + bugReferenc.ID);
             switch (bugReferenc.Type)
@@ -104,7 +104,7 @@ public class Computer : MonoBehaviour, IFocusable
     #region Focus Handling
     public void EnableFocus(FocusAnimationParam focusPos)
     {
-        inFocus = true;
+        InFocus = true;
         focusHandler.BlockFocus = true;
         console.Enable();
         cameraHandler.FocusObject(cameraFocusPosition);
@@ -112,7 +112,7 @@ public class Computer : MonoBehaviour, IFocusable
 
     public void DisableFocus()
     {
-        inFocus = false;
+        InFocus = false;
         cameraHandler.StopFocus(AnimationFinished);
     }
 

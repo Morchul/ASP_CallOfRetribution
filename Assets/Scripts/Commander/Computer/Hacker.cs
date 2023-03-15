@@ -7,7 +7,7 @@ public class Hacker : MonoBehaviour
     [SerializeField]
     private MissionController missionController;
 
-    private int level = 0;
+    public int Level { get; set; }
     private float timer;
     private float nextHack;
 
@@ -34,6 +34,8 @@ public class Hacker : MonoBehaviour
 
     private void Start()
     {
+        Level = 0;
+
         foreach (BugReferenc bug in missionController.Bugs)
             bug.OnStatusChanged += OnBugStatusChanged;
 
@@ -58,25 +60,25 @@ public class Hacker : MonoBehaviour
 
     private void NewItemHacked()
     {
-        level = Mathf.Min(maxLevel, level + 1);
-        Debug.Log("New item hacked increase level to: " + level);
+        Level = Mathf.Min(maxLevel, Level + 1);
+        Debug.Log("New item hacked increase level to: " + Level);
     }
 
     private void Update()
     {
-        if (level == 0) return;
+        if (Level == 0) return;
 
         if (hackInProgress)
         {
             timer += Time.deltaTime;
-            if(timer > hackingTime - ((level - 1) * hackingTime / maxLevel))
+            if(timer > hackingTime - ((Level - 1) * hackingTime / maxLevel))
             {
                 OnMissionFinished.RaiseEvent(false);
             }
         }
         else
         {
-            timer += Time.deltaTime * level / 2;
+            timer += Time.deltaTime * Level / 2;
 
             if (timer > nextHack)
             {
@@ -102,7 +104,7 @@ public class Hacker : MonoBehaviour
 
     private AttackParameter GetAttackParameter()
     {
-        int port = Random.Range(1000, 9999);
+        int port = Random.Range(10_000, 100_000);
         return new AttackParameter()
         {
             Port = port,

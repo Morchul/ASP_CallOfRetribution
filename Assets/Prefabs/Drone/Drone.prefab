@@ -121,8 +121,8 @@ MonoBehaviour:
   OnDroneConnectionStateChanged: {fileID: 11400000, guid: 2ded24303165cf74ea46b25e1edc906e, type: 2}
   moveSpeed: 10
   minDistToTarget: 2
-  scanInterval: 4
-  scanAmount: 4
+  scanInterval: 3
+  scanAmount: 5
   scanCooldown: 20
   scanRadius: 8
   scanLayerMask:

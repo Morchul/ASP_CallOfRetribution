@@ -133,7 +133,7 @@ public class Console : MonoBehaviour
     #endregion
 
     #region Hacker attack
-    private int attackedPort;
+    public int AttackedPort { get; private set; }
     private bool CheckForPortDefense(string command)
     {
         if (command.ToLower().StartsWith(CLOSE_PORT_COMMAND))
@@ -142,9 +142,10 @@ public class Console : MonoBehaviour
             if (int.TryParse(portString, out int port))
             {
                 AddLog("Closing port " + port);
-                if(attackedPort > 0 && attackedPort == port)
+                if(AttackedPort > 0 && AttackedPort == port)
                 {
                     hacker.HackDefused();
+                    AttackedPort = 0;
                 }
                 return true;
             }
@@ -153,7 +154,7 @@ public class Console : MonoBehaviour
     }
     public void HackAttack(Hacker.AttackParameter param)
     {
-        attackedPort = param.Port;
+        AttackedPort = param.Port;
         AddLog(param.Message);
     }
     #endregion

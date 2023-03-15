@@ -21,6 +21,8 @@ public class CommanderTutorial : MonoBehaviour
     [SerializeField]
     private CommanderTutorialStep computerTutorial;
     [SerializeField]
+    private CommanderTutorialStep computerHandlingTutorial;
+    [SerializeField]
     private CommanderTutorialStep droneMoveTutorial;
     [SerializeField]
     private CommanderTutorialStep droneScanTutorial;
@@ -30,6 +32,8 @@ public class CommanderTutorial : MonoBehaviour
     private CommanderTutorialStep bugTutorial;
     [SerializeField]
     private CommanderTutorialStep hackerTutorial;
+    [SerializeField]
+    private CommanderTutorialStep finishTutorial;
 
     [Header("UI")]
     private TutorialTextBox currentTextBox;
@@ -49,6 +53,12 @@ public class CommanderTutorial : MonoBehaviour
     private Vector2Event OnGuardScanned;
     [SerializeField]
     private GameEvent OnDroneFlare;
+    [SerializeField]
+    private BugUpdateEvent OnBugUpdateRequest;
+    [SerializeField]
+    private BugUpdateEvent OnBugUpdate;
+    [SerializeField]
+    private IntEvent OnBugDenied;
 
 
     [Header("Objects")]
@@ -57,9 +67,13 @@ public class CommanderTutorial : MonoBehaviour
     [SerializeField]
     private Map map;
     [SerializeField]
+    private Computer computer;
+    [SerializeField]
     private WorldObjectRefPos droneRefPosObj;
     [SerializeField]
-    private Transform droneTutorialTargetPos;
+    private Transform droneTutorialTarget;
+    [SerializeField]
+    private Hacker hacker;
 
     [Header("Controller")]
     [SerializeField]
@@ -84,11 +98,14 @@ public class CommanderTutorial : MonoBehaviour
         Radio,
         GameGoal,
         Computer,
+        ComputerHandling,
         DroneMove,
         DroneScan,
         DroneFireFlare,
         Bug,
         Hacker,
+        Finish,
+        TutorialDone
         
     }
 
@@ -103,6 +120,7 @@ public class CommanderTutorial : MonoBehaviour
             OnDroneMove.AddListener(DroneMoveCommand);
             OnDroneScan.AddListener(DroneScanCommand);
             OnDroneFlare.AddListener(FlareMoveCommand);
+            OnBugUpdateRequest.AddListener(BugUpdateRequest);
             NextStep();
         }
         else
@@ -116,7 +134,8 @@ public class CommanderTutorial : MonoBehaviour
         if (stepCounter == TutorialSteps.Introduction ||
             stepCounter == TutorialSteps.Radio ||
             stepCounter == TutorialSteps.GameGoal ||
-            stepCounter == TutorialSteps.Computer
+            stepCounter == TutorialSteps.ComputerHandling ||
+            stepCounter == TutorialSteps.Finish
             )
         {
             if (Input.GetKeyDown(KeyCode.F))
@@ -146,12 +165,32 @@ public class CommanderTutorial : MonoBehaviour
         if (stepCounter == TutorialSteps.Map)
             if (!map.InFocus)
                 NextStep();
+        if (stepCounter == TutorialSteps.Computer)
+            if (computer.InFocus)
+                NextStep();
 
         if(stepCounter == TutorialSteps.DroneMove)
         {
             MoveDrone();
-            if((droneTutorialTargetPos.position - droneRefPosObj.transform.position).sqrMagnitude < 0.25f)
+
+            //Close enough to tutorial target, continue
+            if((droneTutorialTarget.localPosition - droneRefPosObj.transform.localPosition).sqrMagnitude < 0.25f)
             {
+                NextStep();
+                OnPosUpdate.RaiseEvent('D', droneWorlPos);
+            }
+        }
+
+        if(stepCounter == TutorialSteps.Hacker)
+        {
+            if(computer.Console.AttackedPort != 0)
+            {
+                //Attack defused
+                hacker.Level = 0;
+            }
+            if (hacker.Level == 0 && computer.Console.AttackedPort == 0)
+            {
+                //Attack defused
                 NextStep();
             }
         }
@@ -160,26 +199,34 @@ public class CommanderTutorial : MonoBehaviour
     #region MoveDrone
     private Vector3 targetDir;
     private Vector3 droneWorlPos;
+    private Vector3 droneTargetWorldPos;
     private float timer;
 
     private void MoveDrone()
     {
         if(targetDir != Vector3.zero)
         {
-            if((timer += Time.deltaTime) >= 2) // 2 = Update time
+            droneWorlPos += (targetDir * 100 * Time.deltaTime); // 100 = move speed
+
+            if ((timer += Time.deltaTime) >= 0.1f) // 0.1 = Update time
             {
-                droneWorlPos += (targetDir * 2 * Time.deltaTime); // 2 = move speed
                 OnPosUpdate.RaiseEvent('D', droneWorlPos);
                 timer = 0;
             }
+
+            //target reached
+            if ((droneWorlPos - droneTargetWorldPos).sqrMagnitude < 0.25f)
+                targetDir = Vector3.zero;
         }
     }
     
     private void DroneMoveCommand(Vector2 mapCoordinatePos)
     {
         timer = 0;
-        droneWorlPos = mapData.MapCoordinateToWorldPos(mapCoordinatePos);
-        targetDir = (mapData.MapCoordinateToMapPos(mapCoordinatePos) - droneRefPosObj.transform.position.ToVector2()).normalized.ToVector3();
+        Vector2 localDroneMapPos = droneRefPosObj.transform.localPosition.ToVector2();
+        droneWorlPos = mapData.MapPosToWorldPos(localDroneMapPos);
+        droneTargetWorldPos = mapData.MapCoordinateToWorldPos(mapCoordinatePos);
+        targetDir = (mapData.MapCoordinateToMapPos(mapCoordinatePos) - localDroneMapPos).normalized.ToVector3();
     }
     #endregion
 
@@ -187,8 +234,8 @@ public class CommanderTutorial : MonoBehaviour
     {
         if(stepCounter == TutorialSteps.DroneScan)
         {
-            OnGuardScanned.RaiseEvent(mapData.MapCoordinateToWorldPos(new Vector2(droneTutorialTargetPos.position.x + 1, droneTutorialTargetPos.position.y + 1.2f)).ToVector2());
-            OnGuardScanned.RaiseEvent(mapData.MapCoordinateToWorldPos(new Vector2(droneTutorialTargetPos.position.x - 0.2f, droneTutorialTargetPos.position.y + 1f)).ToVector2());
+            OnGuardScanned.RaiseEvent(mapData.MapPosToWorldPos(droneTutorialTarget.localPosition.ToVector2() + new Vector2(0.4f, 0)).ToVector2());
+            OnGuardScanned.RaiseEvent(mapData.MapPosToWorldPos(droneTutorialTarget.localPosition.ToVector2() + new Vector2(-0.2f, -0.1f)).ToVector2());
             NextStep();
         }
     }
@@ -199,6 +246,25 @@ public class CommanderTutorial : MonoBehaviour
             NextStep();
     }
 
+    private void BugUpdateRequest(BugUpdateEvent.BugUpdate bugUpdate)
+    {
+        if(stepCounter == TutorialSteps.Bug)
+        {
+            if ((bugUpdate.Status & (int)ElectricalLock.LockState.Hacked) > 0) //If lock is hacked
+            {
+                hacker.Level = 0;
+                OnBugUpdate.RaiseEvent(bugUpdate);
+
+                if ((bugUpdate.Status & (int)ElectricalLock.LockState.Open) > 0)
+                    NextStep();
+            }
+            else
+            {
+                OnBugDenied.RaiseEvent(0);
+            }
+        }
+    }
+
     private void FinishTutorial(bool successful)
     {
         NextStep();
@@ -206,6 +272,7 @@ public class CommanderTutorial : MonoBehaviour
         OnDroneMove.RemoveListener(DroneMoveCommand);
         OnDroneScan.RemoveListener(DroneScanCommand);
         OnDroneFlare.RemoveListener(FlareMoveCommand);
+        OnBugUpdateRequest.RemoveListener(BugUpdateRequest);
     }
 
     public void NextStep()
@@ -224,16 +291,31 @@ public class CommanderTutorial : MonoBehaviour
             case TutorialSteps.Radio: SetText(radioTutorial); break;
             case TutorialSteps.GameGoal: SetText(gameGoalTutorial); break;
             case TutorialSteps.Computer: SetText(computerTutorial); break;
+            case TutorialSteps.ComputerHandling: SetText(computerHandlingTutorial); break;
             case TutorialSteps.DroneMove:
-                droneTutorialTargetPos.gameObject.SetActive(true);
+                droneTutorialTarget.gameObject.SetActive(true);
                 SetText(droneMoveTutorial); 
                 break;
             case TutorialSteps.DroneScan:
-                droneTutorialTargetPos.gameObject.SetActive(false);
+                droneTutorialTarget.gameObject.SetActive(false);
                 SetText(droneScanTutorial);
                 break;
             case TutorialSteps.DroneFireFlare: SetText(droneFireFlareTutorial); break;
-            
+            case TutorialSteps.Bug:
+                OnBugUpdate.RaiseEvent(0, IBugable.Type.Lock, 0);
+                SetText(bugTutorial); break;
+            case TutorialSteps.Hacker:
+                hacker.Level = 1;
+                SetText(hackerTutorial);
+                break;
+            case TutorialSteps.Finish:
+                SetText(finishTutorial);
+                break;
+            case TutorialSteps.TutorialDone:
+                OnMissionFinished.RaiseEvent(true);
+                break;
+
+
             default:
                 break;
 

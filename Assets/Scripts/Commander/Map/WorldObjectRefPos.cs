@@ -20,7 +20,7 @@ public class WorldObjectRefPos : MonoBehaviour
     {
         if(posUpdate.Identifier == identifier)
         {
-            Vector2 mapPos = mapData.XZWorldPosToMapPos(posUpdate.Pos);
+            Vector2 mapPos = mapData.WorldPosToMapPos(posUpdate.Pos);
             transform.localPosition = mapPos.ToVector3();
         }
     }

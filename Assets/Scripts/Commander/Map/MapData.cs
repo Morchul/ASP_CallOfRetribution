@@ -13,11 +13,12 @@ public class MapData : ScriptableObject
     public float MapSizeY;
 
     [Tooltip("With a scale of 1 how big is the map")]
+    //Leads from a normalized position to the local Position
     public float MapScaleSizeRatio;
 
     public Vector3 WorldOffset = Vector3.zero;
 
-    public Vector3 NormalizedMapPosToWorldPos(Vector2 mapPos)
+    public Vector3 MapPosToWorldPos(Vector2 mapPos)
     {
         return new Vector3(mapPos.x / MapScaleSizeRatio * WorldWidth, 0, mapPos.y / MapScaleSizeRatio * WorldHeight) + WorldOffset;
     }
@@ -39,9 +40,11 @@ public class MapData : ScriptableObject
         return new Vector2(worldPos.x / WorldWidth * MapWidth, worldPos.y / WorldHeight * MapHeight);
     }
 
+    public Vector2 WorldPosToMapPos(Vector3 worldPos) => XZWorldPosToMapPos(worldPos.ToVector2());
+
     public Vector2 XZWorldPosToMapPos(Vector2 worldPos)
     {
-        worldPos = new Vector2(worldPos.x - WorldOffset.x, worldPos.y - WorldOffset.z);
+        worldPos -= WorldOffset.ToVector2();
 
         return new Vector2(worldPos.x / WorldWidth, worldPos.y / WorldHeight) * MapScaleSizeRatio;
     }

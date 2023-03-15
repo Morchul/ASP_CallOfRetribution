@@ -216,7 +216,7 @@ Transform:
   m_GameObject: {fileID: 58872397}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.17, y: -0.21, z: 0.26}
-  m_LocalScale: {x: 0.1, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1699816218}
   m_RootOrder: 2
@@ -288,7 +288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &83842922
 RectTransform:
   m_ObjectHideFlags: 0
@@ -503,6 +503,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 148541612}
   m_CullTransparentMesh: 1
+--- !u!114 &158565573 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6642857256382881063, guid: 017ae8316a910a24e90183b9ba569cfc, type: 3}
+  m_PrefabInstance: {fileID: 2116848186038629025}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b6f5a0ec13fd3a4784d98be65508af0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &184964863
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,7 +959,7 @@ Transform:
   m_GameObject: {fileID: 859584618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.73, y: 0.03, z: 5.04}
-  m_LocalScale: {x: 0.1, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1699816218}
   m_RootOrder: 3
@@ -1337,6 +1348,95 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1130126699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1130126700}
+  - component: {fileID: 1130126703}
+  - component: {fileID: 1130126702}
+  - component: {fileID: 1130126701}
+  m_Layer: 5
+  m_Name: Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1130126700
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130126699}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1619863370}
+  m_Father: {fileID: 1555404976}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -477.94556, y: -64.68924}
+  m_SizeDelta: {x: 955.8911, y: -370.6215}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1130126701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130126699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4212901c0a4844b41973c7fa92f9826f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1130126702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130126699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1130126703
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130126699}
+  m_CullTransparentMesh: 1
 --- !u!1 &1176832360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1869,7 +1969,7 @@ Transform:
   m_GameObject: {fileID: 1471749727}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.44, y: 0, z: 8.12}
-  m_LocalScale: {x: 0.1, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1699816218}
   m_RootOrder: 1
@@ -1968,6 +2068,7 @@ RectTransform:
   m_Children:
   - {fileID: 1857961146}
   - {fileID: 83842922}
+  - {fileID: 1130126700}
   m_Father: {fileID: 519259331}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2002,16 +2103,26 @@ MonoBehaviour:
       Press the F key to continue...'
     Box: {fileID: 83842925}
   overviewTutorial:
-    Text: "As Commander you have access to four main features. In the back there\r
-      is a radio, on the left is the Computer, on the right a map and in the front\r
-      are documents.\r\nYou can focus most of these by left click on it. To\r cancel
-      the focus press the ESC key or right click.\r\nSelect a document"
+    Text: 'As Commander you have access to four main features. In the back there
+      is a radio, on the left is the Computer, on the right a map and in the front
+      are documents.
+
+      You can focus most of these by left click on it. To
+      cancel the focus press the ESC key or right click.
+
+      Select a document'
     Box: {fileID: 83842925}
   documentsTutorial:
-    Text: "You can move it around by dragging it and zoom\r in and out with the mouse
-      wheel.\r\nDocuments contain information like\r what''s the target item, where
-      to find it and controls and commands.\r\nAlso every document the thief picks
-      up will be available for you.\nSelect the map to continue"
+    Text: 'You can move it around by dragging it and zoom in and out with the mouse
+      wheel.
+
+      Documents contain information like what''s the target item,
+      where to find it and controls and commands.
+
+      Also every document the
+      thief picks up will be available for you.
+
+      Select the map to continue'
     Box: {fileID: 1857961149}
   mapTutorial:
     Text: 'As with the document you can move and zoom the map. At the top and the
@@ -2041,23 +2152,93 @@ MonoBehaviour:
       Press F to continue'
     Box: {fileID: 83842925}
   computerTutorial:
-    Text: 
-    Box: {fileID: 0}
+    Text: 'On the left you have a computer. With the computer you can control your
+      drone and interact with electric devices.
+
+      Focus the computer to continue'
+    Box: {fileID: 83842925}
+  computerHandlingTutorial:
+    Text: 'You can navigate through the computer by using the up and down arrows
+      or tab.
+
+      To select a button or execute a command press Enter
+
+      Press
+      F to continue'
+    Box: {fileID: 1130126701}
   droneMoveTutorial:
-    Text: 
-    Box: {fileID: 0}
+    Text: 'At the bottom you can enter commands for your drone. You can move the
+      drone by writing:
+
+      move X Y
+
+      You have to replace the X and Y with
+      the number you want your drone to move to. You can see the numbers when you
+      look at the map at the top and the left side.
+
+      Try to move the drone
+      to the purple mark on the map.'
+    Box: {fileID: 1130126701}
   droneScanTutorial:
-    Text: 
-    Box: {fileID: 0}
+    Text: 'Great now you can move your drone. The drone has two features. It can
+      scan an area for guards and fire flare to signalise a position to the thief.
+      Scan the area around the drone by typing the following in the command line:
+
+      scan
+
+      You
+      can only scan once every 20 seconds'
+    Box: {fileID: 1130126701}
   droneFireFlareTutorial:
-    Text: 
-    Box: {fileID: 0}
+    Text: 'Great you can see the scan results on the map as red points.
+
+      As
+      you can see there are some guards around so you now could communicate with
+      the thief that there are some guards and fire a flare to show him exactly where
+      they are. Fire a flare by typing the following in the command line:
+
+      fire
+      flare'
+    Box: {fileID: 1130126701}
   bugTutorial:
-    Text: 
-    Box: {fileID: 0}
+    Text: 'Well done. You now know the manouvers of the drone.
+
+      The thief placed
+      a bug on an electric lock and you have to open it for him.
+
+      Select the
+      bug which is connected to the lock and open it.'
+    Box: {fileID: 1130126701}
   hackerTutorial:
-    Text: 
-    Box: {fileID: 0}
+    Text: 'You successfully opened the lock and your thief can continue.
+
+      But
+      it seemed that your access did not stay unnoticed.
+
+      After the first time
+      you get access to something the guards will try to hack your computer to get
+      your location.
+
+      Every time you get attacked you will see the message:
+
+      Incoming
+      attack on port X
+
+      You then have to close this port as fast as possible
+      by typing:
+
+      close port X'
+    Box: {fileID: 1130126701}
+  finishTutorial:
+    Text: 'You defended yourself against the attack. But they will try again.
+
+      The
+      more electric devices you hack the shorter the period between the attacks and
+      the less time you have to respond so always keep an eye out for it.
+
+      Press
+      F to finish the tutorial'
+    Box: {fileID: 1130126701}
   OnMissionFinished: {fileID: 11400000, guid: 9f78d00f245cde140973e24a8ab633f7, type: 2}
   OnMissionLoaded: {fileID: 11400000, guid: cc3f24bdc65c5864d84255c0d12f91e6, type: 2}
   OnDroneMove: {fileID: 11400000, guid: b85cf2e3df46b6247bc84cab16c1601d, type: 2}
@@ -2065,10 +2246,15 @@ MonoBehaviour:
   OnDroneScan: {fileID: 11400000, guid: e42863ee6aab7b245a624f367f4e24b2, type: 2}
   OnGuardScanned: {fileID: 11400000, guid: 491ca8868fa7a4945876d1cf550bf831, type: 2}
   OnDroneFlare: {fileID: 11400000, guid: 7b11b014d2b90f84288abb6ba385ea2b, type: 2}
+  OnBugUpdateRequest: {fileID: 11400000, guid: cc5b3cc79e2a87b4a8b1efc6172af7a5, type: 2}
+  OnBugUpdate: {fileID: 11400000, guid: 8ae02f8a2a98e7045a28bac4ae8553a2, type: 2}
+  OnBugDenied: {fileID: 11400000, guid: cc6701d217e47c4499fbb51a9707af11, type: 2}
   documentHolder: {fileID: 2079234397}
   map: {fileID: 369441241}
+  computer: {fileID: 2087392391}
   droneRefPosObj: {fileID: 1471749729}
-  droneTutorialTargetPos: {fileID: 859584619}
+  droneTutorialTarget: {fileID: 859584619}
+  hacker: {fileID: 158565573}
   mapData: {fileID: 11400000, guid: ef44887147996f24fa48aae1399aabed, type: 2}
   testMission: {fileID: 11400000, guid: 1b395dc88c3bf4645aee84306dcaffa4, type: 2}
   OnMissionSelect: {fileID: 11400000, guid: b814887e908ba654ab84db5d34cf4606, type: 2}
@@ -2219,6 +2405,140 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationMultiplier: 2
+--- !u!1 &1619863369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1619863370}
+  - component: {fileID: 1619863372}
+  - component: {fileID: 1619863371}
+  m_Layer: 5
+  m_Name: TutorialTextTop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1619863370
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619863369}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1130126700}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1619863371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619863369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: New Text
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 45
+  m_fontSizeBase: 45
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1619863372
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619863369}
+  m_CullTransparentMesh: 1
 --- !u!1 &1626681980
 GameObject:
   m_ObjectHideFlags: 0
@@ -2614,7 +2934,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1857961146
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2744,8 +3064,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897340810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.92, y: 0, z: 9.85}
-  m_LocalScale: {x: 0.1, y: 0.2, z: 0.2}
+  m_LocalPosition: {x: 4.77, y: 0, z: 4.01}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1699816218}
   m_RootOrder: 0
@@ -2991,6 +3311,17 @@ MonoBehaviour:
   OnNewInformationEvent: {fileID: 11400000, guid: 97bb02a1aacb8be44b4873997f735aaf, type: 2}
   missionController: {fileID: 11400000, guid: 768426e8a2ef50a4594206db78e130f3, type: 2}
   focusHandler: {fileID: 301064207}
+--- !u!114 &2087392391 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2116848187069688979, guid: 017ae8316a910a24e90183b9ba569cfc, type: 3}
+  m_PrefabInstance: {fileID: 2116848186038629025}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81fed0ed91222f499fc19e8cefd826c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2117100010
 GameObject:
   m_ObjectHideFlags: 0

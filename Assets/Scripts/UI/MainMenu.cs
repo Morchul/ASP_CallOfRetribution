@@ -15,12 +15,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private TMP_Dropdown ipSelection;
 
-    [Header("Scene Controller")]
-    [SerializeField]
-    private SceneController sceneController;
-
     [SerializeField]
     private Lobby lobby;
+
+    [Header("Controller")]
+    [SerializeField]
+    private SceneController sceneController;
 
     [Header("Events")]
     [SerializeField]
@@ -31,6 +31,13 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField]
     private GameEvent OnConnectionFailure;
+
+    [SerializeField]
+    private IntEvent OnMissionSelect;
+
+    [Header("Tutorial")]
+    [SerializeField]
+    private Mission tutorialMission;
 
     private void Start()
     {
@@ -97,6 +104,7 @@ public class MainMenu : MonoBehaviour
     {
         NetworkManager.Instance.DEBUG_MODE = true;
         NetworkManager.Instance.CreateHost("");
+        OnMissionSelect.RaiseEvent(tutorialMission.ID);
         sceneController.LoadThiefTutorial();
     }
 
@@ -104,6 +112,7 @@ public class MainMenu : MonoBehaviour
     {
         NetworkManager.Instance.DEBUG_MODE = true;
         NetworkManager.Instance.CreateClient("");
+        OnMissionSelect.RaiseEvent(tutorialMission.ID);
         sceneController.LoadCommanderTutorial();
     }
 

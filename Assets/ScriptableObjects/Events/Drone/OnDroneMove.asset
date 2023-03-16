@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b604a4e6a83a197498c26beb405e0cf3, type: 3}
   m_Name: OnDroneMove
   m_EditorClassIdentifier: 
-  prefix: DRONE_MOVE
+  prefix: 'DRONE_MOVE:'

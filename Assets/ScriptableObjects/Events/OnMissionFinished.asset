@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874b57c7ad9e3c141924ec9f5197ea1e, type: 3}
   m_Name: OnMissionFinished
   m_EditorClassIdentifier: 
-  prefix: 
+  prefix: 'MIS_FIN:'

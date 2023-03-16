@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c537afd09f87c4b91184b670c2e264, type: 3}
   m_Name: OnChatMessage
   m_EditorClassIdentifier: 
-  prefix: 
+  prefix: 'CHAT:'

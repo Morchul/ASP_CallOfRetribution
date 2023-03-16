@@ -79,13 +79,6 @@ public class CommanderTutorial : MonoBehaviour
     [SerializeField]
     private MapData mapData;
 
-    [Header("Test mission")]
-    [SerializeField]
-    private Mission testMission;
-    [SerializeField]
-    private IntEvent OnMissionSelect;
-
-
     private TutorialSteps stepCounter;
 
     private enum TutorialSteps : int // HAS TO BE IN ORDER!
@@ -113,8 +106,6 @@ public class CommanderTutorial : MonoBehaviour
     {
         if (NetworkManager.Instance.DEBUG_MODE)
         {
-            OnMissionSelect.RaiseEvent(testMission.ID);
-
             stepCounter = TutorialSteps.None;
             OnMissionFinished.AddListener(FinishTutorial);
             OnDroneMove.AddListener(DroneMoveCommand);

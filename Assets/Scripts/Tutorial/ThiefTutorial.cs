@@ -107,13 +107,6 @@ public class ThiefTutorial : MonoBehaviour
     [SerializeField]
     private GameController gameController;
 
-    [Header("Test mission")]
-    [SerializeField]
-    private Mission testMission;
-    [SerializeField]
-    private IntEvent OnMissionSelect;
-
-
     private TutorialSteps stepCounter;
 
     private enum TutorialSteps : int // HAS TO BE IN ORDER!
@@ -138,8 +131,6 @@ public class ThiefTutorial : MonoBehaviour
 
     private void Awake()
     {
-        OnMissionSelect.RaiseEvent(testMission.ID);
-
         stepCounter = TutorialSteps.None;
         OnBugUpdate.AddListener(OnBugUpdateEvent);
         OnItemStolen.AddListener(OnItemStolenEvent);

@@ -11,6 +11,7 @@ public class MissionController : ScriptableObject
     [Header("Events")]
     public IntEvent OnNewInformation;
     public IntEvent OnMissionSelect;
+    public GameEvent OnMissionSet;
     public GameEvent OnMissionLoaded;
     public BugUpdateEvent OnBugUpdate;
     public BoolEvent OnMissionFinished;
@@ -56,6 +57,7 @@ public class MissionController : ScriptableObject
             Debug.LogWarning("Try to override selected mission!");
             return;
         }
+        Debug.Log("Set mission: " + missionID);
 
         CurrentMission = missions.First((mission) => mission.ID == missionID);
         OnNewInformation.AddListener(NewInformation);
@@ -66,6 +68,7 @@ public class MissionController : ScriptableObject
             Bugs[i] = new BugReferenc(i);
         }
         OnBugUpdate.AddListener(BugUpdate);
+        OnMissionSet.RaiseEvent();
     }
 
     private void UpdateMissionProgress()

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db72e92b2232f243970452e33d8a37f, type: 3}
   m_Name: OnPosUpdate
   m_EditorClassIdentifier: 
-  prefix: POS_UPDATE
+  prefix: 'POS_UPDATE:'

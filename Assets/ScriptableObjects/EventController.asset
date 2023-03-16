@@ -23,8 +23,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e42863ee6aab7b245a624f367f4e24b2, type: 2}
   - {fileID: 11400000, guid: dcd32fa1affe8a649a879737f70b7b51, type: 2}
   - {fileID: 11400000, guid: baa070a6ece754e48bd62778b6bd42a1, type: 2}
-  - {fileID: 11400000, guid: 58be087a887627142964a34886472963, type: 2}
-  - {fileID: 11400000, guid: 26bfd7e7fecd599418fcd665a5b260c2, type: 2}
   - {fileID: 11400000, guid: cc3f24bdc65c5864d84255c0d12f91e6, type: 2}
   - {fileID: 11400000, guid: 4e276141865da0e499e7959229aab82b, type: 2}
   - {fileID: 11400000, guid: 2c2b94ce3b2e7b145b2b0f4ef018cc71, type: 2}
@@ -40,8 +38,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 97bb02a1aacb8be44b4873997f735aaf, type: 2}
   - {fileID: 11400000, guid: 48c87b46d59e39e49aa0d6494046e02d, type: 2}
   stringEventsToResetAfterGame:
-  - {fileID: 11400000, guid: c8692811bef704a4ea50805f44773594, type: 2}
-  - {fileID: 11400000, guid: 7902d2c899aaf48498d662a9110db5d5, type: 2}
+  - {fileID: 11400000, guid: 2e5c92fea10682b478e1aa2c99867a0d, type: 2}
   vector2EventsToResetAfterGame:
   - {fileID: 11400000, guid: b85cf2e3df46b6247bc84cab16c1601d, type: 2}
   - {fileID: 11400000, guid: 918ed3ca555bf32478c8c38173d90ffa, type: 2}

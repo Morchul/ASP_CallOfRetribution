@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.12107852, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -413,7 +413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6789933568279849441, guid: 240d75ce36aa5ac47ba61c5ac6c93050, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -236
+      value: -185
       objectReference: {fileID: 0}
     - target: {fileID: 6789933568279849441, guid: 240d75ce36aa5ac47ba61c5ac6c93050, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -696,7 +696,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 155}
-  m_SizeDelta: {x: -169.99658, y: 125}
+  m_SizeDelta: {x: -58.624, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &329894819
 MonoBehaviour:
@@ -740,10 +740,10 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 329894820}
   m_Template: {fileID: 401766766}
-  m_CaptionText: {fileID: 0}
+  m_CaptionText: {fileID: 736779075}
   m_CaptionImage: {fileID: 0}
   m_Placeholder: {fileID: 0}
-  m_ItemText: {fileID: 0}
+  m_ItemText: {fileID: 2025313975}
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
@@ -1814,11 +1814,13 @@ MonoBehaviour:
   ipAddressField: {fileID: 1514813268}
   messageText: {fileID: 1691871327}
   ipSelection: {fileID: 329894819}
-  sceneController: {fileID: 11400000, guid: 5ad3fdd38a1013c478f253fdad388701, type: 2}
   lobby: {fileID: 1815036095}
+  sceneController: {fileID: 11400000, guid: 5ad3fdd38a1013c478f253fdad388701, type: 2}
   OnConnectionRefused: {fileID: 11400000, guid: 29eac446f27846642929b3d14f6a8bcd, type: 2}
   OnConnectionEstablished: {fileID: 11400000, guid: 882cbd19f10e86b4886272b99d52727c, type: 2}
   OnConnectionFailure: {fileID: 11400000, guid: 4754bcd8f519a4248a30349ade22ec28, type: 2}
+  OnMissionSelect: {fileID: 11400000, guid: b814887e908ba654ab84db5d34cf4606, type: 2}
+  tutorialMission: {fileID: 11400000, guid: 1b395dc88c3bf4645aee84306dcaffa4, type: 2}
 --- !u!1 &706003688
 GameObject:
   m_ObjectHideFlags: 0
@@ -2771,8 +2773,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000091552734, y: 0}
-  m_SizeDelta: {x: 0.00012207, y: 59.3606}
+  m_AnchoredPosition: {x: 0.00001525887, y: 0}
+  m_SizeDelta: {x: -0.00003051773, y: 80}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1001 &1061758341
 PrefabInstance:
@@ -3963,7 +3965,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030517578, y: 0.000078201294}
+  m_AnchoredPosition: {x: -0.000030517578, y: 0.000076293945}
   m_SizeDelta: {x: 0, y: 59.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1529097218
@@ -4229,7 +4231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6789933568279849441, guid: 240d75ce36aa5ac47ba61c5ac6c93050, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -236
+      value: -185
       objectReference: {fileID: 0}
     - target: {fileID: 6789933568279849441, guid: 240d75ce36aa5ac47ba61c5ac6c93050, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4868,6 +4870,7 @@ MonoBehaviour:
   OnConnectionLost: {fileID: 11400000, guid: 20ae5e08772fd354f97cfbb0e6831bf3, type: 2}
   OnConnectionShutdown: {fileID: 11400000, guid: 36531e5c55701dc4296fd1662153d129, type: 2}
   OnMissionSelect: {fileID: 11400000, guid: b814887e908ba654ab84db5d34cf4606, type: 2}
+  OnMissionSet: {fileID: 11400000, guid: f58311713e7425c41bd065947ccb5ffd, type: 2}
   gameController: {fileID: 11400000, guid: 8d56789aec344864aa4812991fa68b34, type: 2}
 --- !u!1 &1941815866
 GameObject:
@@ -5364,7 +5367,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

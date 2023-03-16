@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571409, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2107,8 +2107,8 @@ MonoBehaviour:
       is a radio, on the left is the Computer, on the right a map and in the front
       are documents.
 
-      You can focus most of these by left click on it. To
-      cancel the focus press the ESC key or right click.
+      You can focus most of these by left click on it. To cancel
+      the focus press the ESC key or right click.
 
       Select a document'
     Box: {fileID: 83842925}
@@ -2116,11 +2116,11 @@ MonoBehaviour:
     Text: 'You can move it around by dragging it and zoom in and out with the mouse
       wheel.
 
-      Documents contain information like what''s the target item,
-      where to find it and controls and commands.
+      Documents contain information like what''s the target item, where
+      to find it and controls and commands.
 
-      Also every document the
-      thief picks up will be available for you.
+      Also every document the thief
+      picks up will be available for you.
 
       Select the map to continue'
     Box: {fileID: 1857961149}
@@ -3020,7 +3020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1892344807
 Transform:
   m_ObjectHideFlags: 0

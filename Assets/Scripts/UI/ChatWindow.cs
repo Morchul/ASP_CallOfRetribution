@@ -16,16 +16,19 @@ public class ChatWindow : MonoBehaviour
     [SerializeField]
     private StringEvent OnChatMessage;
 
+    private string chatName;
+
     private void Start()
     {
         OnChatMessage.AddListener(NewChatMessage);
         chatInputField.onEndEdit.AddListener(SendNewMessage);
 
+        chatName = NetworkManager.Instance.ConnectionHandler.IsHost() ? "Thief: " : "Commander: ";
     }
 
     private void SendNewMessage(string message)
     {
-        OnChatMessage.RaiseEvent(message);
+        OnChatMessage.RaiseEvent(chatName + message);
     }
 
     private void NewChatMessage(string message)

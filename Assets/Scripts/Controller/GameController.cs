@@ -20,8 +20,6 @@ public class GameController : ScriptableObject
     private GameEvent OnConnectionShutdown;
     [SerializeField]
     private BoolEvent OnMissionFinished;
-    [SerializeField]
-    private IntEvent OnMissionSelected;
 
     [SerializeField]
     private GameEvent OnMissionLoaded;
@@ -30,13 +28,17 @@ public class GameController : ScriptableObject
 
     private int clientsReady;
 
+    public bool InputDisabled { get; private set; }
+
     public void Init()
     {
         OnConnectionLost.AddListener(ReturnToLobby);
         OnConnectionShutdown.AddListener(ReturnToLobby);
         OnMissionFinished.AddListener(MissionFinished);
         OnMissionLoaded.AddListener(MissionLoaded);
+        OnGameReady.AddListener(() => InputDisabled = false);
         clientsReady = 0;
+        InputDisabled = false;
     }
 
     private void MissionFinished(bool successful)
@@ -62,7 +64,8 @@ public class GameController : ScriptableObject
 
     public void StartMission()
     {
-        if(missionController.CurrentMission != null)
+        InputDisabled = true;
+        if (missionController.CurrentMission != null)
         {
             if (NetworkManager.Instance.ConnectionHandler.IsHost())
                 sceneController.LoadMissionForThief(missionController.CurrentMission);

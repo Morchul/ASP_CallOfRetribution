@@ -62,6 +62,7 @@ public class NetworkManager : MonoBehaviour
     //Destroy child (host or client) every time player returns to main menu while connection handler is not connected
     public void ResetInstance()
     {
+        ConnectionHandler.Shutdown();
         Destroy(instance.transform.GetChild(0).gameObject);
         ConnectionHandler = null;
     }

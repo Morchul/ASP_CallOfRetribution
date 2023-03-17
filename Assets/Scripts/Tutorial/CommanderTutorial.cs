@@ -225,9 +225,18 @@ public class CommanderTutorial : MonoBehaviour
     {
         if(stepCounter == TutorialSteps.DroneScan)
         {
+            StartCoroutine(DroneScanInterval());
+            NextStep();
+        }
+    }
+
+    private IEnumerator DroneScanInterval()
+    {
+        for(int i = 0; i < 4; ++i)
+        {
             OnGuardScanned.RaiseEvent(mapData.MapPosToWorldPos(droneTutorialTarget.localPosition.ToVector2() + new Vector2(0.4f, 0)).ToVector2());
             OnGuardScanned.RaiseEvent(mapData.MapPosToWorldPos(droneTutorialTarget.localPosition.ToVector2() + new Vector2(-0.2f, -0.1f)).ToVector2());
-            NextStep();
+            yield return new WaitForSeconds(3f);
         }
     }
 

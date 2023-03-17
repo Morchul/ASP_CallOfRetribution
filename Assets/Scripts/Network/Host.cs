@@ -86,7 +86,6 @@ public class Host : MonoBehaviour, IConnectionHandler
             Running = false;
             Debug.Log("Shutdown Host");
 
-            messageTransmitter.SendShutdown();
             OnConnectionShutdown.RaiseEvent();
 
             try

@@ -20,6 +20,11 @@ public class ClientMessageHandler : MessageHandler
     {
         base.HandleReceivedMessage(message);
 
+        if (message == MessageTransmitterCommands.REFUSE)
+        {
+            OnConnectionRefused.RaiseEvent();
+        }
+
         if (OnDroneConnectionStateChange.Listen(message)) return;
         if (OnScanOnCooldown.Listen(message)) return;
         if (OnExtractionPointActivate.Listen(message)) return;

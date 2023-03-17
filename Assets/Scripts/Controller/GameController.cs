@@ -82,4 +82,9 @@ public class GameController : ScriptableObject
         OnResetGame.RaiseEvent();
         sceneController.GoToMainMenu();
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

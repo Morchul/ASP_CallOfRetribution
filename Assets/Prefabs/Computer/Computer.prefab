@@ -1436,7 +1436,7 @@ MonoBehaviour:
   maxLevel: 3
   hackingTime: 15
   console: {fileID: 2116848186000506630}
-  OnMissionFailed: {fileID: 11400000, guid: 58be087a887627142964a34886472963, type: 2}
+  OnMissionFinished: {fileID: 11400000, guid: 9f78d00f245cde140973e24a8ab633f7, type: 2}
 --- !u!1 &7058888597866460745
 GameObject:
   m_ObjectHideFlags: 0

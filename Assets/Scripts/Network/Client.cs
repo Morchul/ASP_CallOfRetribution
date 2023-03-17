@@ -88,7 +88,6 @@ public class Client : MonoBehaviour, IConnectionHandler
 
             Debug.Log("Client shutdown");
             OnConnectionLost.RemoveListener(ConnectionLost);
-            messageTransmitter.SendShutdown();
             OnConnectionShutdown.RaiseEvent();
         }
     }

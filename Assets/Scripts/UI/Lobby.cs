@@ -17,6 +17,11 @@ public class Lobby : MonoBehaviour
     [SerializeField]
     private MainMenu mainMenu;
 
+    [SerializeField]
+    private GameObject selectLevelPanel;
+    [SerializeField]
+    private GameObject waitForPlayerText;
+
     [Header("Events")]
     [SerializeField]
     private GameEvent OnConnectionLost;
@@ -26,6 +31,8 @@ public class Lobby : MonoBehaviour
     private IntEvent OnMissionSelect;
     [SerializeField]
     private GameEvent OnMissionSet;
+    [SerializeField]
+    private GameEvent OnConnectionEstablished;
 
     [Header("Controller")]
     [SerializeField]
@@ -40,6 +47,9 @@ public class Lobby : MonoBehaviour
         {
             hostLobbyScreen.SetActive(true);
             ipAddress.text = NetworkManager.Instance.ConnectionHandler.IP;
+
+            if (NetworkManager.Instance.IsConnected)
+                PlayerConnected();
         }
         else
         {
@@ -49,6 +59,7 @@ public class Lobby : MonoBehaviour
         OnConnectionLost.AddListener(ReturnToMainMenu);
         OnConnectionShutdown.AddListener(ReturnToMainMenu);
         OnMissionSet.AddListener(MissionSetEvent);
+        OnConnectionEstablished.AddListener(PlayerConnected);
     }
 
     private void ReturnToMainMenu()
@@ -57,6 +68,11 @@ public class Lobby : MonoBehaviour
         {
             NetworkManager.Instance.ResetInstance();
             CloseLobby();
+        }
+        else
+        {
+            waitForPlayerText.SetActive(true);
+            selectLevelPanel.SetActive(false);
         }
     }
 
@@ -68,6 +84,12 @@ public class Lobby : MonoBehaviour
         {
             CloseLobby();
         }
+    }
+
+    private void PlayerConnected()
+    {
+        waitForPlayerText.SetActive(false);
+        selectLevelPanel.SetActive(true);
     }
 
     public void SelectMission(Mission mission)
@@ -86,6 +108,7 @@ public class Lobby : MonoBehaviour
         OnConnectionLost.RemoveListener(ReturnToMainMenu);
         OnConnectionShutdown.RemoveListener(ReturnToMainMenu);
         OnMissionSet.RemoveListener(MissionSetEvent);
+        OnConnectionEstablished.RemoveListener(PlayerConnected);
 
         //Disable lobby screen
         if (host)

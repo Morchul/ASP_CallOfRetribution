@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571409, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1203,9 +1203,8 @@ Transform:
   m_LocalScale: {x: 2.807822, y: 1.8421, z: 0.4903}
   m_Children:
   - {fileID: 1829478310}
-  - {fileID: 1994704387}
   m_Father: {fileID: 2016732415}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &990969972
 MonoBehaviour:
@@ -1956,7 +1955,7 @@ Transform:
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children: []
   m_Father: {fileID: 2016732415}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1470667630
 MonoBehaviour:
@@ -2888,13 +2887,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1994704386}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.608, y: 0.083, z: -0.535}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 16.4, y: 0.87, z: 52}
+  m_LocalScale: {x: 0.28, y: 0.18, z: 0.05}
   m_Children:
   - {fileID: 397899972}
-  m_Father: {fileID: 990969971}
-  m_RootOrder: 1
+  m_Father: {fileID: 2016732415}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1994704388
 BoxCollider:
@@ -3151,7 +3150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2016732415
 Transform:
   m_ObjectHideFlags: 0
@@ -3166,6 +3165,7 @@ Transform:
   - {fileID: 107513648}
   - {fileID: 1251083904}
   - {fileID: 497220481}
+  - {fileID: 1994704387}
   - {fileID: 990969971}
   - {fileID: 1470667629}
   m_Father: {fileID: 2079956954}
@@ -3306,8 +3306,6 @@ MonoBehaviour:
   tutorialPart3: {fileID: 2016732414}
   tutorialPart4: {fileID: 1508419415}
   gameController: {fileID: 11400000, guid: 8d56789aec344864aa4812991fa68b34, type: 2}
-  testMission: {fileID: 11400000, guid: 1b395dc88c3bf4645aee84306dcaffa4, type: 2}
-  OnMissionSelect: {fileID: 11400000, guid: b814887e908ba654ab84db5d34cf4606, type: 2}
 --- !u!4 &2042703976
 Transform:
   m_ObjectHideFlags: 0

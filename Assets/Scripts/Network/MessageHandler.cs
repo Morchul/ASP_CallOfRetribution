@@ -60,6 +60,7 @@ public abstract class MessageHandler : MonoBehaviour
     {
         if (NetworkManager.Instance.DEBUG_MODE) return;
 
+        OnConnectionShutdown.ForwardEvent(transmitter);
         OnMissionLoaded.ForwardEvent(transmitter);
         OnChatMessage.ForwardEvent(transmitter);
     }

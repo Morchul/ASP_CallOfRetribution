@@ -16,9 +16,9 @@ public class NetworkGameEvent : GameEvent
 
 	public override void RaiseEvent()
 	{
-		base.RaiseEvent();
 		if (transmitter != null)
 			transmitter.WriteToOther(prefix);
+		base.RaiseEvent();
 	}
 
 	public override void Reset()
@@ -51,9 +51,9 @@ public abstract class NetworkGameEvent<T> : GameEvent<T>
 
 	public override void RaiseEvent(T value)
 	{
-		base.RaiseEvent(value);
 		if (transmitter != null)
 			transmitter.WriteToOther(prefix + CreateEventMessage(value));
+		base.RaiseEvent(value);
 	}
 
 	public override void Reset()

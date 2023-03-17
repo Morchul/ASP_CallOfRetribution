@@ -40,7 +40,7 @@ public class SceneController : ScriptableObject
 
     public void LoadCommanderTutorial()
     {
-        LoadScene(commanderScene, OnMissionLoaded.RaiseEvent, LoadSceneMode.Single);
+        LoadCommanderView();
     }
 
     public void LoadMissionForThief(Mission mission)

@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db676c9019adf2949a1f65aa756ec2c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemStolenEvent: {fileID: 11400000, guid: b3c06fe560113cd4480f9db776d9a178, type: 2}
+  ItemStolenEvent: {fileID: 11400000, guid: baa070a6ece754e48bd62778b6bd42a1, type: 2}
 --- !u!135 &334637737
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -358,6 +358,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   isSuspicious: 1
+  oneTimeUse: 0
+  actionName: Steal Holy Handgranade
 --- !u!1 &724133907
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,6 +625,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   isSuspicious: 0
+  oneTimeUse: 0
+  actionName: Open gate
 --- !u!1 &1596556474
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,6 @@ using UnityEngine;
 
 public static class MessageTransmitterCommands
 {
-    public const string SHUTDOWN = "Shutdown";
     public const string REFUSE = "Refuse";
 }
 
@@ -159,14 +158,6 @@ public abstract class MessageTransmitter : MonoBehaviour
     private void ConnectionShutdown()
     {
         Close();
-    }
-
-    public void SendShutdown()
-    {
-        if (Running)
-        {
-            WriteOverSocket(MessageTransmitterCommands.SHUTDOWN);
-        }
     }
 
     private void ConnectionError()

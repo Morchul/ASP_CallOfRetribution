@@ -301,6 +301,108 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &241301374
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 503332467}
+    m_Modifications:
+    - target: {fileID: 1663247694007000371, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_Name
+      value: InGameMenuHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+--- !u!224 &241301375 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1726224188625039669, guid: 6dade29941fadbc4ca911beed55f9211, type: 3}
+  m_PrefabInstance: {fileID: 241301374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &282845063
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,6 +627,108 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 358280092}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &392200788
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 503332467}
+    m_Modifications:
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5090507636856103515, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+      propertyPath: m_Name
+      value: MissionTimer
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+--- !u!224 &392200789 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1441696443587500048, guid: 609bc243a4f4f784e9fdfdeafda41220, type: 3}
+  m_PrefabInstance: {fileID: 392200788}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &397899971
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,6 +1120,8 @@ RectTransform:
   - {fileID: 1859961026}
   - {fileID: 2057886020}
   - {fileID: 1040779580}
+  - {fileID: 392200789}
+  - {fileID: 241301375}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3304,12 +3510,13 @@ MonoBehaviour:
     open the door and move through it.'
   gameGoalTutorial: 'Let''s speak about your goal in the game. Your objective is
     it to steal a valuable item and bring it to an extraction point without getting
-    caught by guards.
+    caught by guards and before the time runs out.
 
-    At the beginning of the game you know what you have to
-    steal but you don''t know where to find it.
+    At the beginning of the game
+    you know what you have to steal but you don''t know where to find it.
 
-    Press F to continue'
+    Press
+    F to continue'
   informationGatherTutorial: 'You can get the information about the whereabouts for
     example when you find a document or a map or you see a clue when you walk through
     the streets or overhear someone talking about it. Maybe the commander will find

@@ -57,7 +57,6 @@ public class MissionController : ScriptableObject
             Debug.LogWarning("Try to override selected mission!");
             return;
         }
-        Debug.Log("Set mission: " + missionID);
 
         CurrentMission = missions.First((mission) => mission.ID == missionID);
         OnNewInformation.AddListener(NewInformation);

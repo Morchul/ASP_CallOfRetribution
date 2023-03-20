@@ -36,7 +36,6 @@ public class GameController : ScriptableObject
         OnConnectionShutdown.AddListener(ReturnToLobby);
         OnMissionFinished.AddListener(MissionFinished);
         OnMissionLoaded.AddListener(MissionLoaded);
-        OnGameReady.AddListener(() => InputDisabled = false);
         clientsReady = 0;
         InputDisabled = false;
     }
@@ -58,8 +57,11 @@ public class GameController : ScriptableObject
 
     private void MissionLoaded()
     {
-        if (++clientsReady == 2)
+        if (++clientsReady == 2 || NetworkManager.Instance.DEBUG_MODE)
+        {
+            InputDisabled = false;
             OnGameReady.RaiseEvent();
+        }  
     }
 
     public void StartMission()
@@ -84,6 +86,12 @@ public class GameController : ScriptableObject
         ResumeGame();
         OnResetGame.RaiseEvent();
         sceneController.GoToMainMenu();
+    }
+
+    public void LeaveGame()
+    {
+        NetworkManager.Instance.Shutdown();
+        ReturnToLobby();
     }
 
     public void ExitGame()

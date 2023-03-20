@@ -91,7 +91,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3601131247138171650, guid: bbecf01e9e7689042b702d3e5c8db1e3, type: 3}
       propertyPath: m_Name
-      value: StartInfo_Mission1
+      value: TutorialInfo
       objectReference: {fileID: 0}
     - target: {fileID: 3601131247138171654, guid: bbecf01e9e7689042b702d3e5c8db1e3, type: 3}
       propertyPath: m_RootOrder

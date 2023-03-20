@@ -21,4 +21,5 @@ MonoBehaviour:
   OnResetGame: {fileID: 11400000, guid: 4e276141865da0e499e7959229aab82b, type: 2}
   missions:
   - {fileID: 11400000, guid: 1b395dc88c3bf4645aee84306dcaffa4, type: 2}
+  - {fileID: 11400000, guid: d254d4f4a0cd3ce4bb7fb7b8922bb234, type: 2}
   progressController: {fileID: 11400000, guid: 9d7379fd4abfae04eb9d49ef5a27680c, type: 2}

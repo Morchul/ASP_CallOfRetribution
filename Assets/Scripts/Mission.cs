@@ -9,6 +9,8 @@ public class Mission : ScriptableObject
 
     public int ID;
 
+    public int TimeInSeconds;
+
     [SerializeField]
     private Document[] missionDocuments;
 

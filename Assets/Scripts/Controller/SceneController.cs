@@ -35,7 +35,7 @@ public class SceneController : ScriptableObject
 
     public void LoadThiefTutorial()
     {
-        SceneManager.LoadScene(thiefTutorial, LoadSceneMode.Single);
+        LoadScene(thiefTutorial, () => OnMissionLoaded.RaiseEvent(), LoadSceneMode.Single);
     }
 
     public void LoadCommanderTutorial()

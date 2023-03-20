@@ -2088,7 +2088,7 @@ MonoBehaviour:
   OnConnectionEstablished: {fileID: 11400000, guid: 882cbd19f10e86b4886272b99d52727c, type: 2}
   OnConnectionFailure: {fileID: 11400000, guid: 4754bcd8f519a4248a30349ade22ec28, type: 2}
   OnMissionSelect: {fileID: 11400000, guid: b814887e908ba654ab84db5d34cf4606, type: 2}
-  tutorialMission: {fileID: 11400000, guid: 1b395dc88c3bf4645aee84306dcaffa4, type: 2}
+  tutorialMission: {fileID: 11400000, guid: d254d4f4a0cd3ce4bb7fb7b8922bb234, type: 2}
 --- !u!1 &706003688
 GameObject:
   m_ObjectHideFlags: 0

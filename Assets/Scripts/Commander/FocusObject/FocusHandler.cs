@@ -28,4 +28,12 @@ public class FocusHandler : MonoBehaviour
         }
         CurrentFocusObject = null;
     }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            StopFocus();
+        }
+    }
 }

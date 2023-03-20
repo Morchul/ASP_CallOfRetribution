@@ -358,7 +358,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   isSuspicious: 1
-  oneTimeUse: 0
+  oneTimeUse: 1
   actionName: Steal Holy Handgranade
 --- !u!1 &724133907
 GameObject:

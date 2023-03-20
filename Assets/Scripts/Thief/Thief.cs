@@ -48,6 +48,8 @@ public class Thief : PositionSensor
         }
     }
 
+    public bool BugsAvailable => bugs.Count > 0;
+
     public void ReceiveABug(Bug bug)
     {
         bugs.Enqueue(bug);

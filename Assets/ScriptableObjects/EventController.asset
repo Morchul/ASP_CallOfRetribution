@@ -46,3 +46,5 @@ MonoBehaviour:
   bugUpdateEventsToResetAfterGame:
   - {fileID: 11400000, guid: 8ae02f8a2a98e7045a28bac4ae8553a2, type: 2}
   - {fileID: 11400000, guid: cc5b3cc79e2a87b4a8b1efc6172af7a5, type: 2}
+  posUpdateEventsToResetAfterGame:
+  - {fileID: 11400000, guid: 12cf0b4ab4b4c10438df33e29ad72411, type: 2}

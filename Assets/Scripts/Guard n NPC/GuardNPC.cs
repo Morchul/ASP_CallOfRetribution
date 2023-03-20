@@ -16,7 +16,6 @@ public class GuardNPC : MonoBehaviour
     public bool patrolling;
     public int currentWaypoint;
     public float sightRange;
-    public Transform player;
     public float followSpeed = 5f;
     public bool isFollowing = false;
     private bool hasStolen = false;
@@ -70,7 +69,7 @@ public class GuardNPC : MonoBehaviour
         }
         if (hasStolen == true)
         {
-            Vector3 targetPosition = new Vector3(player.position.x, this.transform.position.y, player.position.z);
+            Vector3 targetPosition = new Vector3(target.position.x, this.transform.position.y, target.position.z);
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, followSpeed * Time.deltaTime);
         }
 

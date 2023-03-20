@@ -1,18 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class waterTrigger : MonoBehaviour
+public class WaterTrigger : MonoBehaviour
 {
-    [SerializeField] string sceneName;
+    [SerializeField]
+
+    private BoolEvent OnMissionFinished;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag(Thief.TAG))
-            LoadScene();
-    }
-    public void LoadScene()
-    {
-        SceneManager.LoadScene(sceneName);
+        if (other.CompareTag(Thief.TAG))
+            OnMissionFinished.RaiseEvent(false);
     }
 }

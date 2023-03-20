@@ -26,14 +26,6 @@ public class DocumentHolder : MonoBehaviour
         OnNewInformationEvent.AddListener(NewDocument);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
-        {
-            focusHandler.StopFocus();
-        }
-    }
-
     private void NewDocument(int infoID)
     {
         Document doc = Instantiate(missionController.CurrentMission.GetInformation(infoID), this.transform);

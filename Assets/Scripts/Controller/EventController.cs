@@ -27,6 +27,8 @@ public class EventController : ScriptableObject
     private Vector2Event[] vector2EventsToResetAfterGame;
     [SerializeField]
     private BugUpdateEvent[] bugUpdateEventsToResetAfterGame;
+    [SerializeField]
+    private PosUpdateEvent[] posUpdateEventsToResetAfterGame;
 
     public void Init()
     {
@@ -42,5 +44,6 @@ public class EventController : ScriptableObject
         foreach (StringEvent ge in stringEventsToResetAfterGame) ge.Reset();
         foreach (Vector2Event ge in vector2EventsToResetAfterGame) ge.Reset();
         foreach (BugUpdateEvent ge in bugUpdateEventsToResetAfterGame) ge.Reset();
+        foreach (PosUpdateEvent ge in posUpdateEventsToResetAfterGame) ge.Reset();
     }
 }

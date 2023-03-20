@@ -8,6 +8,5 @@ public class TargetItem : MonoBehaviour
     public void Steal()
     {
         ItemStolenEvent.RaiseEvent();
-        this.gameObject.SetActive(false);
     }
 }

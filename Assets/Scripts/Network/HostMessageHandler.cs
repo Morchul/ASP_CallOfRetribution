@@ -14,7 +14,6 @@ public class HostMessageHandler : MessageHandler
         OnBugUpdate.ForwardEvent(transmitter);
         OnBugDenied.ForwardEvent(transmitter);
         OnBugDisturbed.ForwardEvent(transmitter);
-        OnMissionFinished.ForwardEvent(transmitter);
         OnMissionSelect.ForwardEvent(transmitter);
         OnPosUpdate.ForwardEvent(transmitter);
 
@@ -29,6 +28,5 @@ public class HostMessageHandler : MessageHandler
         if (OnDroneScan.Listen(message)) return;
         if (OnDrownFlare.Listen(message)) return;
         if (OnMissionLoaded.Listen(message)) return;
-        if (OnMissionFinished.Listen(message)) return;
     }
 }

@@ -32,7 +32,6 @@ public class ClientMessageHandler : MessageHandler
         if (OnBugUpdate.Listen(message)) return;
         if (OnBugDenied.Listen(message)) return;
         if (OnBugDisturbed.Listen(message)) return;
-        if (OnMissionFinished.Listen(message)) return;
         if (OnMissionSelect.Listen(message)) return;
         if (OnPosUpdate.Listen(message)) return;
     }

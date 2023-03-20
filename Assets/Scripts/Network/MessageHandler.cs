@@ -63,6 +63,7 @@ public abstract class MessageHandler : MonoBehaviour
         OnConnectionShutdown.ForwardEvent(transmitter);
         OnMissionLoaded.ForwardEvent(transmitter);
         OnChatMessage.ForwardEvent(transmitter);
+        OnMissionFinished.ForwardEvent(transmitter);
     }
 
     public virtual void HandleReceivedMessage(string message)
@@ -72,5 +73,6 @@ public abstract class MessageHandler : MonoBehaviour
         if (OnConnectionShutdown.Listen(message)) return;
         if (OnChatMessage.Listen(message)) return;
         if (OnGameReady.Listen(message)) return;
+        if (OnMissionFinished.Listen(message)) return;
     }
 }

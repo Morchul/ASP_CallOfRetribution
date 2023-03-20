@@ -26,7 +26,7 @@ public class ScanResults : MonoBehaviour
     private void Awake()
     {
         OnGuardScanned.AddListener(NewScan);
-        OnExtractionPointActivated.AddListener((worldPos) => extractionPointRefObject.transform.position = mapData.XZWorldPosToMapPos(worldPos));
+        OnExtractionPointActivated.AddListener((worldPos) => extractionPointRefObject.transform.localPosition = mapData.XZWorldPosToMapPos(worldPos).ToVector3());
         scanObjectPool = new List<ScanResultObject>();
     }
 

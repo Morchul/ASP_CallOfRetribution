@@ -9,10 +9,11 @@ public class ThiefInteraction : MonoBehaviour
     private Thief thief;
 
     [SerializeField]
-    private GameEvent OnSuspiciousActionExecuted;
-
-    [SerializeField]
     private TMP_Text interactionText;
+
+    [Header("Events")]
+    [SerializeField]
+    private GameEvent OnSuspiciousActionExecuted;
 
     private Interactable currentInteractable;
     private Bugable currentBugable;
@@ -73,7 +74,7 @@ public class ThiefInteraction : MonoBehaviour
         }
         if(currentBugable != null && !currentBugable.GetBugable().Bugged)
         {
-            text += "Place Bug on " + currentBugable.name + " (Q)\n";
+            text += "Place Bug on " + currentBugable.name + ((thief.BugsAvailable) ? " (Q)" : " (None available)") + "\n";
         }
 
         interactionText.text = text;

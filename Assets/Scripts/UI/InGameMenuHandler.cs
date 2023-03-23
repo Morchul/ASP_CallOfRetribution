@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class InGameMenuHandler : MonoBehaviour
 {
+    [SerializeField]
+    private GameController gameController;
+
     [Header("UI elements")]
     [SerializeField]
     private GameObject inGameMenuUI;
@@ -54,12 +57,15 @@ public class InGameMenuHandler : MonoBehaviour
     {
         if (state == 2) return;
         state = (state + 1) % 2;
-        inGameMenuUI.SetActive(state == 1);
 
-        if(state == 1)
+        inGameMenuUI.SetActive(state == 1);
+        gameController.MenuActive(state == 1);
+
+        if (state == 1)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            
         }
     }
 }

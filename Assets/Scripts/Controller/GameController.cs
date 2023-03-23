@@ -80,6 +80,11 @@ public class GameController : ScriptableObject
         }
     }
 
+    public void MenuActive(bool active)
+    {
+        InputDisabled = active;
+    }
+
     public void ReturnToLobby()
     {
         if (missionController.CurrentMission == null) return;

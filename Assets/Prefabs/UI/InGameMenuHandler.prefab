@@ -86,6 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f889076c13aaba843931aee178547bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 11400000, guid: 8d56789aec344864aa4812991fa68b34, type: 2}
   inGameMenuUI: {fileID: 8616434694552848749}
   finishScreen: {fileID: 584951351092616262}
   finishText: {fileID: 3835884307231524254}

@@ -2606,7 +2606,6 @@ MonoBehaviour:
     smooth: 0
     smoothTime: 5
     lockCursor: 1
-    gameController: {fileID: 0}
   m_UseFovKick: 1
   m_FovKick:
     Camera: {fileID: 0}
@@ -3567,7 +3566,7 @@ MonoBehaviour:
   OnBugUpdateRequest: {fileID: 11400000, guid: cc5b3cc79e2a87b4a8b1efc6172af7a5, type: 2}
   OnItemStolen: {fileID: 11400000, guid: baa070a6ece754e48bd62778b6bd42a1, type: 2}
   OnMissionFinished: {fileID: 11400000, guid: 9f78d00f245cde140973e24a8ab633f7, type: 2}
-  OnExtractionPointActivate: {fileID: 11400000, guid: 918ed3ca555bf32478c8c38173d90ffa, type: 2}
+  OnTargetPointFound: {fileID: 11400000, guid: 918ed3ca555bf32478c8c38173d90ffa, type: 2}
   drone: {fileID: 97914359}
   playerCamera: {fileID: 2134572184}
   alarm: {fileID: 1075390479}

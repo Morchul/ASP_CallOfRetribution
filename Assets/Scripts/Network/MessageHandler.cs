@@ -30,7 +30,7 @@ public abstract class MessageHandler : MonoBehaviour
     [SerializeField]
     protected FloatEvent OnScanOnCooldown;
     [SerializeField]
-    protected Vector2Event OnExtractionPointActivate;
+    protected Vector2Event OnTargetPointFound;
     [SerializeField]
     protected Vector2Event OnGuardScanned;
     [SerializeField]

@@ -4820,7 +4820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnItemStolen: {fileID: 11400000, guid: baa070a6ece754e48bd62778b6bd42a1, type: 2}
   OnMissionFinished: {fileID: 11400000, guid: 9f78d00f245cde140973e24a8ab633f7, type: 2}
-  OnExtractionPointActivate: {fileID: 11400000, guid: 918ed3ca555bf32478c8c38173d90ffa, type: 2}
+  OnTargetPointFound: {fileID: 11400000, guid: 918ed3ca555bf32478c8c38173d90ffa, type: 2}
 --- !u!65 &6608560953495284036
 BoxCollider:
   m_ObjectHideFlags: 0

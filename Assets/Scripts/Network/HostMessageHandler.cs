@@ -9,7 +9,7 @@ public class HostMessageHandler : MessageHandler
 
         OnDroneConnectionStateChange.ForwardEvent(transmitter);
         OnScanOnCooldown.ForwardEvent(transmitter);
-        OnExtractionPointActivate.ForwardEvent(transmitter);
+        OnTargetPointFound.ForwardEvent(transmitter);
         OnGuardScanned.ForwardEvent(transmitter);
         OnBugUpdate.ForwardEvent(transmitter);
         OnBugDenied.ForwardEvent(transmitter);

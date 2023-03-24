@@ -27,7 +27,7 @@ public class ClientMessageHandler : MessageHandler
 
         if (OnDroneConnectionStateChange.Listen(message)) return;
         if (OnScanOnCooldown.Listen(message)) return;
-        if (OnExtractionPointActivate.Listen(message)) return;
+        if (OnTargetPointFound.Listen(message)) return;
         if (OnGuardScanned.Listen(message)) return;
         if (OnBugUpdate.Listen(message)) return;
         if (OnBugDenied.Listen(message)) return;

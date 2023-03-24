@@ -8,7 +8,7 @@ public class ScanResults : MonoBehaviour
     [SerializeField]
     private Vector2Event OnGuardScanned;
     [SerializeField]
-    private Vector2Event OnExtractionPointActivated;
+    private Vector2Event OnTargetPointFound;
 
     [Header("Data")]
     [SerializeField]
@@ -18,7 +18,7 @@ public class ScanResults : MonoBehaviour
     [SerializeField]
     private ScanResultObject ScanObjectPrefab;
     [SerializeField]
-    private GameObject extractionPointRefObject;
+    private GameObject targetPointRefObject;
     
 
     private List<ScanResultObject> scanObjectPool;
@@ -26,7 +26,7 @@ public class ScanResults : MonoBehaviour
     private void Awake()
     {
         OnGuardScanned.AddListener(NewScan);
-        OnExtractionPointActivated.AddListener((worldPos) => extractionPointRefObject.transform.localPosition = mapData.XZWorldPosToMapPos(worldPos).ToVector3());
+        OnTargetPointFound.AddListener((worldPos) => targetPointRefObject.transform.localPosition = mapData.XZWorldPosToMapPos(worldPos).ToVector3());
         scanObjectPool = new List<ScanResultObject>();
     }
 

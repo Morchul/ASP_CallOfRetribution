@@ -10,14 +10,14 @@ public class ExtractionPoint : MonoBehaviour
     private BoolEvent OnMissionFinished;
 
     [SerializeField]
-    private Vector2Event OnExtractionPointActivate;
+    private Vector2Event OnTargetPointFound;
 
     private void Awake()
     {
         OnItemStolen.AddListener(() =>
         {
             gameObject.SetActive(true);
-            OnExtractionPointActivate.RaiseEvent(transform.position.ToVector2());
+            OnTargetPointFound.RaiseEvent(transform.position.ToVector2());
         });
 
         gameObject.SetActive(false);

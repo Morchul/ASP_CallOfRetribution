@@ -85,7 +85,7 @@ public class ThiefTutorial : MonoBehaviour
     [SerializeField]
     private BoolEvent OnMissionFinished;
     [SerializeField]
-    private Vector2Event OnExtractionPointActivate;
+    private Vector2Event OnTargetPointFound;
 
     [Header("Objects")]
     [SerializeField]
@@ -136,7 +136,7 @@ public class ThiefTutorial : MonoBehaviour
         OnItemStolen.AddListener(OnItemStolenEvent);
         OnMissionFinished.AddListener(FinishTutorial);
         OnNewInformation.AddListener(InformationGathered);
-        OnExtractionPointActivate.AddListener(ActivateExtractionPoint);
+        OnTargetPointFound.AddListener(ActivateExtractionPoint);
         NextStep();
     }
     private void Update()
@@ -226,7 +226,7 @@ public class ThiefTutorial : MonoBehaviour
         OnItemStolen.RemoveListener(OnItemStolenEvent);
         OnMissionFinished.RemoveListener(FinishTutorial);
         OnNewInformation.RemoveListener(InformationGathered);
-        OnExtractionPointActivate.RemoveListener(ActivateExtractionPoint);
+        OnTargetPointFound.RemoveListener(ActivateExtractionPoint);
     }
 
     private void InformationGathered(int _)

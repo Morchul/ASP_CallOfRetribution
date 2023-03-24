@@ -21,6 +21,8 @@ public class Drone : PositionSensor
     private FloatEvent OnScanOnCooldown;
     [SerializeField]
     private BoolEvent OnDroneConnectionStateChanged;
+    [SerializeField]
+    private Vector2Event OnTargetPointFound;
 
     private bool moving;
     private Vector3 targetPos;
@@ -155,8 +157,14 @@ public class Drone : PositionSensor
             Collider[] overlaps = Physics.OverlapSphere(transform.position.ToVector2(), scanRadius, scanLayerMask);
             foreach(Collider collider in overlaps)
             {
-                OnGuardScanned.RaiseEvent(collider.transform.position.ToVector2());
-                Debug.Log("OnGuardscanned: " + collider.transform.position);
+                if (collider.CompareTag("Interactable"))
+                {
+                    OnTargetPointFound.RaiseEvent(collider.transform.position.ToVector2());
+                }
+                else
+                {
+                    OnGuardScanned.RaiseEvent(collider.transform.position.ToVector2());
+                }
             }
             yield return new WaitForSeconds(scanInterval);
         }

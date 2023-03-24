@@ -107,22 +107,17 @@ MonoBehaviour:
 
     Drone commands:
 
-    Type one of the following commands
-    in the bottom command line to control your drone:
-
     move x y
 
-    ( Replace
-    x and y by numbers. This will move the drone to the coordinates x y which can
-    be looked up on the map)
+    scan
 
-    Example: move 30 25.5
+    fire flare
 
-    scan (To scan the close
-    area, results will be shown on the map)
 
-    fire flare (To fire a flare, to
-    signalise a position to the thief.)'
+    To
+    counter attack:
+
+    close port X'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

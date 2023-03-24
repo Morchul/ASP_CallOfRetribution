@@ -33,6 +33,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         [SerializeField] private GameController gameController;
 
+        public void CursorLock(bool active) => m_MouseLook.SetCursorLock(active);
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -244,6 +245,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void RotateView()
         {
+            if (gameController.InputDisabled) return;
+
             m_MouseLook.LookRotation (transform, m_Camera.transform);
         }
 

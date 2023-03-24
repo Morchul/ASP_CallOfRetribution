@@ -154,7 +154,7 @@ public class Drone : PositionSensor
         cooldownTimer = scanCooldown;
         for (int i = 0; i < scanAmount; ++i)
         {
-            Collider[] overlaps = Physics.OverlapSphere(transform.position.ToVector2(), scanRadius, scanLayerMask);
+            Collider[] overlaps = Physics.OverlapSphere(transform.position.Ground(), scanRadius, scanLayerMask, QueryTriggerInteraction.Ignore);
             foreach(Collider collider in overlaps)
             {
                 if (collider.CompareTag("Interactable"))

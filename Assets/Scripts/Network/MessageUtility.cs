@@ -31,6 +31,7 @@ public static class MessageUtility
 
     //This methods are used because default z would be 0 and y would be used by conversion
     public static Vector2 ToVector2(this Vector3 vec3) => new Vector2(vec3.x, vec3.z);
+    public static Vector3 Ground(this Vector3 vec3) => new Vector3(vec3.x, 0, vec3.z);
     public static Vector3 ToVector3(this Vector2 vec2, float yPos = 0) => new Vector3(vec2.x, yPos, vec2.y);
     public static string ToMessageString(this Vector2 vec2) => vec2.x + "/" + vec2.y;
     public static string ToMessageString(this Vector3 vec3) => vec3.x + "/" + vec3.z;

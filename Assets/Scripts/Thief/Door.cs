@@ -12,11 +12,6 @@ public class Door : MonoBehaviour
     [SerializeField]
     private Transform pivot;
 
-    private void Awake()
-    {
-        Debug.Log("DoorLock: " + doorLock);
-    }
-
     public void Interact()
     {
         if (doorLock == null || !doorLock.Locked)

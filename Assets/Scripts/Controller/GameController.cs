@@ -83,6 +83,11 @@ public class GameController : ScriptableObject
     public void MenuActive(bool active)
     {
         InputDisabled = active;
+        if (active)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     public void ReturnToLobby()

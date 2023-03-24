@@ -11,6 +11,8 @@ public class CommanderDebug : MonoBehaviour
     private IntEvent OnMissionSelect;
     [SerializeField]
     private GameEvent OnMissionLoaded;
+    [SerializeField]
+    private GameEvent OnGameReady;
 
     [Header("Controller")]
     [SerializeField]
@@ -25,5 +27,6 @@ public class CommanderDebug : MonoBehaviour
     private void Start()
     {
         OnMissionLoaded.RaiseEvent();
+        OnGameReady.RaiseEvent();
     }
 }

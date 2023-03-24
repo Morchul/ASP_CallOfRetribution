@@ -119,12 +119,13 @@ MonoBehaviour:
   OnGameReady: {fileID: 11400000, guid: dcd32fa1affe8a649a879737f70b7b51, type: 2}
   OnScanOnCooldown: {fileID: 11400000, guid: 0fb1fedecae493d439f696d307c12d89, type: 2}
   OnDroneConnectionStateChanged: {fileID: 11400000, guid: 2ded24303165cf74ea46b25e1edc906e, type: 2}
+  OnTargetPointFound: {fileID: 11400000, guid: 918ed3ca555bf32478c8c38173d90ffa, type: 2}
   moveSpeed: 10
   minDistToTarget: 2
   scanInterval: 3
   scanAmount: 5
   scanCooldown: 20
-  scanRadius: 8
+  scanRadius: 70
   scanLayerMask:
     serializedVersion: 2
     m_Bits: 1024

@@ -60,12 +60,5 @@ public class InGameMenuHandler : MonoBehaviour
 
         inGameMenuUI.SetActive(state == 1);
         gameController.MenuActive(state == 1);
-
-        if (state == 1)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            
-        }
     }
 }

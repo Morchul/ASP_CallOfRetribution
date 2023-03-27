@@ -27,11 +27,15 @@ public class ConversationHandler : MonoBehaviour, IPointerClickHandler
 
     private Conversation currentConversation;
 
+    private AudioSource audioSource;
+
     private void Awake()
     {
         OnGameReady.AddListener(StartBeginConversation);
         OnMissionFinishedSuccessfully.AddListener(StartEndConversation);
         gameObject.SetActive(false);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void StartBeginConversation()
@@ -51,6 +55,8 @@ public class ConversationHandler : MonoBehaviour, IPointerClickHandler
         gameObject.SetActive(true);
         currentConversation = conversation;
         currentConversation.StartConversation();
+        audioSource.clip = currentConversation.BackgroundMusic;
+        audioSource.Play();
     }
 
     private void NextDialog()
@@ -70,6 +76,7 @@ public class ConversationHandler : MonoBehaviour, IPointerClickHandler
     private void FinishConversation()
     {
         currentConversation = null;
+        audioSource.Stop();
         gameObject.SetActive(false);
     }
 

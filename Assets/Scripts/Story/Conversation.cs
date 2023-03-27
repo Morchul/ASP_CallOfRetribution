@@ -6,6 +6,10 @@ public class Conversation : ScriptableObject
     [SerializeField]
     private Dialog[] dialogs;
 
+    [SerializeField]
+    private AudioClip conversationBackgroundMusic;
+    public AudioClip BackgroundMusic => conversationBackgroundMusic;
+
     private int counter;
 
     public void StartConversation()

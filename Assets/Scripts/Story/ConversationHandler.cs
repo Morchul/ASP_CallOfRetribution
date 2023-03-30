@@ -15,7 +15,7 @@ public class ConversationHandler : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private GameEvent OnGameReady;
     [SerializeField]
-    private GameEvent OnMissionFinishedSuccessfully;
+    private BoolEvent OnMissionFinished;
 
     [Header("UI")]
     [SerializeField]
@@ -32,7 +32,7 @@ public class ConversationHandler : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         OnGameReady.AddListener(StartBeginConversation);
-        OnMissionFinishedSuccessfully.AddListener(StartEndConversation);
+        OnMissionFinished.AddListener(StartEndConversation);
         gameObject.SetActive(false);
 
         audioSource = GetComponent<AudioSource>();
@@ -43,9 +43,10 @@ public class ConversationHandler : MonoBehaviour, IPointerClickHandler
         StartConversation(missionController.CurrentMission.BeginConversation);
     }
 
-    private void StartEndConversation()
+    private void StartEndConversation(bool successful)
     {
-        StartConversation(missionController.CurrentMission.EndConversation);
+        if(successful)
+            StartConversation(missionController.CurrentMission.EndConversation);
     }
 
     public void StartConversation(Conversation conversation)

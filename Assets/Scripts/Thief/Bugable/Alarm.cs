@@ -12,12 +12,19 @@ public class Alarm : MonoBehaviour, IBugable
     [SerializeField]
     private LayerMask guardLayer;
 
+    [SerializeField]
+    private AudioClip[] alarmSounds;
+
+    private AudioSource audioSource;
+
     public bool Disabled { get; private set; }
 
     protected void Awake()
     {
         bugID = -1;
         Disabled = false;
+        audioSource = GetComponent<AudioSource>();
+        audioSource.loop = false;
     }
 
     public void Interact()
@@ -28,7 +35,9 @@ public class Alarm : MonoBehaviour, IBugable
     public void SetOff()
     {
         Debug.Log("Set off alarm");
-        foreach(Collider collider in Physics.OverlapSphere(transform.position, alarmRadius, guardLayer))
+        audioSource.clip = alarmSounds[Random.Range(0, alarmSounds.Length)];
+        audioSource.Play();
+        foreach (Collider collider in Physics.OverlapSphere(transform.position, alarmRadius, guardLayer))
         {
             collider.GetComponent<GuardNPC>().AlarmOnPosition(transform.position);
         }

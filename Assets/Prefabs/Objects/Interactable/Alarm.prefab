@@ -145,6 +145,9 @@ MonoBehaviour:
   guardLayer:
     serializedVersion: 2
     m_Bits: 1024
+  alarmSounds:
+  - {fileID: 8300000, guid: c2213b87dbdb6f44192a4c58ebe7f9a5, type: 3}
+  - {fileID: 8300000, guid: f72587ad5f053db498d83ec328a71f07, type: 3}
 --- !u!114 &237028767440564199
 MonoBehaviour:
   m_ObjectHideFlags: 0

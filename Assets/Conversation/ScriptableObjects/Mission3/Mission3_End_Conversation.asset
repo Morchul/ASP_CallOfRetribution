@@ -12,5 +12,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d70d00ec2dc5a54790c80b5d6ca661f, type: 3}
   m_Name: Mission3_End_Conversation
   m_EditorClassIdentifier: 
-  dialogs: []
+  dialogs:
+  - {fileID: 11400000, guid: 2c8b132e407c4164492c22c5011827a6, type: 2}
+  - {fileID: 11400000, guid: cd14928e93aeaae43999a9be35a8792f, type: 2}
+  - {fileID: 11400000, guid: eee49b6f60efc9645a75709af8826cd0, type: 2}
+  - {fileID: 11400000, guid: 34ab12968ea29a140b9a737fd221f781, type: 2}
+  - {fileID: 11400000, guid: a3cef60f6c5ea9b43aad0f79f694d30e, type: 2}
+  - {fileID: 11400000, guid: 4488a718a80756e4fbd910d9c4a861ba, type: 2}
+  - {fileID: 11400000, guid: 3770fcad9cf8c39428000fce6c56736a, type: 2}
+  - {fileID: 11400000, guid: b91849a7e66a0bf499403f6d26d09558, type: 2}
+  - {fileID: 11400000, guid: 748ccd00be66b24478386cc4398c3568, type: 2}
+  - {fileID: 11400000, guid: 9f13f6c0d2329844887da7678a988227, type: 2}
+  - {fileID: 11400000, guid: 85e2d229c18154e4f9ab95fae250b23e, type: 2}
+  - {fileID: 11400000, guid: 71dbe653b97c0e44db2ff5278767d23a, type: 2}
+  - {fileID: 11400000, guid: 6cde7b612bf96ee4fbc42dfe798eb6a8, type: 2}
+  - {fileID: 11400000, guid: 98ae7bfa54d2ac849925904a26d14f1c, type: 2}
+  - {fileID: 11400000, guid: a324685eae9ab4646937504ea0404146, type: 2}
+  - {fileID: 11400000, guid: 381a1d1f63e11b5409a0226da9b71d7c, type: 2}
+  - {fileID: 11400000, guid: d7fe9f1f770edcd4e84debc59ff123c9, type: 2}
+  - {fileID: 11400000, guid: 0048e7d7bafefbe43a69824211fe8636, type: 2}
+  - {fileID: 11400000, guid: 5edf036fb3cd657459e7c936c30079e5, type: 2}
+  - {fileID: 11400000, guid: 316989f3d0d80f1489b447bfad110126, type: 2}
+  - {fileID: 11400000, guid: 9838ba08eb5c7d94a9799158eacbc2c0, type: 2}
+  - {fileID: 11400000, guid: 47732f7b6527d6b4c9970e4c8ca29f65, type: 2}
+  - {fileID: 11400000, guid: 81aefcd983af5d0498297a36daa33dfb, type: 2}
+  - {fileID: 11400000, guid: 7fd797fecef66984b8003cbe6824ab2c, type: 2}
+  - {fileID: 11400000, guid: 88a3dec51ba37d549903a306a8e62541, type: 2}
+  - {fileID: 11400000, guid: e32b3d20eae78de48b4f137542eee16d, type: 2}
+  - {fileID: 11400000, guid: 5a84831dbddc50f439157f7948063df1, type: 2}
+  - {fileID: 11400000, guid: c1b60d6f9eaca36478e832a1c255e1f2, type: 2}
+  - {fileID: 11400000, guid: ae3b833b74018f1419c675450a22b40b, type: 2}
+  - {fileID: 11400000, guid: 82b33409a51adc04e893685a703508c9, type: 2}
+  - {fileID: 11400000, guid: a031afc6dbf9780458bd1204a35d1372, type: 2}
+  - {fileID: 11400000, guid: fda6f94f394d7ee4083aca33f454c5f4, type: 2}
+  - {fileID: 11400000, guid: a1952a791a7002941b7f59c9b02f1c0a, type: 2}
+  - {fileID: 11400000, guid: 4dec69ad7408d11449a5a5e22cb325c3, type: 2}
+  - {fileID: 11400000, guid: 830635f3e9349b94cb704c16d1821229, type: 2}
   conversationBackgroundMusic: {fileID: 0}

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef83b4dd87e0a2847ae6879aa1a4a168, type: 3}
+  m_Name: Mission3
+  m_EditorClassIdentifier: 
+  MissionScene: 
+  ID: 3
+  TimeInSeconds: 200
+  missionDocuments: []
+  radioMessages: []
+  amountOfBugs: 3
+  OnNewInformation: {fileID: 11400000, guid: 97bb02a1aacb8be44b4873997f735aaf, type: 2}
+  BeginConversation: {fileID: 11400000, guid: 861c8d01ef57bfa459f711868d473df5, type: 2}
+  EndConversation: {fileID: 11400000, guid: 151304f1555bff74faed48ea999f7840, type: 2}

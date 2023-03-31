@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78dc00abbe9a5a54ea327963e9136678, type: 3}
-  m_Name: M1_EC_D12
+  m_Name: M2_EC_D3
   m_EditorClassIdentifier: 
-  Text: 'Chief Constable:
+  Text: 'Commander:
 
-    No, my premier. Only I knew of its location.'
-  rightImage: {fileID: 21300000, guid: 800213b5b3dc12f4f87d0777ae6d0470, type: 3}
-  leftImage: {fileID: 21300000, guid: 9e28c9a0d0619a14a91a67c04a21e6ca, type: 3}
+    It''s the premier. The former advisor to our late King.'
+  rightImage: {fileID: 21300000, guid: d25edc0d187f1a0469220d7f2fa794c0, type: 3}
+  leftImage: {fileID: 21300000, guid: 21c8187596f322b418b807d5f66b294d, type: 3}

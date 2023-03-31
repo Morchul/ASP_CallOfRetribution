@@ -22,4 +22,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0814a08649117304d8e9b483ad0712e6, type: 2}
   - {fileID: 11400000, guid: be45f83c039307a40929e34a56d69f9a, type: 2}
   - {fileID: 11400000, guid: 10aa15ea0d72e164db54e48ca7b8586c, type: 2}
-  conversationBackgroundMusic: {fileID: 0}
+  - {fileID: 11400000, guid: 1bfafd49ca798ae408273ffb40de9553, type: 2}
+  - {fileID: 11400000, guid: 20560486204e38c4c986ef5d86a00661, type: 2}
+  - {fileID: 11400000, guid: ed17d6c51be5e6b46aa630aed8fa2fbe, type: 2}
+  - {fileID: 11400000, guid: 70c3b7db68d0a244299bd45d23f01247, type: 2}
+  - {fileID: 11400000, guid: 3f8b3dc71baf0c64db918f75987a9154, type: 2}
+  conversationBackgroundMusic: {fileID: 8300000, guid: 451d4154a6a055849973417b699d0bb2, type: 3}

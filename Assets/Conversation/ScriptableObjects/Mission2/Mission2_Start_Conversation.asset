@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d70d00ec2dc5a54790c80b5d6ca661f, type: 3}
+  m_Name: Mission2_Start_Conversation
+  m_EditorClassIdentifier: 
+  dialogs:
+  - {fileID: 11400000, guid: 4a2d11abad05c774d87e8c0e6cee13c3, type: 2}
+  - {fileID: 11400000, guid: adfd07e713e4d974490b385acb569c60, type: 2}
+  - {fileID: 11400000, guid: a5ab78238e815e34c9c01c1c9b4d669d, type: 2}
+  - {fileID: 11400000, guid: ba11f01947a53524ead9eec51c806591, type: 2}
+  - {fileID: 11400000, guid: 690840a699f76ae47b4716edf3314957, type: 2}
+  - {fileID: 11400000, guid: 0112f1d41ad774f4bb5ca3d1f86d4428, type: 2}
+  - {fileID: 11400000, guid: 7df1d3220d14cb34c9ed748d070179a8, type: 2}
+  - {fileID: 11400000, guid: 48006bf1a8674924fa30cf1973e1643b, type: 2}
+  - {fileID: 11400000, guid: 3a57474ce250448478637e8a7c631c54, type: 2}
+  - {fileID: 11400000, guid: cc743a19e8694b640a9d4bcc596a04db, type: 2}
+  - {fileID: 11400000, guid: 83004de92888e2848968ac4d96a15708, type: 2}
+  conversationBackgroundMusic: {fileID: 0}

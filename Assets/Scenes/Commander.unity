@@ -3169,6 +3169,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Radio
       objectReference: {fileID: 0}
+    - target: {fileID: 5100750617629363144, guid: 1190d7c70d119254cbdfd5d6d6a75ff9, type: 3}
+      propertyPath: musicTracks.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: e7b917891c4b5a1459cb74855311e31a, type: 3}
+    - target: {fileID: 5100750617629363144, guid: 1190d7c70d119254cbdfd5d6d6a75ff9, type: 3}
+      propertyPath: musicTracks.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: e7b917891c4b5a1459cb74855311e31a, type: 3}
     - target: {fileID: 5100750617629363147, guid: 1190d7c70d119254cbdfd5d6d6a75ff9, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3321,10 +3329,6 @@ PrefabInstance:
     - target: {fileID: 6814233197101311167, guid: 10d69a71e59a12441a32b851867bc7a5, type: 3}
       propertyPath: m_Name
       value: Conversation
-      objectReference: {fileID: 0}
-    - target: {fileID: 6814233197101311167, guid: 10d69a71e59a12441a32b851867bc7a5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10d69a71e59a12441a32b851867bc7a5, type: 3}

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d70d00ec2dc5a54790c80b5d6ca661f, type: 3}
+  m_Name: Mission1_End_Conversation
+  m_EditorClassIdentifier: 
+  dialogs:
+  - {fileID: 11400000, guid: fdbe0cd8ecddc5742ab5d7dbb6aab74a, type: 2}
+  - {fileID: 11400000, guid: a2843e34fa9047b4b91dac78975e0bf2, type: 2}
+  - {fileID: 11400000, guid: 52d41351756576a4bb7fa7180e991802, type: 2}
+  - {fileID: 11400000, guid: 066c2402410596e4b9628df7d36d1e4a, type: 2}
+  - {fileID: 11400000, guid: db08bc6dd9e378f4b8b6435484a762dd, type: 2}
+  - {fileID: 11400000, guid: 52e5fa454ab1ebb419283d7a4fc5218d, type: 2}
+  - {fileID: 11400000, guid: 0814a08649117304d8e9b483ad0712e6, type: 2}
+  - {fileID: 11400000, guid: be45f83c039307a40929e34a56d69f9a, type: 2}
+  - {fileID: 11400000, guid: 10aa15ea0d72e164db54e48ca7b8586c, type: 2}
+  conversationBackgroundMusic: {fileID: 0}

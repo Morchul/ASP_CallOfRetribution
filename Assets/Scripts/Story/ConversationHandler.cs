@@ -10,6 +10,8 @@ public class ConversationHandler : MonoBehaviour, IPointerClickHandler
     [Header("Controller")]
     [SerializeField]
     private MissionController missionController;
+    [SerializeField]
+    private GameController gameController;
 
     [Header("Events")]
     [SerializeField]
@@ -53,6 +55,8 @@ public class ConversationHandler : MonoBehaviour, IPointerClickHandler
     {
         if (conversation == null) return;
 
+        gameController.DisableInput();
+
         gameObject.SetActive(true);
         currentConversation = conversation;
         currentConversation.StartConversation();
@@ -86,10 +90,14 @@ public class ConversationHandler : MonoBehaviour, IPointerClickHandler
         currentConversation = null;
         audioSource.Stop();
         gameObject.SetActive(false);
+        gameController.EnableInput();
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        NextDialog();
+        if (eventData.button == PointerEventData.InputButton.Left)
+            NextDialog();
+        else if (eventData.button == PointerEventData.InputButton.Right)
+            SkipConversation();
     }
 }

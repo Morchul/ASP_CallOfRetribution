@@ -28,6 +28,8 @@ public class GameController : ScriptableObject
 
     private int clientsReady;
 
+    private bool menuActive;
+
     public bool InputDisabled { get; private set; }
 
     public void Init()
@@ -82,11 +84,28 @@ public class GameController : ScriptableObject
 
     public void MenuActive(bool active)
     {
+        menuActive = active;
         InputDisabled = active;
         if (active)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+        }
+    }
+
+    public void DisableInput()
+    {
+        InputDisabled = true;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void EnableInput()
+    {
+        if(!menuActive)
+        {
+            InputDisabled = false;
         }
     }
 

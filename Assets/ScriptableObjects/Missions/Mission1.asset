@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef83b4dd87e0a2847ae6879aa1a4a168, type: 3}
   m_Name: Mission1
   m_EditorClassIdentifier: 
-  MissionScene: Assets/Scenes/Mission1_Test.unity
+  MissionScene: Assets/Scenes/Mission1.unity
   ID: 1
   TimeInSeconds: 600
   missionDocuments:
@@ -26,4 +26,4 @@ MonoBehaviour:
   amountOfBugs: 3
   OnNewInformation: {fileID: 11400000, guid: 97bb02a1aacb8be44b4873997f735aaf, type: 2}
   BeginConversation: {fileID: 11400000, guid: cdb15db97a60cbd4e9972e8e4b0df3bc, type: 2}
-  EndConversation: {fileID: 0}
+  EndConversation: {fileID: 11400000, guid: 2fa0c085755ab834db7505396063b58a, type: 2}

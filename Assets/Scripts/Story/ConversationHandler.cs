@@ -56,9 +56,15 @@ public class ConversationHandler : MonoBehaviour, IPointerClickHandler
         gameObject.SetActive(true);
         currentConversation = conversation;
         currentConversation.StartConversation();
+        NextDialog();
         audioSource.clip = currentConversation.BackgroundMusic;
         if(audioSource.clip != null)
             audioSource.Play();
+    }
+
+    public void SkipConversation()
+    {
+        FinishConversation();
     }
 
     private void NextDialog()

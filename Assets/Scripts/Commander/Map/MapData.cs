@@ -46,7 +46,7 @@ public class MapData : ScriptableObject
     {
         worldPos -= WorldOffset.ToVector2();
 
-        return new Vector2(worldPos.x / WorldWidth, worldPos.y / WorldHeight) * MapScaleSizeRatio;
+        return new Vector2(Mathf.Clamp(worldPos.x / WorldWidth, 0, 1), Mathf.Clamp(worldPos.y / WorldHeight, 0, 1)) * MapScaleSizeRatio;
     }
 
     public Vector2 MapCoordinateToMapPos(Vector2 mapCoordinate)

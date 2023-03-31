@@ -316,7 +316,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Leave
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d7b24384017047f4c8c49fd987aba2b0, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: -7471358904387882995, guid: d7b24384017047f4c8c49fd987aba2b0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4344,7 +4344,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Leave
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d7b24384017047f4c8c49fd987aba2b0, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: -7471358904387882995, guid: d7b24384017047f4c8c49fd987aba2b0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5519,7 +5519,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Waiting for host to start the game ...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d7b24384017047f4c8c49fd987aba2b0, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: -7471358904387882995, guid: d7b24384017047f4c8c49fd987aba2b0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

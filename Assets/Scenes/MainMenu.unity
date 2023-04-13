@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.12107852, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4065,6 +4065,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invalidIPColor: {r: 1, g: 0, b: 0, a: 1}
   validIPColor: {r: 0.07489321, g: 0.4811321, b: 0.114962175, a: 1}
+  allowIPv4: 1
+  allowIPv6: 1
 --- !u!1 &1526314931
 GameObject:
   m_ObjectHideFlags: 0

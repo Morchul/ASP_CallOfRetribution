@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+using System.Net;
 
 public class IPAddressField : MonoBehaviour
 {
@@ -16,6 +17,11 @@ public class IPAddressField : MonoBehaviour
 
     public bool Valid { get; private set; }
     public string IP_Address => inputField.text;
+
+    [SerializeField]
+    private bool allowIPv4;
+    [SerializeField]
+    private bool allowIPv6;
 
     void Awake()
     {
@@ -45,10 +51,16 @@ public class IPAddressField : MonoBehaviour
 
     private bool IsIPAddress(string value)
     {
-        //Check ipv4
-        return Regex.IsMatch(value, "^([0-9]{1,3}\\.){3}[0-9]{1,3}$")
-        //Check ipv6
-            || Regex.IsMatch(value, "^([0-9a-f]{0,4}\\:){7}[0-9a-f]{0,4}$");
+        if (IPAddress.TryParse(value, out IPAddress address))
+        {
+            return address.AddressFamily switch
+            {
+                System.Net.Sockets.AddressFamily.InterNetwork => allowIPv4,
+                System.Net.Sockets.AddressFamily.InterNetworkV6 => allowIPv6,
+                _ => false,
+            };
+        }
+        return false;
     }
 
 }

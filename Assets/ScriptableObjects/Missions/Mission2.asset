@@ -18,6 +18,7 @@ MonoBehaviour:
   missionDocuments:
   - {fileID: 5639261320635288156, guid: 5fb9691a862712040a6a44ef69e40394, type: 3}
   - {fileID: 902960539304111210, guid: c791f63d918a0a24ba2b147a20772e3e, type: 3}
+  - {fileID: 1990127385659461496, guid: e3671d20459744e4686f1f7307fed6d6, type: 3}
   radioMessages: []
   amountOfBugs: 3
   OnNewInformation: {fileID: 11400000, guid: 97bb02a1aacb8be44b4873997f735aaf, type: 2}

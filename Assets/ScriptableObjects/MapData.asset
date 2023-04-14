@@ -19,4 +19,4 @@ MonoBehaviour:
   MapSizeX: 10
   MapSizeY: 10
   MapScaleSizeRatio: 10
-  WorldOffset: {x: 0, y: 0, z: 0}
+  WorldOffset: {x: -230, y: 0, z: 0}

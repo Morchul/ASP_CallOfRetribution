@@ -120,7 +120,7 @@ MonoBehaviour:
   OnScanOnCooldown: {fileID: 11400000, guid: 0fb1fedecae493d439f696d307c12d89, type: 2}
   OnDroneConnectionStateChanged: {fileID: 11400000, guid: 2ded24303165cf74ea46b25e1edc906e, type: 2}
   OnTargetPointFound: {fileID: 11400000, guid: 918ed3ca555bf32478c8c38173d90ffa, type: 2}
-  moveSpeed: 10
+  moveSpeed: 25
   minDistToTarget: 2
   scanInterval: 3
   scanAmount: 5
@@ -128,7 +128,7 @@ MonoBehaviour:
   scanRadius: 70
   scanLayerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 5120
   posUpdateInterval: 0.5
   flairePrefab: {fileID: 2892183704682539078, guid: 8076f0334e20ffe4bb95f4c5fad0a8c1, type: 3}
 --- !u!54 &4250800944891351650

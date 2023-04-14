@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 2002203304}
   - component: {fileID: 2002203303}
   - component: {fileID: 2002203302}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MoneyBag
   m_TagString: Interactable
   m_Icon: {fileID: 0}

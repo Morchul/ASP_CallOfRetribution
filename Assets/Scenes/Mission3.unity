@@ -705,7 +705,7 @@ GameObject:
   - component: {fileID: 1353503048}
   - component: {fileID: 1353503047}
   - component: {fileID: 1353503046}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Crown
   m_TagString: Interactable
   m_Icon: {fileID: 0}

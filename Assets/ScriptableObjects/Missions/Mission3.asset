@@ -15,7 +15,10 @@ MonoBehaviour:
   MissionScene: Assets/Scenes/Mission3.unity
   ID: 3
   TimeInSeconds: 400
-  missionDocuments: []
+  missionDocuments:
+  - {fileID: 5639261320635288156, guid: 5fb9691a862712040a6a44ef69e40394, type: 3}
+  - {fileID: 902960539304111210, guid: c791f63d918a0a24ba2b147a20772e3e, type: 3}
+  - {fileID: 2631301843384594802, guid: 94f494cf218c6204495046dbf1925107, type: 3}
   radioMessages: []
   amountOfBugs: 3
   OnNewInformation: {fileID: 11400000, guid: 97bb02a1aacb8be44b4873997f735aaf, type: 2}

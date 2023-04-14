@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef83b4dd87e0a2847ae6879aa1a4a168, type: 3}
   m_Name: Mission2
   m_EditorClassIdentifier: 
-  MissionScene: 
+  MissionScene: Assets/Scenes/Mission2.unity
   ID: 2
   TimeInSeconds: 300
   missionDocuments:

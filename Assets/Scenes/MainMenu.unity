@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.12107852, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -719,7 +719,7 @@ PrefabInstance:
     - target: {fileID: 6209897032799802490, guid: 9d5df0a73490d0f41aa7b95fe1809ad7, type: 3}
       propertyPath: mission
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 5ba3492a117a6e34188eeb268bd4c721, type: 2}
     - target: {fileID: 6395273477174480106, guid: 9d5df0a73490d0f41aa7b95fe1809ad7, type: 3}
       propertyPath: m_Name
       value: MissionButton (1)
@@ -4541,7 +4541,7 @@ PrefabInstance:
     - target: {fileID: 6209897032799802490, guid: 9d5df0a73490d0f41aa7b95fe1809ad7, type: 3}
       propertyPath: mission
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: b6e1763c5c68caa4bab01566275580a0, type: 2}
     - target: {fileID: 6395273477174480106, guid: 9d5df0a73490d0f41aa7b95fe1809ad7, type: 3}
       propertyPath: m_Name
       value: MissionButton (2)

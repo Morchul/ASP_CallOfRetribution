@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef83b4dd87e0a2847ae6879aa1a4a168, type: 3}
   m_Name: Mission3
   m_EditorClassIdentifier: 
-  MissionScene: 
+  MissionScene: Assets/Scenes/Mission3.unity
   ID: 3
-  TimeInSeconds: 200
+  TimeInSeconds: 400
   missionDocuments: []
   radioMessages: []
   amountOfBugs: 3

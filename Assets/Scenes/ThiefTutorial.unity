@@ -1192,10 +1192,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Alarm
       objectReference: {fileID: 0}
-    - target: {fileID: 237028767440564217, guid: 741d2c13237d69540982192792105f42, type: 3}
-      propertyPath: m_TagString
-      value: Interactable
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 741d2c13237d69540982192792105f42, type: 3}
 --- !u!1 &669579122
